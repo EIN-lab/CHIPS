@@ -55,7 +55,7 @@ Although we are unable to guarantee a response to all requests for assistance, p
 License
 -------
 
-This project is licensed under the GNU General Public License. Please see the [LICENSE](../master/LICENSE) file for details.
+This project is licensed under the GNU General Public License. Please see the [LICENSE.txt](../master/LICENSE.txt) file for details.
 
 Although the GNU General Public License does not permit terms requiring users to cite the research paper where this software was originally published (see [here](https://www.gnu.org/licenses/gpl-faq.en.html#RequireCitation)), we request that any research making use of this software does cite the paper, as well as papers describing any algorithms used, in keeping with normal academic practice.  The function `utils.citation()`, which is included with CHIPS (see also [here](../master/%2Butils/citation.m)), will output the citation details.
 
@@ -73,4 +73,4 @@ CHIPS has been developed at the University of Zurich by:
 Acknowledgments
 ---------------
 
-Please see the [acknowledgements.txt](../master/acknowledgements.txt) file for details.
+Please see the [ACKNOWLEDGEMENTS.txt](../master/ACKNOWLEDGEMENTS.txt) file for details.
