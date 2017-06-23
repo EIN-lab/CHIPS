@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding="utf-8"?>
+<toc version="2.0">
+    <tocitem target="index.html">CHIPS
+		<tocitem target="getting_started.html">Getting Started
+			<tocitem target="documentation_and_examples.html">Documentation and Examples</tocitem>
+			<tocitem target="system_requirements.html">System Requirements</tocitem>
+			<tocitem target="release_notes.html">Release Notes</tocitem>
+			<tocitem target="acknowledgements.html">Acknowledgements</tocitem>
+		</tocitem>
+		<tocitem target="id.html">Image Data
+			<tocitem target="id_md.html">Image Metadata
+				<tocitem target="id_md_Metadata.html">Metadata</tocitem>
+				<tocitem target="id_md_Calibration.html">Calibration</tocitem>
+			</tocitem>
+			<tocitem target="id_ri.html">Raw Images
+				<tocitem target="id_ri_SCIM_Tif.html">SCIM_Tif</tocitem>
+				<tocitem target="id_ri_BioFormats.html">BioFormats</tocitem>
+				<tocitem target="id_ri_RawImgDummy.html">RawImgDummy</tocitem>
+			</tocitem>
+			<tocitem target="id_pp.html">Preprocessing
+				<tocitem target="id_pp_motion_corr.html">Motion Correction</tocitem>
+				<tocitem target="id_pp_utilities.html">Other Utilities</tocitem>
+			</tocitem>
+		</tocitem>
+		<tocitem target="pi_.html">Processed Images
+			<tocitem target="pi_CellScan.html">CellScan</tocitem>
+			<tocitem target="pi_FrameScan.html">FrameScan</tocitem>
+			<tocitem target="pi_LineScanDiam.html">LineScanDiam</tocitem>
+			<tocitem target="pi_LineScanVel.html">LineScanVel</tocitem>
+			<tocitem target="pi_XSectScan.html">XSectScan</tocitem>
+		</tocitem>
+		<tocitem target="ig.html">Groups of Images
+			<tocitem target="ig_ImgGroup.html">ImgGroup</tocitem>
+			<tocitem target="ig_CompositeImg.html">CompositeImg</tocitem>
+		</tocitem>
+    </tocitem>
+</toc>

@@ -1,0 +1,264 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Metadata</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-06-23"><meta name="DC.source" content="id_md_Metadata.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Metadata</h1><!--introduction--><p>Store image metadata</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Arguments</a></li><li><a href="#3">Details</a></li><li><a href="#4">See Also</a></li><li><a href="#5">Examples</a></li></ul></div><h2>Usage<a name="1"></a></h2><pre class="language-matlab">OBJ = Metadata(IMGSIZE, ACQ, CHS, CAL)
+</pre><h2>Arguments<a name="2"></a></h2><div><ul><li><tt>IMGSIZE</tt> is a vector of the dimensions of the raw image data.</li><li><tt>ACQ</tt> is a scalar structure containing information about the image acquisition (e.g. line time, zoom factor etc).</li><li><tt>CHS</tt> is a scalar structure that contains information about the meaning of the image channels.</li><li><tt>CAL</tt> is a scalar <tt>CalibrationPixelSize</tt> object.</li></ul></div><h2>Details<a name="3"></a></h2><p><tt>Metadata</tt> objects are used to contain all the extra information (i.e. metadata) about a given raw image.  It also implements a number of related helper/convenience functions.</p><h2>See Also<a name="4"></a></h2><div><ul><li><a href="matlab:doc('Metadata')"><tt>Metadata</tt> class documentation</a></li><li><a href="matlab:doc('CalibrationPixelSize')"><tt>CalibrationPixelSize</tt> class documentation</a></li><li><a href="id_md_Calibration.html"><tt>CalibrationPixelSize</tt> quick start guide</a></li><li><a href="matlab:doc('RawImg')"><tt>RawImg</tt> class documentation</a></li><li><a href="id_ri.html"><tt>RawImg</tt> quick start guide</a></li></ul></div><h2>Examples<a name="5"></a></h2><p>The following examples require the sample images and other files, which can be downloaded manually, from the University of Zurich website (<a href="http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html">http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html</a>), or automatically, by running the function <tt>utils.download_example_imgs()</tt>.</p><p><h3>Create a <tt>Metadata</tt> object interactively</h3></p><p>The following example will illustrate the process of creating a <tt>Metadata</tt> object interactively.  Normally this process is done automatically when creating a <tt>RawImg</tt> object, but in certain circumstances it is useful to do it manually.</p><pre class="language-matlab"><span class="comment">% Call the Metadata constructor</span>
+md001 = Metadata()
+</pre><p>Answer some questions about the image acquisition.  For example, specify that the image was not bidirectional, that the line time was 2ms, and that the zoom factor was 4.</p><pre>  Please enter a value for if the image is bidirectional [1/0]: 0
+  Please enter a value for the line time [ms]: 2
+  Please enter a value for the zoom factor: 4</pre><p>Use the interactive dialogue box to select the dummy calibration (<tt>calibration_dummy.mat</tt>), which should be located in the subfolder tests&gt;res, within the CHIPS root directory:</p><p><img vspace="5" hspace="5" src="sel_cal.png" alt=""> </p><p>We have now created a <tt>Metadata</tt> object interactively.</p><pre class="language-matlab">md001 =
+</pre><p><font color="orange"><pre class="language-matlab">
+Warning: The original number of lines per frame is not defined for this
+image.  This may be because the metadata was created in an unexpected
+way.  Please check carefully any results that depend on the frame rate.
+> In Metadata/get.frameRate (line 433)
+Warning: The image dimensions are not defined, so the frame rate could
+not be determined.
+> In Metadata/get.frameRate (line 444)
+Warning: The original number of pixels per line is not defined for this
+image.  This may be because the metadata was created in an unexpected
+way.  Please check carefully any results that depend on the pixel size.
+> In Metadata/get.pixelSize (line 469)
+Warning: The image dimensions are not defined, so the pixel size could
+not be determined.
+> In Metadata/get.pixelSize (line 480)</pre></font></p><pre>  Metadata with properties:</pre><pre>          calibration: [1x1 CalibrationPixelSize]
+             channels: []
+   discardFlybackLine: []
+            frameRate: NaN
+               isBiDi: 0
+             lineTime: 2
+            nChannels: []
+              nFrames: []
+       nLinesPerFrame: []
+   nLinesPerFrameOrig: []
+       nPixelsPerLine: []
+   nPixelsPerLineOrig: []
+            pixelSize: NaN
+            pixelTime: []
+                 zoom: 4
+        knownChannels: {1x7 cell}</pre><p><h3>Create a <tt>Metadata</tt> object without any interaction</h3></p><pre class="codeinput"><span class="comment">% Specify the image dimensions</span>
+imgSize = [128, 128, 2, 10];
+
+<span class="comment">% Specify some data about the image acquisition</span>
+acq = struct(<span class="string">'isBiDi'</span>, false, <span class="string">'lineTime'</span>, 2, <span class="string">'zoom'</span>, 4, <span class="keyword">...</span>
+    <span class="string">'nLinesPerFrameOrig'</span>, imgSize(1), <span class="string">'nPixelsPerLineOrig'</span>, imgSize(2));
+
+<span class="comment">% Specify the channels relevant for this raw image</span>
+channels = struct(<span class="string">'Ca_Cyto_Astro'</span>, 1, <span class="string">'blood_plasma'</span>, 2);
+
+<span class="comment">% Load the CalibrationPixelSize object</span>
+fnCalibration = fullfile(utils.CHIPS_rootdir, <span class="string">'tests'</span>, <span class="string">'res'</span>, <span class="keyword">...</span>
+    <span class="string">'calibration_dummy.mat'</span>);
+calibration = CalibrationPixelSize.load(fnCalibration);
+
+<span class="comment">% Create the Metadata object without any interaction</span>
+md002 = Metadata(imgSize, acq, channels, calibration)
+</pre><pre class="codeoutput">
+md002 = 
+
+  Metadata with properties:
+
+           calibration: [1x1 CalibrationPixelSize]
+              channels: [1x1 struct]
+    discardFlybackLine: []
+             frameRate: 3.9063
+                isBiDi: 0
+              lineTime: 2
+             nChannels: 2
+               nFrames: 10
+        nLinesPerFrame: 128
+    nLinesPerFrameOrig: 128
+        nPixelsPerLine: 128
+    nPixelsPerLineOrig: 128
+             pixelSize: 2
+             pixelTime: []
+                  zoom: 4
+         knownChannels: {1x7 cell}
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Metadata
+% Store image metadata
+
+%% Usage
+%   OBJ = Metadata(IMGSIZE, ACQ, CHS, CAL)
+
+%% Arguments
+% * |IMGSIZE| is a vector of the dimensions of the raw image data.
+% * |ACQ| is a scalar structure containing information about the image
+% acquisition (e.g. line time, zoom factor etc).
+% * |CHS| is a scalar structure that contains information about the
+% meaning of the image channels.
+% * |CAL| is a scalar |CalibrationPixelSize| object.
+        
+%% Details
+% |Metadata| objects are used to contain all the extra information (i.e.
+% metadata) about a given raw image.  It also implements a number of
+% related helper/convenience functions.
+
+%% See Also
+% * <matlab:doc('Metadata') |Metadata| class documentation>
+% * <matlab:doc('CalibrationPixelSize') |CalibrationPixelSize| class documentation>
+% * <id_md_Calibration.html |CalibrationPixelSize| quick start guide>
+% * <matlab:doc('RawImg') |RawImg| class documentation>
+% * <id_ri.html |RawImg| quick start guide>
+
+%% Examples
+% The following examples require the sample images and other files, which
+% can be downloaded manually, from the University of Zurich website
+% (<http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html>), or
+% automatically, by running the function |utils.download_example_imgs()|.
+%
+% <html><h3>Create a <tt>Metadata</tt> object interactively</h3></html>
+%
+% The following example will illustrate the process of creating a
+% |Metadata| object interactively.  Normally this process is done
+% automatically when creating a |RawImg| object, but in certain
+% circumstances it is useful to do it manually.
+%
+%   % Call the Metadata constructor
+%   md001 = Metadata()
+%
+% Answer some questions about the image acquisition.  For example, specify
+% that the image was not bidirectional, that the line time was 2ms, and
+% that the zoom factor was 4.
+%
+%    Please enter a value for if the image is bidirectional [1/0]: 0
+%    Please enter a value for the line time [ms]: 2
+%    Please enter a value for the zoom factor: 4
+%
+% Use the interactive dialogue box to select the dummy calibration
+% (|calibration_dummy.mat|), which should be located in the subfolder
+% tests>res, within the CHIPS root directory:
+%
+% <<sel_cal.png>>
+%
+% We have now created a |Metadata| object interactively.
+%
+%   md001 = 
+% 
+% <html><font color="orange"><pre class="language-matlab">
+% Warning: The original number of lines per frame is not defined for this
+% image.  This may be because the metadata was created in an unexpected
+% way.  Please check carefully any results that depend on the frame rate. 
+% > In Metadata/get.frameRate (line 433) 
+% Warning: The image dimensions are not defined, so the frame rate could
+% not be determined. 
+% > In Metadata/get.frameRate (line 444) 
+% Warning: The original number of pixels per line is not defined for this
+% image.  This may be because the metadata was created in an unexpected
+% way.  Please check carefully any results that depend on the pixel size. 
+% > In Metadata/get.pixelSize (line 469) 
+% Warning: The image dimensions are not defined, so the pixel size could
+% not be determined. 
+% > In Metadata/get.pixelSize (line 480)</pre></font></html>
+% 
+%    Metadata with properties:
+% 
+%            calibration: [1x1 CalibrationPixelSize]
+%               channels: []
+%     discardFlybackLine: []
+%              frameRate: NaN
+%                 isBiDi: 0
+%               lineTime: 2
+%              nChannels: []
+%                nFrames: []
+%         nLinesPerFrame: []
+%     nLinesPerFrameOrig: []
+%         nPixelsPerLine: []
+%     nPixelsPerLineOrig: []
+%              pixelSize: NaN
+%              pixelTime: []
+%                   zoom: 4
+%          knownChannels: {1x7 cell}
+
+%%
+%
+% <html><h3>Create a <tt>Metadata</tt> object without any interaction</h3></html>
+%
+
+% Specify the image dimensions
+imgSize = [128, 128, 2, 10];
+
+% Specify some data about the image acquisition
+acq = struct('isBiDi', false, 'lineTime', 2, 'zoom', 4, ...
+    'nLinesPerFrameOrig', imgSize(1), 'nPixelsPerLineOrig', imgSize(2));
+
+% Specify the channels relevant for this raw image
+channels = struct('Ca_Cyto_Astro', 1, 'blood_plasma', 2);
+
+% Load the CalibrationPixelSize object 
+fnCalibration = fullfile(utils.CHIPS_rootdir, 'tests', 'res', ...
+    'calibration_dummy.mat');
+calibration = CalibrationPixelSize.load(fnCalibration);
+
+% Create the Metadata object without any interaction
+md002 = Metadata(imgSize, acq, channels, calibration)
+
+##### SOURCE END #####
+--></body></html>

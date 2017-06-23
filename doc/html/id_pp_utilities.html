@@ -1,0 +1,204 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Other Preprocessing Utilities</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-06-23"><meta name="DC.source" content="id_pp_utilities.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Other Preprocessing Utilities</h1><!--introduction--><p>A number of other preprocessing utilities are included in the CHIPS toolbox.  For example, it is possible to calculate a new channel using information from other channels (e.g. for FRET ratiometric sensors), to split images up into multiple smaller images, and to concatenate images together.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">See Also</a></li><li><a href="#2">Examples</a></li></ul></div><h2>See Also<a name="1"></a></h2><div><ul><li><a href="matlab:doc('RawImg.ch_calc')"><tt>ch_calc</tt> method documentation</a></li><li><a href="matlab:doc('RawImg.split1')"><tt>split1</tt> method documentation</a></li><li><a href="matlab:doc('RawImg.cat_data')"><tt>cat_data</tt> function documentation</a></li><li><a href="id_ri.html"><tt>RawImg</tt> quick start guide</a></li></ul></div><h2>Examples<a name="2"></a></h2><p>The following examples require the sample images and other files, which can be downloaded manually, from the University of Zurich website (<a href="http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html">http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html</a>), or automatically, by running the function <tt>utils.download_example_imgs()</tt>.</p><p><h3>Prepare a <tt>RawImg</tt> for use in these examples</h3></p><pre class="codeinput"><span class="comment">% Prepare a rawImg for use in these examples</span>
+fnRawImg = fullfile(utils.CHIPS_rootdir, <span class="string">'tests'</span>, <span class="string">'res'</span>, <span class="keyword">...</span>
+    <span class="string">'xsectscan_scim.tif'</span>);
+channels = struct(<span class="string">'cellular_signal'</span>, 1, <span class="string">'blood_plasma'</span>, 2);
+fnCalibration = fullfile(utils.CHIPS_rootdir, <span class="string">'tests'</span>, <span class="string">'res'</span>, <span class="keyword">...</span>
+    <span class="string">'calibration_dummy.mat'</span>);
+calibration = CalibrationPixelSize.load(fnCalibration);
+rawImg = SCIM_Tif(fnRawImg, channels, calibration);
+</pre><pre class="codeoutput">Opening xsectscan_scim.tif: 100% [=================================]
+</pre><p><h3>Calculate a ratio channel</h3></p><pre class="codeinput"><span class="comment">% Make a copy of the RawImg object so we can reuse the original later</span>
+ri001 = copy(rawImg);
+nChs_pre = ri001.metadata.nChannels
+
+<span class="comment">% Calculate a ratio channel (i.e. ch3 = ch1 ./ ch2)</span>
+chNums = [1, 2];
+chName = <span class="string">'cellular_signal'</span>;
+ri001.ch_calc_ratio(chNums, chName);
+nChs_post = ri001.metadata.nChannels
+</pre><pre class="codeoutput">
+nChs_pre =
+
+     2
+
+
+nChs_post =
+
+     3
+
+</pre><p><h3>Split the image into separate channels</h3></p><pre class="codeinput"><span class="comment">% Split the image into separate channels</span>
+ri002 = copy(rawImg);
+dim = 3;
+dimDist = [1, 1];
+[ri002_ch1, ri002_ch2] = ri002.split1(dim, dimDist);
+ch1_name = ri002_ch1.metadata.get_ch_name(1)
+ch2_name = ri002_ch2.metadata.get_ch_name(1)
+</pre><pre class="codeoutput">
+ch1_name = 
+
+    'cellular_signal'
+
+
+ch2_name = 
+
+    'blood_plasma'
+
+</pre><p><h3>Concatenate multiple images together</h3></p><pre class="codeinput"><span class="comment">% Concatenate multiple images together (including recursively)</span>
+nFrames_pre = rawImg.metadata.nFrames
+dim = 4;
+riArray(1:3) = copy(rawImg);
+ri003 = RawImg.cat_data(dim, copy(rawImg), riArray, copy(rawImg));
+nFrames_post = ri003.metadata.nFrames
+</pre><pre class="codeoutput">
+nFrames_pre =
+
+    50
+
+
+nFrames_post =
+
+   250
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Other Preprocessing Utilities
+% A number of other preprocessing utilities are included in the CHIPS
+% toolbox.  For example, it is possible to calculate a new channel using
+% information from other channels (e.g. for FRET ratiometric sensors),
+% to split images up into multiple smaller images, and to concatenate
+% images together.
+
+%% See Also
+% * <matlab:doc('RawImg.ch_calc') |ch_calc| method documentation>
+% * <matlab:doc('RawImg.split1') |split1| method documentation>
+% * <matlab:doc('RawImg.cat_data') |cat_data| function documentation>
+% * <id_ri.html |RawImg| quick start guide>
+
+%% Examples
+% The following examples require the sample images and other files, which
+% can be downloaded manually, from the University of Zurich website
+% (<http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html>), or
+% automatically, by running the function |utils.download_example_imgs()|.
+%
+% <html><h3>Prepare a <tt>RawImg</tt> for use in these examples</h3></html>
+%
+
+% Prepare a rawImg for use in these examples
+fnRawImg = fullfile(utils.CHIPS_rootdir, 'tests', 'res', ...
+    'xsectscan_scim.tif');
+channels = struct('cellular_signal', 1, 'blood_plasma', 2);
+fnCalibration = fullfile(utils.CHIPS_rootdir, 'tests', 'res', ...
+    'calibration_dummy.mat');
+calibration = CalibrationPixelSize.load(fnCalibration);
+rawImg = SCIM_Tif(fnRawImg, channels, calibration);
+
+%%
+%
+% <html><h3>Calculate a ratio channel</h3></html>
+%
+
+% Make a copy of the RawImg object so we can reuse the original later
+ri001 = copy(rawImg);
+nChs_pre = ri001.metadata.nChannels
+
+% Calculate a ratio channel (i.e. ch3 = ch1 ./ ch2)
+chNums = [1, 2];
+chName = 'cellular_signal';
+ri001.ch_calc_ratio(chNums, chName);
+nChs_post = ri001.metadata.nChannels
+
+%%
+%
+% <html><h3>Split the image into separate channels</h3></html>
+%
+
+% Split the image into separate channels
+ri002 = copy(rawImg);
+dim = 3;
+dimDist = [1, 1];
+[ri002_ch1, ri002_ch2] = ri002.split1(dim, dimDist);
+ch1_name = ri002_ch1.metadata.get_ch_name(1)
+ch2_name = ri002_ch2.metadata.get_ch_name(1)
+
+%%
+%
+% <html><h3>Concatenate multiple images together</h3></html>
+%
+
+% Concatenate multiple images together (including recursively)
+nFrames_pre = rawImg.metadata.nFrames
+dim = 4;
+riArray(1:3) = copy(rawImg);
+ri003 = RawImg.cat_data(dim, copy(rawImg), riArray, copy(rawImg));
+nFrames_post = ri003.metadata.nFrames
+
+##### SOURCE END #####
+--></body></html>

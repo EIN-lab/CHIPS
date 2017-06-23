@@ -1,0 +1,326 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>CalibrationPixelSize</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-06-23"><meta name="DC.source" content="id_md_Calibration.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>CalibrationPixelSize</h1><!--introduction--><p>Store pixel size calibration</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Arguments</a></li><li><a href="#3">Details</a></li><li><a href="#4">See Also</a></li><li><a href="#5">Examples</a></li></ul></div><h2>Usage<a name="1"></a></h2><pre class="language-matlab">OBJ = CalibrationPixelSize(ZOOM, PXSIZE, IMGSIZE, OBJECTIVE, DATE,
+    NAME, PERSON, FUNRAW)
+</pre><h2>Arguments<a name="2"></a></h2><div><ul><li><tt>ZOOM</tt> is a vector of zoom values at which the pixel size is known.</li><li><tt>PXSIZE</tt> is a vector of pixel sizes at the given zoom values.</li><li><tt>IMGSIZE</tt> is a scalar integer specifying the number of pixels in the calibration images.</li><li><tt>OBJECTIVE</tt> is the objective that the calibration is for.</li><li><tt>DATE</tt> is the date the calibration was performed.</li><li><tt>NAME</tt> is the name of the calibration.</li><li><tt>PERSON</tt> is the person who performed the calibration.</li><li><tt>FUNRAW</tt> is an unparameterised function handle describing the relationship between zoom and pixel size.</li></ul></div><h2>Details<a name="3"></a></h2><p><tt>CalibrationPixelSize</tt> contains a calibration relating a given microscope zoom factor to a known physical pixel size (in units of distance) for a given objective.</p><h2>See Also<a name="4"></a></h2><div><ul><li><a href="matlab:doc('CalibrationPixelSize')"><tt>CalibrationPixelSize</tt> class documentation</a></li><li><a href="matlab:doc('Metadata')"><tt>Metadata</tt> class documentation</a></li><li><a href="id_md_Metadata.html"><tt>Metadata</tt> quick start guide</a></li><li><a href="matlab:doc('RawImg')"><tt>RawImg</tt> class documentation</a></li><li><a href="id_ri.html"><tt>RawImg</tt> quick start guide</a></li></ul></div><h2>Examples<a name="5"></a></h2><p><h3>Create a <tt>CalibrationPixelSize</tt> object</h3></p><p>The following example will illustrate the process of creating a <tt>CalibrationPixelSize</tt> object.  Normally this process only needs to be done once per objective/microscope combination.</p><pre class="codeinput"><span class="comment">% Specify some zoom values</span>
+zoom = 2.^(0:5)
+
+<span class="comment">% Specify some values for pixel size at the defined zoom, with added noise</span>
+pxSize = (1./zoom).*(1 + 0.05*randn(1, numel(zoom)))
+
+<span class="comment">% Specify the original number of pixels in the calibration images</span>
+imgSize = 256;
+
+<span class="comment">% Specify some other aspects of the calibration</span>
+objective = <span class="string">'imaginary'</span>;
+date = <span class="string">'yesterday'</span>;
+name = <span class="string">'test calibration'</span>;
+person = <span class="string">'Dr Who'</span>;
+funRaw = @CalibrationPixelSize.funRawHyperbola;
+
+<span class="comment">% Call the CalibrationPixelSize constructor</span>
+cal001 = CalibrationPixelSize(zoom, pxSize, imgSize, objective, date, <span class="keyword">...</span>
+    name, person, funRaw)
+
+<span class="comment">% Show a plot of the calibration. (Note: your image may differ due to the</span>
+<span class="comment">% random data used to generate the calibration)</span>
+cal001.plot();
+</pre><pre class="codeoutput">
+zoom =
+
+     1     2     4     8    16    32
+
+
+pxSize =
+
+    0.9783    0.5086    0.2947    0.1423    0.0583    0.0360
+
+
+cal001 = 
+
+  CalibrationPixelSize with properties:
+
+         date: 'yesterday'
+       funRaw: @CalibrationPixelSize.funRawHyperbola
+      imgSize: 256
+         name: 'test calibration'
+    objective: 'imaginary'
+       person: 'Dr Who'
+    pixelSize: [6x1 double]
+         zoom: [6x1 double]
+
+</pre><img vspace="5" hspace="5" src="id_md_Calibration_01.png" alt=""> <p><h3>Saving a <tt>CalibrationPixelSize</tt> object</h3></p><pre class="codeinput"><span class="comment">% Save the calibration</span>
+cal001.save(<span class="string">'cal001.mat'</span>);
+</pre><p><h3>Loading a <tt>CalibrationPixelSize</tt> object</h3></p><pre class="codeinput"><span class="comment">% Load the calibration</span>
+cal001_reloaded = CalibrationPixelSize.load(<span class="string">'cal001.mat'</span>)
+
+<span class="comment">% Check that the loaded calibration is the same as the one we saved</span>
+isEqual = cal001 == cal001_reloaded
+</pre><pre class="codeoutput">
+cal001_reloaded = 
+
+  CalibrationPixelSize with properties:
+
+         date: 'yesterday'
+       funRaw: @CalibrationPixelSize.funRawHyperbola
+      imgSize: 256
+         name: 'test calibration'
+    objective: 'imaginary'
+       person: 'Dr Who'
+    pixelSize: [6x1 double]
+         zoom: [6x1 double]
+
+
+isEqual =
+
+     1
+
+</pre><p><h3>Creating a 'dummy' <tt>CalibrationPixelSize</tt> object</h3></p><p>The following example will illustrate the process of creating a 'dummy' <tt>CalibrationPixelSize</tt> object.  This process is needed to specify the pixel size for images that do not possess the necessary metadata to create their own calibration (as normally happens with <tt>BioFormats</tt> images) or use a calibration based on the zoom value (as normally happens with <tt>SCIM_Tif</tt> images).</p><pre class="codeinput"><span class="comment">% Specify the desired pixel size</span>
+pxSizeImg = 1.234; <span class="comment">% um</span>
+
+<span class="comment">% Specify the image size.  This is important to set correctly, because the</span>
+<span class="comment">% pixel size for an image depends on both the calibration and the image</span>
+<span class="comment">% size.  For example, for the same calibration, a 128 x 128 pixel image</span>
+<span class="comment">% will have a pixel size two times larger than a 256 x 256 pixel image.</span>
+imgSizeDummy = 256;
+
+<span class="comment">% Specify the remaining information</span>
+zoomDummy = [1 100];
+pxSizeDummy = pxSizeImg.*ones(size(zoomDummy));
+objectiveDummy = <span class="string">'dummy'</span>;
+dateDummy = <span class="string">'dummy'</span>;
+nameDummy = <span class="string">'dummy'</span>;
+personDummy = <span class="string">'dummy'</span>;
+funRawDummy = @CalibrationPixelSize.funRawDummy;
+
+<span class="comment">% Create the calibration object</span>
+calDummy = CalibrationPixelSize(zoomDummy, pxSizeDummy, imgSizeDummy, <span class="keyword">...</span>
+    objectiveDummy, dateDummy, nameDummy, personDummy, funRawDummy);
+
+<span class="comment">% Show the pixel size that will be returned</span>
+zoom05 = 5;
+pxSize05_1 = calDummy.calc_pixel_size(zoom05, imgSizeDummy)
+</pre><pre class="codeoutput">
+pxSize05_1 =
+
+    1.2340
+
+</pre><pre class="codeinput"><span class="comment">% Note that the pixel size is different for different image sizes</span>
+pxSize05_2 = calDummy.calc_pixel_size(zoom05, imgSizeDummy/2)
+</pre><pre class="codeoutput">
+pxSize05_2 =
+
+    2.4680
+
+</pre><pre class="codeinput"><span class="comment">% For dummy calibrations, the pixel size is the same for all zoom values</span>
+zoomRange = 1:10:100;
+pxSize05_range = calDummy.calc_pixel_size(zoomRange, imgSizeDummy)
+</pre><pre class="codeoutput">
+pxSize05_range =
+
+  Columns 1 through 7
+
+    1.2340    1.2340    1.2340    1.2340    1.2340    1.2340    1.2340
+
+  Columns 8 through 10
+
+    1.2340    1.2340    1.2340
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% CalibrationPixelSize
+% Store pixel size calibration
+
+%% Usage
+%   OBJ = CalibrationPixelSize(ZOOM, PXSIZE, IMGSIZE, OBJECTIVE, DATE,
+%       NAME, PERSON, FUNRAW)
+
+%% Arguments
+% * |ZOOM| is a vector of zoom values at which the pixel size is known.
+% * |PXSIZE| is a vector of pixel sizes at the given zoom values.
+% * |IMGSIZE| is a scalar integer specifying the number of pixels in the
+% calibration images.
+% * |OBJECTIVE| is the objective that the calibration is for.
+% * |DATE| is the date the calibration was performed.
+% * |NAME| is the name of the calibration.
+% * |PERSON| is the person who performed the calibration.
+% * |FUNRAW| is an unparameterised function handle describing the
+% relationship between zoom and pixel size.
+
+%% Details
+% |CalibrationPixelSize| contains a calibration relating a given
+% microscope zoom factor to a known physical pixel size (in units of
+% distance) for a given objective.
+
+%% See Also
+% * <matlab:doc('CalibrationPixelSize') |CalibrationPixelSize| class documentation>
+% * <matlab:doc('Metadata') |Metadata| class documentation>
+% * <id_md_Metadata.html |Metadata| quick start guide>
+% * <matlab:doc('RawImg') |RawImg| class documentation>
+% * <id_ri.html |RawImg| quick start guide>
+
+%% Examples
+%
+% <html><h3>Create a <tt>CalibrationPixelSize</tt> object</h3></html>
+%
+% The following example will illustrate the process of creating a
+% |CalibrationPixelSize| object.  Normally this process only needs to be
+% done once per objective/microscope combination.
+
+% Specify some zoom values 
+zoom = 2.^(0:5)
+
+% Specify some values for pixel size at the defined zoom, with added noise
+pxSize = (1./zoom).*(1 + 0.05*randn(1, numel(zoom)))
+
+% Specify the original number of pixels in the calibration images
+imgSize = 256;
+
+% Specify some other aspects of the calibration
+objective = 'imaginary';
+date = 'yesterday';
+name = 'test calibration';
+person = 'Dr Who';
+funRaw = @CalibrationPixelSize.funRawHyperbola;
+
+% Call the CalibrationPixelSize constructor
+cal001 = CalibrationPixelSize(zoom, pxSize, imgSize, objective, date, ...
+    name, person, funRaw)
+
+% Show a plot of the calibration. (Note: your image may differ due to the
+% random data used to generate the calibration)
+cal001.plot();
+
+%%
+%
+% <html><h3>Saving a <tt>CalibrationPixelSize</tt> object</h3></html>
+%
+
+% Save the calibration
+cal001.save('cal001.mat');
+
+%%
+%
+% <html><h3>Loading a <tt>CalibrationPixelSize</tt> object</h3></html>
+%
+
+% Load the calibration
+cal001_reloaded = CalibrationPixelSize.load('cal001.mat')
+
+% Check that the loaded calibration is the same as the one we saved
+isEqual = cal001 == cal001_reloaded
+
+%%
+%
+% <html><h3>Creating a 'dummy' <tt>CalibrationPixelSize</tt> object</h3></html>
+%
+% The following example will illustrate the process of creating a 'dummy'
+% |CalibrationPixelSize| object.  This process is needed to specify the
+% pixel size for images that do not possess the necessary metadata to
+% create their own calibration (as normally happens with |BioFormats|
+% images) or use a calibration based on the zoom value (as normally happens
+% with |SCIM_Tif| images).
+
+% Specify the desired pixel size
+pxSizeImg = 1.234; % um
+
+% Specify the image size.  This is important to set correctly, because the
+% pixel size for an image depends on both the calibration and the image
+% size.  For example, for the same calibration, a 128 x 128 pixel image
+% will have a pixel size two times larger than a 256 x 256 pixel image.
+imgSizeDummy = 256;
+
+% Specify the remaining information
+zoomDummy = [1 100];
+pxSizeDummy = pxSizeImg.*ones(size(zoomDummy));
+objectiveDummy = 'dummy';
+dateDummy = 'dummy';
+nameDummy = 'dummy';
+personDummy = 'dummy';
+funRawDummy = @CalibrationPixelSize.funRawDummy;
+
+% Create the calibration object
+calDummy = CalibrationPixelSize(zoomDummy, pxSizeDummy, imgSizeDummy, ...
+    objectiveDummy, dateDummy, nameDummy, personDummy, funRawDummy);
+
+% Show the pixel size that will be returned
+zoom05 = 5;
+pxSize05_1 = calDummy.calc_pixel_size(zoom05, imgSizeDummy)
+%%
+
+% Note that the pixel size is different for different image sizes
+pxSize05_2 = calDummy.calc_pixel_size(zoom05, imgSizeDummy/2)
+%%
+
+% For dummy calibrations, the pixel size is the same for all zoom values
+zoomRange = 1:10:100;
+pxSize05_range = calDummy.calc_pixel_size(zoomRange, imgSizeDummy)
+
+##### SOURCE END #####
+--></body></html>

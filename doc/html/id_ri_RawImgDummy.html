@@ -1,0 +1,302 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>RawImgDummy</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-06-23"><meta name="DC.source" content="id_ri_RawImgDummy.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>RawImgDummy</h1><!--introduction--><p>Store 'dummy' raw image data</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Arguments</a></li><li><a href="#3">Details</a></li><li><a href="#4">See Also</a></li><li><a href="#5">Examples</a></li></ul></div><h2>Usage<a name="1"></a></h2><pre class="language-matlab">OBJ = RawImgDummy(FILENAME, CHS, CAL, ACQ)
+OBJ = RawImgDummy(NAME, RAWDATA, CHS, CAL, ACQ)
+</pre><h2>Arguments<a name="2"></a></h2><div><ul><li><tt>FILENAME</tt> is the original filename (including the path) of this <tt>RawImgDummy</tt> object.</li><li><tt>CHS</tt> is a scalar structure that contains information about the meaning of the image channels.</li><li><tt>CAL</tt> is a scalar <tt>CalibrationPixelSize</tt> object.</li><li><tt>ACQ</tt> is a scalar structure containing information about the image acquisition (e.g. line time, zoom factor etc).</li><li><tt>NAME</tt> is the name of this <tt>RawImgDummy</tt> object.</li><li><tt>RAWDATA</tt> is the raw image data for the <tt>RawImgDummy</tt> object.</li></ul></div><h2>Details<a name="3"></a></h2><p><tt>RawImgDummy</tt> objects are used to contain all raw image data and metadata from 'dummy' raw image data, i.e. images that don't have a specific class designed to import their format.  This makes it possible to create functional RawImg objects from any data without requiring the overhead of creating a class (but also without the benefits of a streamlined creation/import process).  RawImgDummy objects are also created when RawImg objects are modified in certain ways (e.g. concatenated together or split up), since the modified objects no longer represent the original raw image file.</p><h2>See Also<a name="4"></a></h2><div><ul><li><a href="matlab:doc('RawImg')"><tt>RawImg</tt> class documentation</a></li><li><a href="matlab:doc('Metadata')"><tt>Metadata</tt> class documentation</a></li><li><a href="id_md_Metadata.html"><tt>Metadata</tt> quick start guide</a></li><li><a href="matlab:doc('CalibrationPixelSize')"><tt>CalibrationPixelSize</tt> class documentation</a></li><li><a href="id_md_Calibration.html"><tt>CalibrationPixelSize</tt> quick start guide</a></li></ul></div><h2>Examples<a name="5"></a></h2><p>The following examples require the sample images and other files, which can be downloaded manually, from the University of Zurich website (<a href="http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html">http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html</a>), or automatically, by running the function <tt>utils.download_example_imgs()</tt>.</p><p><h3>Create a <tt>RawImgDummy</tt> object interactively</h3></p><p>The following example will illustrate the process of creating a <tt>RawImgDummy</tt> object interactively, using already existing image data.</p><pre class="language-matlab"><span class="comment">% Call the RawImgDummy constructor with some randomly-generated data</span>
+rid001 = RawImgDummy(<span class="string">'test'</span>, rand(128, 128, 2, 4))
+</pre><p>Answer some questions about the image acquisition.  For example, specify that the image was not bidirectional, that the line time was 2ms, and that the zoom factor was 4.</p><pre>  Please enter a value for if the image is bidirectional [1/0]: 0
+  Please enter a value for the line time [ms]: 2
+  Please enter a value for the zoom factor: 4</pre><p>Use the interactive dialogue box to select the dummy calibration (<tt>calibration_dummy.mat</tt>), which should be located in the subfolder tests&gt;res, within the CHIPS root directory:</p><p><img vspace="5" hspace="5" src="sel_cal.png" alt=""> </p><p>The next stage is to define the 'meaning' of the image channels.  For example, specify that the first channel represents a cytosolic calcium sensor expressed in astrocytes, and the second channel represents the blood plasma.  Press three and then enter, followed by one and then enter, to complete the selection.</p><pre>----- What is shown on channel 1? -----</pre><pre>  &gt;&gt; 0) &lt;blank&gt;
+     1) blood_plasma
+     2) blood_rbcs
+     3) Ca_Cyto_Astro
+     4) Ca_Memb_Astro
+     5) Ca_Neuron
+     6) cellular_signal
+     7) FRET_ratio</pre><pre>Answer: 3</pre><pre>----- What is shown on channel 2? -----</pre><pre>  &gt;&gt; 0) &lt;blank&gt;
+     1) blood_plasma
+     2) blood_rbcs
+     3) Ca_Cyto_Astro
+     4) Ca_Memb_Astro
+     5) Ca_Neuron
+     6) cellular_signal
+     7) FRET_ratio</pre><pre>Answer: 1</pre><p>We have now created a <tt>RawImgDummy</tt> object interactively.</p><pre>rid001 =</pre><pre>  RawImgDummy with properties:</pre><pre>            filename: 'test'
+          isDenoised: 0
+   isMotionCorrected: 0
+   metadata_original: []
+                name: 'test'
+             rawdata: [4-D double]
+                  t0: 0
+            metadata: [1x1 Metadata]</pre><p><h3>Create a <tt>RawImgDummy</tt> object without any interaction</h3></p><pre class="codeinput"><span class="comment">% Specify the channels relevant for this raw image</span>
+channels002 = struct(<span class="string">'Ca_Cyto_Astro'</span>, 1, <span class="string">'blood_plasma'</span>, 2);
+
+<span class="comment">% Load the CalibrationPixelSize object</span>
+fnCalibration = fullfile(utils.CHIPS_rootdir, <span class="string">'tests'</span>, <span class="string">'res'</span>, <span class="keyword">...</span>
+    <span class="string">'calibration_dummy.mat'</span>);
+calibration = CalibrationPixelSize.load(fnCalibration);
+
+<span class="comment">% Specify some data about the image acquisition</span>
+nRows002 = 128;
+nCols002 = 128;
+acq002 = struct(<span class="string">'isBiDi'</span>, false, <span class="string">'lineTime'</span>, 2, <span class="string">'zoom'</span>, 4, <span class="keyword">...</span>
+    <span class="string">'nLinesPerFrameOrig'</span>, nRows002, <span class="string">'nPixelsPerLineOrig'</span>, nCols002);
+
+<span class="comment">% Create the RawImgDummy object without any interaction</span>
+rid002 = RawImgDummy(<span class="string">'test RID 002'</span>, rand(nRows002, nCols002, 2, 4), <span class="keyword">...</span>
+    channels002, calibration, acq002);
+
+<span class="comment">% View the RawImgDummy object. (Note: your image may differ due to the</span>
+<span class="comment">% random data used to generate it)</span>
+rid002.plot()
+</pre><img vspace="5" hspace="5" src="id_ri_RawImgDummy_01.png" alt=""> <p><h3>Create a <tt>RawImgDummy</tt> object from a .tif image</h3></p><pre class="codeinput"><span class="comment">% Specify the full path to the raw image object</span>
+fnRID003 = fullfile(utils.CHIPS_rootdir, <span class="string">'tests'</span>, <span class="string">'res'</span>, <span class="keyword">...</span>
+    <span class="string">'ArtificialData_SNR_0.1_FOV_250.tif'</span>);
+
+<span class="comment">% Specify the channels relevant for this raw image</span>
+channels003 = struct(<span class="string">'cellular_signal'</span>, 1);
+
+<span class="comment">% Specify some data about the image acquisition</span>
+nRows003 = 64;
+nCols003 = 64;
+acq003 = struct(<span class="string">'isBiDi'</span>, false, <span class="string">'lineTime'</span>, 0.5, <span class="string">'zoom'</span>, 2, <span class="keyword">...</span>
+    <span class="string">'nLinesPerFrameOrig'</span>, nRows003, <span class="string">'nPixelsPerLineOrig'</span>, nCols003);
+
+<span class="comment">% Create the RawImgDummy object without any interaction</span>
+rid003 = RawImgDummy(fnRID003, channels003, calibration, acq003);
+
+<span class="comment">% View the RawImgDummy object</span>
+rid003.plot()
+</pre><pre class="codeoutput">Opening ArtificialData_SNR_0.1_FOV_250.tif: 100% [=================]
+</pre><img vspace="5" hspace="5" src="id_ri_RawImgDummy_02.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% RawImgDummy
+% Store 'dummy' raw image data
+
+%% Usage
+%   OBJ = RawImgDummy(FILENAME, CHS, CAL, ACQ)
+%   OBJ = RawImgDummy(NAME, RAWDATA, CHS, CAL, ACQ)
+
+%% Arguments
+% * |FILENAME| is the original filename (including the path) of this
+% |RawImgDummy| object.
+% * |CHS| is a scalar structure that contains information about the
+% meaning of the image channels.
+% * |CAL| is a scalar |CalibrationPixelSize| object.
+% * |ACQ| is a scalar structure containing information about the image
+% acquisition (e.g. line time, zoom factor etc).
+% * |NAME| is the name of this |RawImgDummy| object.
+% * |RAWDATA| is the raw image data for the |RawImgDummy| object.
+
+%% Details
+% |RawImgDummy| objects are used to contain all raw image data and
+% metadata from 'dummy' raw image data, i.e. images that don't have a
+% specific class designed to import their format.  This makes it possible
+% to create functional RawImg objects from any data without requiring the
+% overhead of creating a class (but also without the benefits of a
+% streamlined creation/import process).  RawImgDummy objects are also
+% created when RawImg objects are modified in certain ways (e.g.
+% concatenated together or split up), since the modified objects no longer
+% represent the original raw image file.
+
+%% See Also
+% * <matlab:doc('RawImg') |RawImg| class documentation>
+% * <matlab:doc('Metadata') |Metadata| class documentation>
+% * <id_md_Metadata.html |Metadata| quick start guide>
+% * <matlab:doc('CalibrationPixelSize') |CalibrationPixelSize| class documentation>
+% * <id_md_Calibration.html |CalibrationPixelSize| quick start guide>
+%
+
+%% Examples
+% The following examples require the sample images and other files, which
+% can be downloaded manually, from the University of Zurich website
+% (<http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html>), or
+% automatically, by running the function |utils.download_example_imgs()|.
+%
+% <html><h3>Create a <tt>RawImgDummy</tt> object interactively</h3></html>
+%
+% The following example will illustrate the process of creating a
+% |RawImgDummy| object interactively, using already existing image data.
+%
+%   % Call the RawImgDummy constructor with some randomly-generated data
+%   rid001 = RawImgDummy('test', rand(128, 128, 2, 4))
+%
+% Answer some questions about the image acquisition.  For example, specify
+% that the image was not bidirectional, that the line time was 2ms, and
+% that the zoom factor was 4.
+%
+%    Please enter a value for if the image is bidirectional [1/0]: 0
+%    Please enter a value for the line time [ms]: 2
+%    Please enter a value for the zoom factor: 4
+%
+% Use the interactive dialogue box to select the dummy calibration 
+% (|calibration_dummy.mat|), which should be located in the subfolder
+% tests>res, within the CHIPS root directory:
+%
+% <<sel_cal.png>>
+%
+% The next stage is to define the 'meaning' of the image channels.  For
+% example, specify that the first channel represents a cytosolic calcium
+% sensor expressed in astrocytes, and the second channel represents the
+% blood plasma.  Press three and then enter, followed by one and then
+% enter, to complete the selection.
+%
+%  REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- What is shown on channel 1? REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+%  
+%    >> 0) <blank>
+%       1) blood_plasma
+%       2) blood_rbcs
+%       3) Ca_Cyto_Astro
+%       4) Ca_Memb_Astro
+%       5) Ca_Neuron
+%       6) cellular_signal
+%       7) FRET_ratio
+%  
+%  Answer: 3
+%  
+%  REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- What is shown on channel 2? REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+%  
+%    >> 0) <blank>
+%       1) blood_plasma
+%       2) blood_rbcs
+%       3) Ca_Cyto_Astro
+%       4) Ca_Memb_Astro
+%       5) Ca_Neuron
+%       6) cellular_signal
+%       7) FRET_ratio
+%  
+%  Answer: 1
+%
+% We have now created a |RawImgDummy| object interactively.
+%
+%  rid001 = 
+% 
+%    RawImgDummy with properties:
+% 
+%              filename: 'test'
+%            isDenoised: 0
+%     isMotionCorrected: 0
+%     metadata_original: []
+%                  name: 'test'
+%               rawdata: [4-D double]
+%                    t0: 0
+%              metadata: [1x1 Metadata]
+
+%%
+%
+% <html><h3>Create a <tt>RawImgDummy</tt> object without any interaction</h3></html>
+%
+
+% Specify the channels relevant for this raw image
+channels002 = struct('Ca_Cyto_Astro', 1, 'blood_plasma', 2);
+
+% Load the CalibrationPixelSize object 
+fnCalibration = fullfile(utils.CHIPS_rootdir, 'tests', 'res', ...
+    'calibration_dummy.mat');
+calibration = CalibrationPixelSize.load(fnCalibration);
+
+% Specify some data about the image acquisition
+nRows002 = 128;
+nCols002 = 128;
+acq002 = struct('isBiDi', false, 'lineTime', 2, 'zoom', 4, ...
+    'nLinesPerFrameOrig', nRows002, 'nPixelsPerLineOrig', nCols002);
+
+% Create the RawImgDummy object without any interaction
+rid002 = RawImgDummy('test RID 002', rand(nRows002, nCols002, 2, 4), ...
+    channels002, calibration, acq002);
+
+% View the RawImgDummy object. (Note: your image may differ due to the
+% random data used to generate it)
+rid002.plot()
+
+%%
+%
+% <html><h3>Create a <tt>RawImgDummy</tt> object from a .tif image</h3></html>
+%
+
+% Specify the full path to the raw image object
+fnRID003 = fullfile(utils.CHIPS_rootdir, 'tests', 'res', ...
+    'ArtificialData_SNR_0.1_FOV_250.tif');
+
+% Specify the channels relevant for this raw image
+channels003 = struct('cellular_signal', 1);
+
+% Specify some data about the image acquisition
+nRows003 = 64;
+nCols003 = 64;
+acq003 = struct('isBiDi', false, 'lineTime', 0.5, 'zoom', 2, ...
+    'nLinesPerFrameOrig', nRows003, 'nPixelsPerLineOrig', nCols003);
+
+% Create the RawImgDummy object without any interaction
+rid003 = RawImgDummy(fnRID003, channels003, calibration, acq003);
+
+% View the RawImgDummy object
+rid003.plot()
+
+##### SOURCE END #####
+--></body></html>

@@ -1,0 +1,451 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>ImgGroup</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-06-23"><meta name="DC.source" content="ig_ImgGroup.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>ImgGroup</h1><!--introduction--><p>Contain and analyse groups of processable objects</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Arguments</a></li><li><a href="#3">Details</a></li><li><a href="#4">See Also</a></li><li><a href="#5">Examples</a></li></ul></div><h2>Usage<a name="1"></a></h2><pre>OBJ = ImgGroup(RAWIMG, CONFIG, PROCTYPE)
+OBJ = ImgGroup(..., PROCOBJ1, PROCOBJ2, ...)
+OBJ = ImgGroup(NAME, ...)</pre><h2>Arguments<a name="2"></a></h2><div><ul><li><tt>RAWIMG</tt> is the <tt>RawImg</tt> object array that will be used to create the <tt>ProcessedImg</tt> child objects in the <tt>ImgGroup</tt> object.</li><li><tt>CONFIG</tt> is the <tt>Config</tt> object that will be used to create the <tt>ProcessedImg</tt> child objects in the <tt>ImgGroup</tt> object.</li><li><tt>PROCTYPE</tt> is the type of <tt>ProcessedImg</tt> child objects that will be created in the <tt>ImgGroup</tt> object.</li><li><tt>PROCOBJ1</tt>, <tt>PROCOBJ2</tt>, ... are additional <tt>ProcessedImg</tt> objects that will be added to the <tt>ImgGroup</tt> object children.</li><li><tt>NAME</tt> is the name for this <tt>ImgGroup</tt> object.</li></ul></div><h2>Details<a name="3"></a></h2><p><tt>ImgGroup</tt> objects are used to contain and analyse groups of processable objects.  This can be <tt>ProcessedImg</tt> objects like <tt>LineScanVel</tt> or <tt>CellScan</tt> objects, as well as nested <tt>ImgGroup</tt> objects.</p><h2>See Also<a name="4"></a></h2><div><ul><li><a href="matlab:doc('ImgGroup')"><tt>ImgGroup</tt> class documentation</a></li><li><a href="matlab:doc('ProcessedImg')"><tt>ProcessedImg</tt> class documentation</a></li><li><a href="pi_.html"><tt>ProcessedImg</tt> quick start guide</a></li><li><a href="matlab:doc('Config')"><tt>Config</tt> class documentation</a></li></ul></div><h2>Examples<a name="5"></a></h2><p>The following examples require the sample images and other files, which can be downloaded manually, from the University of Zurich website (<a href="http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html">http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html</a>), or automatically, by running the function <tt>utils.download_example_imgs()</tt>.</p><p><h3>Create an <tt>ImgGroup</tt> object interactively from one or more files</h3></p><p>The following example will illustrate the process of creating a <tt>ImgGroup</tt> object interactively.  Although it is possible to do so by using the constructor method followed by the <tt>add()</tt> method, it can be easier to use the static method <tt>from_files</tt>, as illustrated below.</p><pre class="language-matlab"><span class="comment">% Construct an ImgGroup using the static method from_files</span>
+ig01 = ImgGroup.from_files()
+</pre><p>Since no type of <tt>ProcessedImg</tt> has been specified, the first stage is to specify the type of <tt>ProcessedImg</tt> to create.  Press seven followed by enter to choose a <tt>LineScanVel</tt> in this case.</p><pre>----- What type of ProcessableImage would you like to create? -----</pre><pre>  &gt;&gt; 1) ArbLineScan
+     2) CellScan
+     3) CompositeImg
+     4) FrameScan
+     5) ImgGroup
+     6) LineScanDiam
+     7) LineScanVel
+     8) MultiChImg
+     9) XSectScan</pre><pre>Select a class: 7</pre><p>Since we are going to choose <tt>RawImg</tt> files, we must also select the type of <tt>RawImg</tt> to create.  Press two and then enter to select the SCIM_Tif.</p><pre>----- What type of RawImg would you like to load? -----</pre><pre>  &gt;&gt; 1) BioFormats
+     2) SCIM_Tif</pre><pre>Select a format: 2</pre><p>Then, use the interactive dialogue box to select the raw image files <tt>framescan_scim.tif</tt> and <tt>linescanvel_scim.tif</tt> (press shift or control/command to select multiple images), which should be located in the subfolder tests&gt;res, within the CHIPS root directory. Although these two images are not really the same type, they will illustrate how to create an <tt>ImgGroup</tt> object.</p><p><img vspace="5" hspace="5" src="ig_sel_rawImgs.png" alt=""> </p><p>Use the interactive dialogue box to select the dummy calibration (<tt>calibration_dummy.mat</tt>):</p><p><img vspace="5" hspace="5" src="sel_cal.png" alt=""> </p><p>The next stage is to define the 'meaning' of the image channels.  For this example we will specify the first channel as blood plasma.  Press one and enter to complete the selection.</p><pre>----- What is shown on channel 1? -----</pre><pre>  &gt;&gt; 0) &lt;blank&gt;
+     1) blood_plasma
+     2) blood_rbcs
+     3) Ca_Cyto_Astro
+     4) Ca_Memb_Astro
+     5) Ca_Neuron
+     6) cellular_signal
+     7) FRET_ratio</pre><pre>Answer: 1</pre><p>The next stage is to specify which velocity calculation algorithm should be used. In this case we will choose the Radon transform method.  Press two and then enter to complete the selection.</p><pre>----- What type of velocity calculation would you like to use? -----</pre><pre>  &gt;&gt; 1) CalcVelocityLSPIV
+     2) CalcVelocityRadon</pre><pre>Select a format: 2</pre><p>The final stage is to select the left and right limits of the images to use for velocity calculations.  We will not show images here, but the procedure is the same as shown in the <a href="pi_LineScanVel.html"><tt>LineScanVel</tt> examples</a>.</p><p>We have now created a <tt>ImgGroup</tt> object interactively.</p><pre>ig01 =</pre><pre class="language-matlab">ImgGroup <span class="string">with</span> <span class="string">properties:</span>
+</pre><pre>    children: {[1x1 LineScanVel]  [1x1 LineScanVel]}
+   nChildren: 2
+       state: 'unprocessed'
+        name: []</pre><p>The process is differerent from creating a <tt>LineScanVel</tt> object array because the <tt>ImgGroup</tt> constructor prompts us to choose the left and right limits for velocity calculation for every image, whereas the <tt>LineScanVel</tt> constructor assumes we want the same limits for every <tt>RawImg</tt>.</p><p><h3>Prepare some <tt>RawImg</tt> objects for use in these examples</h3></p><pre class="codeinput"><span class="comment">% Prepare a RawImg array for use in these examples</span>
+fnRawImgArray = fullfile(utils.CHIPS_rootdir, <span class="string">'tests'</span>, <span class="string">'res'</span>, <span class="keyword">...</span>
+    <span class="string">'linescanvel_scim.tif'</span>);
+channelsArray = struct(<span class="string">'blood_plasma'</span>, 1);
+fnCalibration = fullfile(utils.CHIPS_rootdir, <span class="string">'tests'</span>, <span class="string">'res'</span>, <span class="keyword">...</span>
+    <span class="string">'calibration_dummy.mat'</span>);
+calibration = CalibrationPixelSize.load(fnCalibration);
+rawImgArray(1:2) = SCIM_Tif(fnRawImgArray, channelsArray, calibration);
+rawImgArray = copy(rawImgArray)
+</pre><pre class="codeoutput">Opening linescanvel_scim.tif: 100% [===============================]
+
+rawImgArray = 
+
+  1x2 SCIM_Tif array with properties:
+
+    filename
+    isDenoised
+    isMotionCorrected
+    metadata_original
+    name
+    rawdata
+    t0
+    metadata
+
+</pre><p><h3>Prepare some <tt>ProcessedImg</tt> objects for use in these examples</h3></p><pre class="codeinput"><span class="comment">% Prepare a LineScanVel array for use in these examples</span>
+nameLSV = <span class="string">'test LSV'</span>;
+configRadon = ConfigVelocityRadon(<span class="string">'windowTime'</span>, 200);
+isDarkStreaks = [];
+colsToUse = [15 90];
+lsvArray = LineScanVel(nameLSV, rawImgArray, configRadon, <span class="keyword">...</span>
+    isDarkStreaks, colsToUse)
+</pre><pre class="codeoutput">
+lsvArray = 
+
+  1x2 LineScanVel array with properties:
+
+    plotList
+    calcVelocity
+    colsToUseVel
+    isDarkStreaks
+    state
+    name
+    rawImg
+
+</pre><p><h3>Create an <tt>ImgGroup</tt> object without any interaction</h3></p><pre class="codeinput"><span class="comment">% Create an ImgGroup object from ProcessedImg objects without any interaction</span>
+nameIG02 = <span class="string">'test IG 02'</span>;
+ig02 = ImgGroup(nameIG02, lsvArray)
+</pre><pre class="codeoutput">
+ig02 = 
+
+  ImgGroup with properties:
+
+     children: {[1x2 LineScanVel]}
+    nChildren: 1
+        state: 'unprocessed'
+         name: 'test IG 02'
+
+</pre><p><h3>Add <tt>RawImg</tt> objects to an existing <tt>ImgGroup</tt> object with a custom config</h3></p><pre class="codeinput"><span class="comment">% Prepare an extra RawImg for use in this example</span>
+fnRawImgXSect = fullfile(utils.CHIPS_rootdir, <span class="string">'tests'</span>, <span class="string">'res'</span>, <span class="keyword">...</span>
+    <span class="string">'xsectscan_scim.tif'</span>);
+channelsXSect = struct(<span class="string">'blood_plasma'</span>, 2);
+rawImgXSect = SCIM_Tif(fnRawImgXSect, channelsXSect, calibration);
+
+<span class="comment">% Add to an existing ImgGroup object with a custom config</span>
+procImgType = <span class="string">'XSectScan'</span>;
+configTiRS = ConfigDiameterTiRS(<span class="string">'thresholdFWHM'</span>, 0.3, <span class="keyword">...</span>
+    <span class="string">'thresholdInv'</span>, 0.25);
+ig02.add(rawImgXSect, configTiRS, procImgType);
+ig02
+</pre><pre class="codeoutput">Opening xsectscan_scim.tif: 100% [=================================]
+
+ig02 = 
+
+  ImgGroup with properties:
+
+     children: {[1x2 LineScanVel]  [1x1 XSectScan]}
+    nChildren: 2
+        state: 'unprocessed'
+         name: 'test IG 02'
+
+</pre><p><h3>Process an <tt>ImgGroup</tt> object (in parallel)</h3></p><pre class="codeinput"><span class="comment">% Process an ImgGroup object (in parallel).</span>
+<span class="comment">% This code requires the Parallel Computing Toolbox to run in parallel</span>
+useParallel = true;
+ig02 = ig02.process(useParallel)
+</pre><pre class="codeoutput">Processing children: 100% [========================================]
+
+ig02 = 
+
+  ImgGroup with properties:
+
+     children: {[1x2 LineScanVel]  [1x1 XSectScan]}
+    nChildren: 2
+        state: 'processed'
+         name: 'test IG 02'
+
+</pre><p><h3>Plot a figure showing the output from all children</h3></p><pre class="codeinput"><span class="comment">% Plot a figure showing the output from all children.</span>
+<span class="comment">% Note: the figures are deliberately displayed smaller here</span>
+hFig = ig02.plot();
+set(hFig, <span class="string">'Position'</span>, [50, 50, 300, 500]);
+</pre><img vspace="5" hspace="5" src="ig_ImgGroup_01.png" alt=""> <img vspace="5" hspace="5" src="ig_ImgGroup_02.png" alt=""> <img vspace="5" hspace="5" src="ig_ImgGroup_03.png" alt=""> <p><h3>Output the data from all children</h3></p><pre class="codeinput"><span class="comment">% Output the data.  This requires write access to the working directory</span>
+fnCSV02 = ig02.output_data(<span class="string">'ig02'</span>, <span class="string">'overwrite'</span>, true);
+fID02 = fopen(fnCSV02{end}{1}, <span class="string">'r'</span>);
+fileContents02 = textscan(fID02, <span class="string">'%s'</span>);
+fileContents02{1}{1:5}
+fclose(fID02);
+</pre><pre class="codeoutput">
+ans =
+
+time,diameter,areaPixels,maskSTD,mask
+
+
+ans =
+
+0.06966,123.58714,2999,FALSE,FALSE
+
+
+ans =
+
+0.20898,124.89888,3063,FALSE,FALSE
+
+
+ans =
+
+0.34830,123.64894,3002,FALSE,FALSE
+
+
+ans =
+
+0.48762,122.57335,2950,FALSE,FALSE
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% ImgGroup
+% Contain and analyse groups of processable objects
+
+%% Usage
+%  OBJ = ImgGroup(RAWIMG, CONFIG, PROCTYPE)
+%  OBJ = ImgGroup(..., PROCOBJ1, PROCOBJ2, ...)
+%  OBJ = ImgGroup(NAME, ...)
+
+%% Arguments
+% * |RAWIMG| is the |RawImg| object array that will be used to create the
+% |ProcessedImg| child objects in the |ImgGroup| object.
+% * |CONFIG| is the |Config| object that will be used to create the
+% |ProcessedImg| child objects in the |ImgGroup| object.
+% * |PROCTYPE| is the type of |ProcessedImg| child objects that will be
+% created in the |ImgGroup| object.
+% * |PROCOBJ1|, |PROCOBJ2|, ... are additional |ProcessedImg| objects that
+% will be added to the |ImgGroup| object children.
+% * |NAME| is the name for this |ImgGroup| object.
+        
+%% Details
+% |ImgGroup| objects are used to contain and analyse groups of processable
+% objects.  This can be |ProcessedImg| objects like |LineScanVel| or
+% |CellScan| objects, as well as nested |ImgGroup| objects.
+
+%% See Also
+% * <matlab:doc('ImgGroup') |ImgGroup| class documentation>
+% * <matlab:doc('ProcessedImg') |ProcessedImg| class documentation>
+% * <pi_.html |ProcessedImg| quick start guide>
+% * <matlab:doc('Config') |Config| class documentation>
+
+%% Examples
+% The following examples require the sample images and other files, which
+% can be downloaded manually, from the University of Zurich website
+% (<http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html>), or
+% automatically, by running the function |utils.download_example_imgs()|.
+%
+% <html><h3>Create an <tt>ImgGroup</tt> object interactively from one or more files</h3></html>
+%
+% The following example will illustrate the process of creating a
+% |ImgGroup| object interactively.  Although it is possible to do so by
+% using the constructor method followed by the |add()| method, it can be
+% easier to use the static method |from_files|, as illustrated below.
+%
+%   % Construct an ImgGroup using the static method from_files
+%   ig01 = ImgGroup.from_files()
+%
+% Since no type of |ProcessedImg| has been specified, the first stage is to
+% specify the type of |ProcessedImg| to create.  Press seven followed by
+% enter to choose a |LineScanVel| in this case.
+%
+%  REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- What type of ProcessableImage would you like to create? REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+%  
+%    >> 1) ArbLineScan
+%       2) CellScan
+%       3) CompositeImg
+%       4) FrameScan
+%       5) ImgGroup
+%       6) LineScanDiam
+%       7) LineScanVel
+%       8) MultiChImg
+%       9) XSectScan
+%  
+%  Select a class: 7
+%
+% Since we are going to choose |RawImg| files, we must also select the type
+% of |RawImg| to create.  Press two and then enter to select the SCIM_Tif.  
+%
+%  REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- What type of RawImg would you like to load? REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+%  
+%    >> 1) BioFormats
+%       2) SCIM_Tif
+%  
+%  Select a format: 2
+%
+% Then, use the interactive dialogue box to select the raw image files
+% |framescan_scim.tif| and |linescanvel_scim.tif| (press shift or
+% control/command to select multiple images), which should be located in
+% the subfolder tests>res, within the CHIPS root directory. Although these
+% two images are not really the same type, they will illustrate how to
+% create an |ImgGroup| object.
+%
+% <<ig_sel_rawImgs.png>>
+%
+% Use the interactive dialogue box to select the dummy calibration 
+% (|calibration_dummy.mat|):
+%
+% <<sel_cal.png>>
+%
+% The next stage is to define the 'meaning' of the image channels.  For
+% this example we will specify the first channel as blood plasma.  Press
+% one and enter to complete the selection.
+%
+%  REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- What is shown on channel 1? REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+%  
+%    >> 0) <blank>
+%       1) blood_plasma
+%       2) blood_rbcs
+%       3) Ca_Cyto_Astro
+%       4) Ca_Memb_Astro
+%       5) Ca_Neuron
+%       6) cellular_signal
+%       7) FRET_ratio
+%  
+%  Answer: 1
+%
+% The next stage is to specify which velocity calculation algorithm should
+% be used. In this case we will choose the Radon transform method.  Press
+% two and then enter to complete the selection.
+%
+%  REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- What type of velocity calculation would you like to use? REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+%  
+%    >> 1) CalcVelocityLSPIV
+%       2) CalcVelocityRadon
+%
+%  Select a format: 2
+%
+% The final stage is to select the left and right limits of the images to
+% use for velocity calculations.  We will not show images here, but the
+% procedure is the same as shown in the <pi_LineScanVel.html |LineScanVel| examples>.
+%
+% We have now created a |ImgGroup| object interactively.
+%
+%  ig01 = 
+% 
+%   ImgGroup with properties:
+% 
+%      children: {[1x1 LineScanVel]  [1x1 LineScanVel]}
+%     nChildren: 2
+%         state: 'unprocessed'
+%          name: []
+%
+% The process is differerent from creating a |LineScanVel| object array
+% because the |ImgGroup| constructor prompts us to choose the left and
+% right limits for velocity calculation for every image, whereas the
+% |LineScanVel| constructor assumes we want the same limits for every
+% |RawImg|.
+
+%%
+%
+% <html><h3>Prepare some <tt>RawImg</tt> objects for use in these examples</h3></html>
+%
+
+% Prepare a RawImg array for use in these examples
+fnRawImgArray = fullfile(utils.CHIPS_rootdir, 'tests', 'res', ...
+    'linescanvel_scim.tif');
+channelsArray = struct('blood_plasma', 1);
+fnCalibration = fullfile(utils.CHIPS_rootdir, 'tests', 'res', ...
+    'calibration_dummy.mat');
+calibration = CalibrationPixelSize.load(fnCalibration);
+rawImgArray(1:2) = SCIM_Tif(fnRawImgArray, channelsArray, calibration);
+rawImgArray = copy(rawImgArray)
+
+%%
+%
+% <html><h3>Prepare some <tt>ProcessedImg</tt> objects for use in these examples</h3></html>
+%
+
+% Prepare a LineScanVel array for use in these examples
+nameLSV = 'test LSV';
+configRadon = ConfigVelocityRadon('windowTime', 200);
+isDarkStreaks = [];
+colsToUse = [15 90];
+lsvArray = LineScanVel(nameLSV, rawImgArray, configRadon, ...
+    isDarkStreaks, colsToUse)
+
+%%
+%
+% <html><h3>Create an <tt>ImgGroup</tt> object without any interaction</h3></html>
+%
+
+% Create an ImgGroup object from ProcessedImg objects without any interaction
+nameIG02 = 'test IG 02';
+ig02 = ImgGroup(nameIG02, lsvArray)
+
+%%
+%
+% <html><h3>Add <tt>RawImg</tt> objects to an existing <tt>ImgGroup</tt> object with a custom config</h3></html>
+%
+
+% Prepare an extra RawImg for use in this example
+fnRawImgXSect = fullfile(utils.CHIPS_rootdir, 'tests', 'res', ...
+    'xsectscan_scim.tif');
+channelsXSect = struct('blood_plasma', 2);
+rawImgXSect = SCIM_Tif(fnRawImgXSect, channelsXSect, calibration);
+
+% Add to an existing ImgGroup object with a custom config
+procImgType = 'XSectScan';
+configTiRS = ConfigDiameterTiRS('thresholdFWHM', 0.3, ...
+    'thresholdInv', 0.25);
+ig02.add(rawImgXSect, configTiRS, procImgType);
+ig02
+
+%%
+%
+% <html><h3>Process an <tt>ImgGroup</tt> object (in parallel)</h3></html>
+%
+
+% Process an ImgGroup object (in parallel).
+% This code requires the Parallel Computing Toolbox to run in parallel
+useParallel = true;
+ig02 = ig02.process(useParallel)
+
+%%
+%
+% <html><h3>Plot a figure showing the output from all children</h3></html>
+%
+
+% Plot a figure showing the output from all children.
+% Note: the figures are deliberately displayed smaller here
+hFig = ig02.plot();
+set(hFig, 'Position', [50, 50, 300, 500]);
+
+%%
+%
+% <html><h3>Output the data from all children</h3></html>
+%
+
+% Output the data.  This requires write access to the working directory
+fnCSV02 = ig02.output_data('ig02', 'overwrite', true);
+fID02 = fopen(fnCSV02{end}{1}, 'r');
+fileContents02 = textscan(fID02, '%s');
+fileContents02{1}{1:5}
+fclose(fID02);
+
+##### SOURCE END #####
+--></body></html>

@@ -1,0 +1,613 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>CellScan</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-06-23"><meta name="DC.source" content="pi_CellScan.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>CellScan</h1><!--introduction--><p>Analyse cellular signals</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Arguments</a></li><li><a href="#3">Details</a></li><li><a href="#4">See Also</a></li><li><a href="#5">Examples</a></li></ul></div><h2>Usage<a name="1"></a></h2><pre class="language-matlab">OBJ = CellScan(NAME, RAWIMG, CONFIG, CHANNEL)
+</pre><h2>Arguments<a name="2"></a></h2><div><ul><li><tt>NAME</tt> is the name for this <tt>CellScan</tt> object.</li><li><tt>RAWIMG</tt> is the <tt>RawImg</tt> object that will be used to create the <tt>CellScan</tt> object.</li><li><tt>CONFIG</tt> contains the configuration parameters needed for the <tt>calcFindROIs</tt>, <tt>calcMeasureROIs</tt> and <tt>calcDetectSigs</tt> objects.</li><li><tt>CHANNEL</tt> is the channel number to use for analysis.</li></ul></div><h2>Details<a name="3"></a></h2><p><tt>CellScan</tt> objects are used to analyse dynamic fluorescence signals of cellular origin (i.e. calcium dyes and genetic sensors, metabolite sensors, etc.)</p><p><img vspace="5" hspace="5" src="cs_example_rawImg.png" alt=""> </p><h2>See Also<a name="4"></a></h2><div><ul><li><a href="matlab:doc('CellScan')"><tt>CellScan</tt> class documentation</a></li><li><a href="matlab:doc('ConfigCellScan')"><tt>ConfigCellScan</tt> class documentation</a></li><li><a href="matlab:doc('ConfigFindROIsDummy')"><tt>ConfigFindROIsDummy</tt> class documentation</a></li><li><a href="matlab:doc('ConfigFindROIsFLIKA')"><tt>ConfigFindROIsFLIKA</tt> class documentation</a></li><li><a href="matlab:doc('ConfigFindROIsFLIKA_2D')"><tt>ConfigFindROIsFLIKA_2D</tt> class documentation</a></li><li><a href="matlab:doc('ConfigFindROIsFLIKA_2p5D')"><tt>ConfigFindROIsFLIKA_2p5D</tt> class documentation</a></li><li><a href="matlab:doc('ConfigFindROIsFLIKA_3D')"><tt>ConfigFindROIsFLIKA_3D</tt> class documentation</a></li><li><a href="matlab:doc('ConfigMeasureROIsDummy')"><tt>ConfigMeasureROIsDummy</tt> class documentation</a></li><li><a href="matlab:doc('ConfigDetectSigsDummy')"><tt>ConfigDetectSigsDummy</tt> class documentation</a></li><li><a href="matlab:doc('ConfigDetectSigsClsfy')"><tt>ConfigDetectSigsClsfy</tt> class documentation</a></li><li><a href="matlab:doc('CalcFindROIsDummy')"><tt>CalcFindROIsDummy</tt> class documentation</a></li><li><a href="matlab:doc('CalcFindROIsFLIKA')"><tt>CalcFindROIsFLIKA</tt> class documentation</a></li><li><a href="matlab:doc('CalcFindROIsFLIKA_2D')"><tt>CalcFindROIsFLIKA_2D</tt> class documentation</a></li><li><a href="matlab:doc('CalcFindROIsFLIKA_2p5D')"><tt>CalcFindROIsFLIKA_2p5D</tt> class documentation</a></li><li><a href="matlab:doc('CalcFindROIsFLIKA_3D')"><tt>CalcFindROIsFLIKA_3D</tt> class documentation</a></li><li><a href="matlab:doc('CalcMeasureROIsDummy')"><tt>CalcMeasureROIsDummy</tt> class documentation</a></li><li><a href="matlab:doc('CalcDetectSigsDummy')"><tt>CalcDetectSigsDummy</tt> class documentation</a></li><li><a href="matlab:doc('CalcDetectSigsClsfy')"><tt>CalcDetectSigsClsfy</tt> class documentation</a></li><li><a href="matlab:doc('ImgGroup')"><tt>ImgGroup</tt> class documentation</a></li><li><a href="ig_ImgGroup.html"><tt>ImgGroup</tt> quick start guide</a></li></ul></div><h2>Examples<a name="5"></a></h2><p>The following examples require the sample images and other files, which can be downloaded manually, from the University of Zurich website (<a href="http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html">http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html</a>), or automatically, by running the function <tt>utils.download_example_imgs()</tt>.</p><p><h3>Create a <tt>CellScan</tt> object interactively</h3></p><p>The following example will illustrate the process of creating a <tt>CellScan</tt> object interactively, starting with calling the constructor.</p><pre class="language-matlab"><span class="comment">% Call the CellScan constructor</span>
+cs01 = CellScan()
+</pre><p>Since no RawImg has been specified, the first stage is to select the type of RawImg to create.  Press 2 and then enter to select the SCIM_Tif.</p><pre>----- What type of RawImg would you like to load? -----</pre><pre>  &gt;&gt; 1) BioFormats
+     2) SCIM_Tif</pre><pre>Select a format: 2</pre><p>Then, use the interactive dialogue box to select the raw image file <tt>cellscan_scim.tif</tt>, which should be located in the subfolder tests&gt;res, within the CHIPS root directory.</p><p><img vspace="5" hspace="5" src="cs_sel_rawImg.png" alt=""> </p><p>Use the interactive dialogue box to select the dummy calibration (<tt>calibration_dummy.mat</tt>):</p><p><img vspace="5" hspace="5" src="sel_cal.png" alt=""> </p><p>The next stage is to define the 'meaning' of the image channel(s).  The channel represents a cytosolic calcium sensor in astroytes. Press 1 and then enter to complete the selection.</p><pre>----- What is shown on channel 1? -----</pre><pre>  &gt;&gt; 0) &lt;blank&gt;
+     1) Ca_Cyto_Astro
+     2) Ca_Memb_Astro
+     3) Ca_Neuron
+     4) cellular_signal
+     5) FRET_ratio</pre><pre>Answer: 1</pre><p>Since <tt>CellScan</tt> objects require a method for ROI identification, a method for ROI measurement, and a method for signal detection, we have to specify our choice.</p><p>CellScan defaults to a whole frame analysis (i.e. one ROI covers the whole frame). We'd like to use 3D FLIKA instead, because we want to identify ROIs based on activity. Press 6 and then enter to complete the selection.</p><pre>----- Which ROI detection method would you like to use? -----</pre><pre>  &gt;&gt; 1) whole frame
+     2) load ImageJ ROIs
+     3) load mask from .tif or .mat file
+     4) 2D FLIKA (automatic ROI selection)
+     5) 2.5D FLIKA (automatic ROI selection)
+     6) 3D FLIKA (automatic ROI selection)
+     7) CellSort (automatic ROI selection)</pre><pre>Select a detection method, please: 6</pre><p>The next stage is to specify the ROI measuring method. CellScan uses simple baseline calculation as the default. Press enter to complete the selection.</p><pre>----- Which ROI measuring method would you like to use? -----</pre><pre>  &gt;&gt; 1) simple baseline normalised</pre><pre>Select a measuring method, please:</pre><p>The last stage is to specify the signal detection method. We want to classify signals based on shape and to do some basic measurements like amplitude, etc. Press 2 and then enter to complete the selection.</p><p>----- Which signal detection method would you like to use? -----</p><pre>  &gt;&gt; 1) no signal detection
+     2) detect + classify signals</pre><p>Select a detection method, please: 2</p><p>We have now created a CellScan object interactively.</p><pre>cs01 =</pre><pre>  CellScan with properties:</pre><pre>      calcFindROIs: [1x1 CalcFindROIsFLIKA_3D]
+   calcMeasureROIs: [1x1 CalcMeasureROIsDummy]
+    calcDetectSigs: [1x1 CalcDetectSigsClsfy]
+      channelToUse: 1
+          plotList: [1x1 struct]
+             state: 'unprocessed'
+              name: 'cellscan_scim'
+            rawImg: [1x1 SCIM_Tif]</pre><p>The process is almost exactly the same to create an array of <tt>CellScan</tt> objects; when the software prompts you to select one or more raw images, simply select multiple images by using either the shift or control key.</p><p><h3>Prepare a <tt>RawImg</tt> for use in these examples</h3></p><pre class="codeinput"><span class="comment">% Prepare a rawImg for use in these examples</span>
+fnRawImg = fullfile(utils.CHIPS_rootdir, <span class="string">'tests'</span>, <span class="string">'res'</span>, <span class="keyword">...</span>
+    <span class="string">'cellscan_scim.tif'</span>);
+channels = struct(<span class="string">'Ca_Cyto_Astro'</span>, 1);
+fnCalibration = fullfile(utils.CHIPS_rootdir, <span class="string">'tests'</span>, <span class="string">'res'</span>, <span class="keyword">...</span>
+    <span class="string">'calibration_dummy.mat'</span>);
+calibration = CalibrationPixelSize.load(fnCalibration);
+rawImg = SCIM_Tif(fnRawImg, channels, calibration);
+</pre><pre class="codeoutput">Opening cellscan_scim.tif: 100% [==================================]
+</pre><p><h3>Create a <tt>CellScan</tt> object without any interaction</h3></p><pre class="codeinput"><span class="comment">% Create a CellScan object without any interaction</span>
+nameCS02 = <span class="string">'test CS 02'</span>;
+configFind = ConfigFindROIsFLIKA_3D();
+configMeasure = ConfigMeasureROIsDummy();
+configDetect = ConfigDetectSigsDummy();
+configCS = ConfigCellScan(configFind, configMeasure, configDetect);
+channelToUse = 1;
+cs02 = CellScan(nameCS02, rawImg, configCS, channelToUse)
+</pre><pre class="codeoutput">
+cs02 = 
+
+  CellScan with properties:
+
+       calcFindROIs: [1x1 CalcFindROIsFLIKA_3D]
+    calcMeasureROIs: [1x1 CalcMeasureROIsDummy]
+     calcDetectSigs: [1x1 CalcDetectSigsDummy]
+       channelToUse: 1
+           plotList: [1x1 struct]
+              state: 'unprocessed'
+               name: 'test CS 02'
+             rawImg: [1x1 SCIM_Tif]
+
+</pre><p><h3>Create a <tt>CellScan</tt> object array</h3></p><pre class="codeinput"><span class="comment">% Create a CellScan object array</span>
+rawImgArray(1:3) = copy(rawImg);
+rawImgArray = copy(rawImgArray);
+csArray = CellScan(<span class="string">'test CS Array'</span>, rawImgArray, configCS, channelToUse)
+</pre><pre class="codeoutput">
+csArray = 
+
+  1x3 CellScan array with properties:
+
+    calcFindROIs
+    calcMeasureROIs
+    calcDetectSigs
+    channelToUse
+    plotList
+    state
+    name
+    rawImg
+
+</pre><p><h3>Create a <tt>CellScan</tt> object with a custom config</h3></p><pre class="codeinput"><span class="comment">% Create a CellScan object with a custom config</span>
+configFindCustom = ConfigFindROIsFLIKA_2D(<span class="string">'baselineFrames'</span>, 30, <span class="keyword">...</span>
+    <span class="string">'freqPassBand'</span>, 0.15, <span class="string">'sigmaXY'</span>, 4, <span class="string">'dilateXY'</span>, 1, <span class="keyword">...</span>
+    <span class="string">'thresholdPuff'</span>, 10, <span class="string">'minRiseTime'</span>, 2, <span class="string">'maxRiseTime'</span>, 10, <span class="keyword">...</span>
+    <span class="string">'minROIArea'</span>, 36);
+configMeasureCustom = ConfigMeasureROIsDummy(<span class="string">'baselineFrames'</span>, 30);
+configDetectCustom = ConfigDetectSigsClsfy(<span class="string">'baselineFrames'</span>, 30, <span class="keyword">...</span>
+    <span class="string">'thresholdSP'</span>, 9, <span class="string">'lpWindowTime'</span>, 6, <span class="string">'spPassBandMin'</span>, 0.015, <span class="keyword">...</span>
+    <span class="string">'spPassBandMax'</span>, 0.6, <span class="string">'spFilterOrder'</span>, 10);
+configCSCustom = ConfigCellScan(configFindCustom, configMeasureCustom, <span class="keyword">...</span>
+    configDetectCustom);
+cs03 = CellScan(<span class="string">'test CS 03'</span>, rawImg, configCSCustom, channelToUse);
+confFind = cs03.calcFindROIs.config
+confMeasure = cs03.calcMeasureROIs.config
+confDetect = cs03.calcDetectSigs.config
+</pre><pre class="codeoutput">
+confFind = 
+
+  ConfigFindROIsFLIKA_2D with properties:
+
+          threshold2D: 0
+       baselineFrames: [30x1 double]
+              sigmaXY: 4
+               sigmaT: 1
+         freqPassBand: 0.1500
+        thresholdPuff: 10
+          minRiseTime: 2
+          maxRiseTime: 10
+             dilateXY: 1
+              dilateT: 0.5000
+              erodeXY: 0
+               erodeT: 0
+      backgroundLevel: 1
+         inpaintIters: 5
+    discardBorderROIs: 0
+           maxROIArea: 2500
+           minROIArea: 36
+
+
+confMeasure = 
+
+  ConfigMeasureROIsDummy with properties:
+
+     baselineFrames: [30x1 double]
+    backgroundLevel: 1
+      propagateNaNs: 0
+
+
+confDetect = 
+
+  ConfigDetectSigsClsfy with properties:
+
+    backgroundLevel: 1
+     baselineFrames: [30x1 double]
+        excludeNaNs: 1
+       lpWindowTime: 6
+      propagateNaNs: 1
+      spFilterOrder: 10
+      spPassBandMax: 0.6000
+      spPassBandMin: 0.0150
+        thresholdLP: 7
+        thresholdSP: 9
+
+</pre><p><h3>Process a scalar <tt>CellScan</tt> object</h3></p><pre class="codeinput"><span class="comment">% Process a scalar CellScan object</span>
+cs03 = cs03.process()
+</pre><pre class="codeoutput">Finding ROIs: 100% [===============================================]
+Measuring ROIs: 100% [=============================================]
+Detecting signals: 100% [==========================================]
+
+cs03 = 
+
+  CellScan with properties:
+
+       calcFindROIs: [1x1 CalcFindROIsFLIKA_2D]
+    calcMeasureROIs: [1x1 CalcMeasureROIsDummy]
+     calcDetectSigs: [1x1 CalcDetectSigsClsfy]
+       channelToUse: 1
+           plotList: [1x1 struct]
+              state: 'processed'
+               name: 'test CS 03'
+             rawImg: [1x1 SCIM_Tif]
+
+</pre><p><h3>Process a <tt>CellScan</tt> object array (in parallel)</h3></p><pre class="codeinput"><span class="comment">% Process a CellScan object array (in parallel)</span>
+<span class="comment">% This code requires the Parallel Computing Toolbox to run in parallel</span>
+useParallel = true;
+csArray = csArray.process(useParallel);
+csArray_state = {csArray.state}
+</pre><pre class="codeoutput">Processing array: 100% [===========================================]
+
+csArray_state = 
+
+    'processed'    'processed'    'processed'
+
+</pre><p><h3>Plot a figure showing an overview of identified ROIs</h3></p><pre class="codeinput"><span class="comment">% Plot a figure showing an overview of identified ROIs</span>
+hFig03 = cs03.plot();
+set(hFig03, <span class="string">'Units'</span>, <span class="string">'pixels'</span>, <span class="string">'Position'</span>, [50, 50, 1100, 750]);
+</pre><img vspace="5" hspace="5" src="pi_CellScan_01.png" alt=""> <p><h3>Produce a GUI to optimise the parameters</h3></p><pre class="codeinput"><span class="comment">% Produce a GUI to optimise the parameters</span>
+hFigOpt = cs03.opt_config();
+</pre><img vspace="5" hspace="5" src="pi_CellScan_02.png" alt=""> <p><h3>Output the data</h3></p><pre class="codeinput"><span class="comment">% Output the data.  This requires write access to the working directory.</span>
+fnCS03 = cs03.output_data(<span class="string">'cs03'</span>, <span class="string">'overwrite'</span>, true);
+</pre><pre class="codeinput"><span class="comment">% First, the findROIs data</span>
+fID03_find = fopen(fnCS03{1}, <span class="string">'r'</span>);
+fileContents03f = textscan(fID03_find, <span class="string">'%s'</span>);
+fileContents03f{1}{1:5}
+fclose(fID03_find);
+</pre><pre class="codeoutput">
+ans =
+
+roiNames,area,centroidX,centroidY
+
+
+ans =
+
+roi0001_0067_0001,112,5.670,69.054
+
+
+ans =
+
+roi0002_0236_0008,63,13.397,239.286
+
+
+ans =
+
+roi0003_0053_0107,247,115.061,56.117
+
+
+ans =
+
+roi0004_0158_0138,50,143.040,156.000
+
+</pre><pre class="codeinput"><span class="comment">% Then, the measureROIs data</span>
+fID03_measure = fopen(fnCS03{2}, <span class="string">'r'</span>);
+fileContents03m = textscan(fID03_measure, <span class="string">'%s'</span>);
+fileContents03m{1}{1:5}
+fclose(fID03_measure);
+</pre><pre class="codeoutput">
+ans =
+
+time,rawTrace,rawTraceNorm,traces_roi0001_0067_0001,traces_roi0002_0236_0008,traces_roi0003_0053_0107,traces_roi0004_0158_0138,traces_roi0005_0236_0168,traces_roi0006_0236_0178,traces_roi0007_0039_0200,tracesNorm_roi0001_0067_0001,tracesNorm_roi0002_0236_0008,tracesNorm_roi0003_0053_0107,tracesNorm_roi0004_0158_0138,tracesNorm_roi0005_0236_0168,tracesNorm_roi0006_0236_0178,tracesNorm_roi0007_0039_0200
+
+
+ans =
+
+0.339,848.056,0.224,1130.902,1075.889,685.591,1099.540,710.526,934.609,759.978,0.424,0.128,0.071,-0.144,0.312,0.402,0.074
+
+
+ans =
+
+1.018,863.771,0.345,1126.330,1005.794,727.348,1278.040,656.807,914.379,788.378,0.399,-0.143,0.440,0.514,-0.006,0.307,0.253
+
+
+ans =
+
+1.696,856.849,0.291,1139.607,1110.540,697.955,1180.100,674.404,841.460,694.978,0.472,0.263,0.180,0.153,0.098,-0.035,-0.334
+
+
+ans =
+
+2.375,857.652,0.298,1026.821,1076.587,714.008,1161.120,766.965,856.080,765.000,-0.144,0.131,0.322,0.083,0.645,0.034,0.106
+
+</pre><pre class="codeinput"><span class="comment">% Finally, the detectSigs data</span>
+fID03_detect = fopen(fnCS03{3}, <span class="string">'r'</span>);
+fileContents03d = textscan(fID03_detect, <span class="string">'%s'</span>);
+fileContents03d{1}{1:5}
+fclose(fID03_detect);
+</pre><pre class="codeoutput">
+ans =
+
+peakAUC,prominence,amplitude,peakTime,peakStart,peakStartHalf,halfWidth,fullWidth,numPeaks,peakType,roiName
+
+
+ans =
+
+60.725,3.813,2.294,164.192,144.516,156.729,10.103,33.246,1,SinglePeak,roi0001_0067_0001
+
+
+ans =
+
+19.096,1.670,1.034,147.230,138.410,140.445,10.921,19.676,1,SinglePeak,roi0002_0236_0008
+
+
+ans =
+
+17.097,2.970,2.968,192.010,189.296,190.653,2.251,13.570,1,SinglePeak,roi0003_0053_0107
+
+
+ans =
+
+55.831,2.529,3.090,165.549,133.661,142.481,30.066,43.423,3,MultiPeak,roi0003_0053_0107
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% CellScan
+% Analyse cellular signals
+
+%% Usage
+%   OBJ = CellScan(NAME, RAWIMG, CONFIG, CHANNEL)
+
+%% Arguments
+% * |NAME| is the name for this |CellScan| object.
+% * |RAWIMG| is the |RawImg| object that will be used to create the
+% |CellScan| object.
+% * |CONFIG| contains the configuration parameters needed for the
+% |calcFindROIs|, |calcMeasureROIs| and |calcDetectSigs| objects.
+% * |CHANNEL| is the channel number to use for analysis.
+        
+%% Details
+% |CellScan| objects are used to analyse dynamic fluorescence signals of
+% cellular origin (i.e. calcium dyes and genetic sensors, metabolite
+% sensors, etc.)
+%
+% <<cs_example_rawImg.png>>
+
+%% See Also
+% * <matlab:doc('CellScan') |CellScan| class documentation>
+% * <matlab:doc('ConfigCellScan') |ConfigCellScan| class documentation>
+% * <matlab:doc('ConfigFindROIsDummy') |ConfigFindROIsDummy| class documentation>
+% * <matlab:doc('ConfigFindROIsFLIKA') |ConfigFindROIsFLIKA| class documentation>
+% * <matlab:doc('ConfigFindROIsFLIKA_2D') |ConfigFindROIsFLIKA_2D| class documentation>
+% * <matlab:doc('ConfigFindROIsFLIKA_2p5D') |ConfigFindROIsFLIKA_2p5D| class documentation>
+% * <matlab:doc('ConfigFindROIsFLIKA_3D') |ConfigFindROIsFLIKA_3D| class documentation>
+% * <matlab:doc('ConfigMeasureROIsDummy') |ConfigMeasureROIsDummy| class documentation>
+% * <matlab:doc('ConfigDetectSigsDummy') |ConfigDetectSigsDummy| class documentation>
+% * <matlab:doc('ConfigDetectSigsClsfy') |ConfigDetectSigsClsfy| class documentation>
+% * <matlab:doc('CalcFindROIsDummy') |CalcFindROIsDummy| class documentation>
+% * <matlab:doc('CalcFindROIsFLIKA') |CalcFindROIsFLIKA| class documentation>
+% * <matlab:doc('CalcFindROIsFLIKA_2D') |CalcFindROIsFLIKA_2D| class documentation>
+% * <matlab:doc('CalcFindROIsFLIKA_2p5D') |CalcFindROIsFLIKA_2p5D| class documentation>
+% * <matlab:doc('CalcFindROIsFLIKA_3D') |CalcFindROIsFLIKA_3D| class documentation>
+% * <matlab:doc('CalcMeasureROIsDummy') |CalcMeasureROIsDummy| class documentation>
+% * <matlab:doc('CalcDetectSigsDummy') |CalcDetectSigsDummy| class documentation>
+% * <matlab:doc('CalcDetectSigsClsfy') |CalcDetectSigsClsfy| class documentation>
+% * <matlab:doc('ImgGroup') |ImgGroup| class documentation>
+% * <ig_ImgGroup.html |ImgGroup| quick start guide>
+
+%% Examples
+% The following examples require the sample images and other files, which
+% can be downloaded manually, from the University of Zurich website
+% (<http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html>), or
+% automatically, by running the function |utils.download_example_imgs()|.
+%
+% <html><h3>Create a <tt>CellScan</tt> object interactively</h3></html>
+%
+% The following example will illustrate the process of creating a
+% |CellScan| object interactively, starting with calling the
+% constructor.
+%
+%   % Call the CellScan constructor
+%   cs01 = CellScan()
+%
+% Since no RawImg has been specified, the first stage is to select the type
+% of RawImg to create.  Press 2 and then enter to select the SCIM_Tif.  
+%
+%  REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- What type of RawImg would you like to load? REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+%  
+%    >> 1) BioFormats
+%       2) SCIM_Tif
+%  
+%  Select a format: 2
+%
+% Then, use the interactive dialogue box to select the raw image file
+% |cellscan_scim.tif|, which should be located in the subfolder
+% tests>res, within the CHIPS root directory.
+%
+% <<cs_sel_rawImg.png>>
+%
+% Use the interactive dialogue box to select the dummy calibration 
+% (|calibration_dummy.mat|):
+%
+% <<sel_cal.png>>
+%
+% The next stage is to define the 'meaning' of the image channel(s).  The
+% channel represents a cytosolic calcium sensor in astroytes. Press 1 and
+% then enter to complete the selection.
+%
+%  REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- What is shown on channel 1? REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+%  
+%    >> 0) <blank>
+%       1) Ca_Cyto_Astro
+%       2) Ca_Memb_Astro
+%       3) Ca_Neuron
+%       4) cellular_signal
+%       5) FRET_ratio
+%  
+%  Answer: 1
+%  
+% Since |CellScan| objects require a method for ROI identification, a
+% method for ROI measurement, and a method for signal detection, we have to
+% specify our choice.
+%
+% CellScan defaults to a whole frame analysis (i.e. one ROI covers the
+% whole frame). We'd like to use 3D FLIKA instead, because we want to
+% identify ROIs based on activity. Press 6 and then enter to complete the
+% selection.
+%
+%  REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- Which ROI detection method would you like to use? REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+%  
+%    >> 1) whole frame
+%       2) load ImageJ ROIs
+%       3) load mask from .tif or .mat file
+%       4) 2D FLIKA (automatic ROI selection)
+%       5) 2.5D FLIKA (automatic ROI selection)
+%       6) 3D FLIKA (automatic ROI selection)
+%       7) CellSort (automatic ROI selection)
+%
+%  Select a detection method, please: 6
+%
+% The next stage is to specify the ROI measuring method. CellScan uses
+% simple baseline calculation as the default. Press enter to complete the
+% selection.
+%
+%  REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- Which ROI measuring method would you like to use? REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+%  
+%    >> 1) simple baseline normalised
+%
+%  Select a measuring method, please:
+%
+% The last stage is to specify the signal detection method. We want to
+% classify signals based on shape and to do some basic measurements like
+% amplitude, etc. Press 2 and then enter to complete the selection.
+%
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- Which signal detection method would you like to use? REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+%  
+%    >> 1) no signal detection
+%       2) detect + classify signals
+%  
+% Select a detection method, please: 2
+%
+% We have now created a CellScan object interactively.
+%
+%  cs01 = 
+% 
+%    CellScan with properties:
+% 
+%        calcFindROIs: [1x1 CalcFindROIsFLIKA_3D]
+%     calcMeasureROIs: [1x1 CalcMeasureROIsDummy]
+%      calcDetectSigs: [1x1 CalcDetectSigsClsfy]
+%        channelToUse: 1
+%            plotList: [1x1 struct]
+%               state: 'unprocessed'
+%                name: 'cellscan_scim'
+%              rawImg: [1x1 SCIM_Tif]
+% 
+% The process is almost exactly the same to create an array of |CellScan|
+% objects; when the software prompts you to select one or more raw images,
+% simply select multiple images by using either the shift or control key.
+
+%%
+%
+% <html><h3>Prepare a <tt>RawImg</tt> for use in these examples</h3></html>
+%
+
+% Prepare a rawImg for use in these examples
+fnRawImg = fullfile(utils.CHIPS_rootdir, 'tests', 'res', ...
+    'cellscan_scim.tif');
+channels = struct('Ca_Cyto_Astro', 1);
+fnCalibration = fullfile(utils.CHIPS_rootdir, 'tests', 'res', ...
+    'calibration_dummy.mat');
+calibration = CalibrationPixelSize.load(fnCalibration);
+rawImg = SCIM_Tif(fnRawImg, channels, calibration);
+
+%%
+%
+% <html><h3>Create a <tt>CellScan</tt> object without any interaction</h3></html>
+%
+
+% Create a CellScan object without any interaction
+nameCS02 = 'test CS 02';
+configFind = ConfigFindROIsFLIKA_3D();
+configMeasure = ConfigMeasureROIsDummy();
+configDetect = ConfigDetectSigsDummy();
+configCS = ConfigCellScan(configFind, configMeasure, configDetect);
+channelToUse = 1;
+cs02 = CellScan(nameCS02, rawImg, configCS, channelToUse)
+
+%%
+%
+% <html><h3>Create a <tt>CellScan</tt> object array</h3></html>
+%
+
+% Create a CellScan object array
+rawImgArray(1:3) = copy(rawImg);
+rawImgArray = copy(rawImgArray);
+csArray = CellScan('test CS Array', rawImgArray, configCS, channelToUse)
+
+%%
+%
+% <html><h3>Create a <tt>CellScan</tt> object with a custom config</h3></html>
+%
+
+% Create a CellScan object with a custom config
+configFindCustom = ConfigFindROIsFLIKA_2D('baselineFrames', 30, ...
+    'freqPassBand', 0.15, 'sigmaXY', 4, 'dilateXY', 1, ...
+    'thresholdPuff', 10, 'minRiseTime', 2, 'maxRiseTime', 10, ...
+    'minROIArea', 36);
+configMeasureCustom = ConfigMeasureROIsDummy('baselineFrames', 30);
+configDetectCustom = ConfigDetectSigsClsfy('baselineFrames', 30, ...
+    'thresholdSP', 9, 'lpWindowTime', 6, 'spPassBandMin', 0.015, ...
+    'spPassBandMax', 0.6, 'spFilterOrder', 10);
+configCSCustom = ConfigCellScan(configFindCustom, configMeasureCustom, ...
+    configDetectCustom);
+cs03 = CellScan('test CS 03', rawImg, configCSCustom, channelToUse);
+confFind = cs03.calcFindROIs.config
+confMeasure = cs03.calcMeasureROIs.config
+confDetect = cs03.calcDetectSigs.config
+
+%%
+%
+% <html><h3>Process a scalar <tt>CellScan</tt> object</h3></html>
+%
+
+% Process a scalar CellScan object
+cs03 = cs03.process()
+
+%%
+%
+% <html><h3>Process a <tt>CellScan</tt> object array (in parallel)</h3></html>
+%
+
+% Process a CellScan object array (in parallel)
+% This code requires the Parallel Computing Toolbox to run in parallel
+useParallel = true;
+csArray = csArray.process(useParallel);
+csArray_state = {csArray.state}
+
+%%
+%
+% <html><h3>Plot a figure showing an overview of identified ROIs</h3></html>
+%
+
+% Plot a figure showing an overview of identified ROIs
+hFig03 = cs03.plot();
+set(hFig03, 'Units', 'pixels', 'Position', [50, 50, 1100, 750]);
+
+%%
+%
+% <html><h3>Produce a GUI to optimise the parameters</h3></html>
+%
+
+% Produce a GUI to optimise the parameters
+hFigOpt = cs03.opt_config();
+
+%%
+%
+% <html><h3>Output the data</h3></html>
+%
+
+% Output the data.  This requires write access to the working directory.
+fnCS03 = cs03.output_data('cs03', 'overwrite', true);
+%%
+
+% First, the findROIs data
+fID03_find = fopen(fnCS03{1}, 'r');
+fileContents03f = textscan(fID03_find, '%s');
+fileContents03f{1}{1:5}
+fclose(fID03_find);
+%%
+
+% Then, the measureROIs data
+fID03_measure = fopen(fnCS03{2}, 'r');
+fileContents03m = textscan(fID03_measure, '%s');
+fileContents03m{1}{1:5}
+fclose(fID03_measure);
+%%
+
+% Finally, the detectSigs data
+fID03_detect = fopen(fnCS03{3}, 'r');
+fileContents03d = textscan(fID03_detect, '%s');
+fileContents03d{1}{1:5}
+fclose(fID03_detect);
+
+##### SOURCE END #####
+--></body></html>

@@ -1,0 +1,211 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>BioFormats</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-06-23"><meta name="DC.source" content="id_ri_BioFormats.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>BioFormats</h1><!--introduction--><p>Store raw data from BioFormats images</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Arguments</a></li><li><a href="#3">Details</a></li><li><a href="#4">See Also</a></li><li><a href="#5">Examples</a></li></ul></div><h2>Usage<a name="1"></a></h2><pre class="language-matlab">OBJ = BioFormats(FILENAME, CHS, CAL)
+</pre><h2>Arguments<a name="2"></a></h2><div><ul><li><tt>FILENAME</tt> is the original filename (including the path) of this <tt>BioFormats</tt> object.</li><li><tt>CHS</tt> is a scalar structure that contains information about the meaning of the image channels.</li><li><tt>CAL</tt> is a scalar <tt>CalibrationPixelSize</tt> object.</li></ul></div><h2>Details<a name="3"></a></h2><p><tt>BioFormats</tt> objects are used to contain all raw image data and metadata from Bio-Formats Tif images.   This class relies on existing code from the Bio-Formats library.  For more information, please visit <a href="http://www.openmicroscopy.org/site/products/bio-formats">http://www.openmicroscopy.org/site/products/bio-formats</a>.</p><h2>See Also<a name="4"></a></h2><div><ul><li><a href="matlab:doc('RawImg')"><tt>RawImg</tt> class documentation</a></li><li><a href="matlab:doc('Metadata')"><tt>Metadata</tt> class documentation</a></li><li><a href="id_md_Metadata.html"><tt>Metadata</tt> quick start guide</a></li><li><a href="matlab:doc('CalibrationPixelSize')"><tt>CalibrationPixelSize</tt> class documentation</a></li><li><a href="id_md_Calibration.html"><tt>CalibrationPixelSize</tt> quick start guide</a></li></ul></div><h2>Examples<a name="5"></a></h2><p>The following examples require the sample images and other files, which can be downloaded manually, from the University of Zurich website (<a href="http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html">http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html</a>), or automatically, by running the function <tt>utils.download_example_imgs()</tt>.</p><p>In addition, loading Bio-Formats images requires prior installation of the Bio-Formats Java library, which can be downloaded manually from the Open Microscopy Environment website (<a href="'http://www.openmicroscopy.org/site/products/bio-formats">'http://www.openmicroscopy.org/site/products/bio-formats</a>), or automatically by running the function <tt>utils.install_bfmatlab()</tt>.</p><p><h3>Create a <tt>BioFormats</tt> object interactively</h3></p><p>The following example will illustrate the process of creating a <tt>BioFormats</tt> object interactively.  It is possible to do so by using the <tt>from_files()</tt> method, rather than the constructor (as is demonstrated in this section).</p><pre class="language-matlab"><span class="comment">% Call the BioFormats constructor</span>
+bf001 = BioFormats()
+</pre><p>Use the interactive dialogue box to select the raw image file <tt>cellscan_ome_tiff.ome.tif</tt>.</p><p><img vspace="5" hspace="5" src="bf_sel_rawimg.png" alt=""> </p><p>The next stage is to define the 'meaning' of the image channels.  The first channel represents a cytosolic calcium sensor expressed in astrocytes.  Press three and then enter to complete the selection.</p><pre>----- What is shown on channel 1? -----</pre><pre>  &gt;&gt; 0) &lt;blank&gt;
+     1) blood_plasma
+     2) blood_rbcs
+     3) Ca_Cyto_Astro
+     4) Ca_Memb_Astro
+     5) Ca_Neuron
+     6) cellular_signal
+     7) FRET_ratio</pre><pre>Answer: 3</pre><p>We have now created a <tt>BioFormats</tt> object interactively.</p><pre>bf001 =</pre><pre class="language-matlab">BioFormats <span class="string">with</span> <span class="string">properties:</span>
+</pre><pre>            filename: 'C:\...'
+          isDenoised: 0
+   isMotionCorrected: 0
+   metadata_original: [1x1 loci.formats.ome.OMEXMLMetadataImpl]
+                name: 'cellscan_ome_tiff.ome'
+             rawdata: [4-D uint16]
+                  t0: 0
+            metadata: [1x1 Metadata]</pre><p>The process is almost exactly the same to create an array of <tt>BioFormats</tt> objects; when the software prompts you to select one or more raw images, simply select multiple images by using either the shift or control key.</p><p><h3>Create a <tt>BioFormats</tt> object without any interaction</h3></p><pre class="codeinput"><span class="comment">% Specify the full path to the raw image object</span>
+fnST002 = fullfile(utils.CHIPS_rootdir, <span class="string">'tests'</span>, <span class="string">'res'</span>, <span class="keyword">...</span>
+    <span class="string">'cellscan_ome_tiff.ome.tif'</span>);
+
+<span class="comment">% Specify the channels relevant for this raw image</span>
+channels = struct(<span class="string">'Ca_Cyto_Astro'</span>, 1);
+
+<span class="comment">% Create the SCIM_Tif object without any interaction</span>
+bf002 = BioFormats(fnST002, channels);
+
+<span class="comment">% View the SCIM_Tif object</span>
+bf002.plot()
+</pre><pre class="codeoutput">Reading series #1
+    ....................
+</pre><img vspace="5" hspace="5" src="id_ri_BioFormats_01.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% BioFormats
+% Store raw data from BioFormats images
+
+%% Usage
+%   OBJ = BioFormats(FILENAME, CHS, CAL)
+
+%% Arguments
+% * |FILENAME| is the original filename (including the path) of this
+% |BioFormats| object.
+% * |CHS| is a scalar structure that contains information about the
+% meaning of the image channels.
+% * |CAL| is a scalar |CalibrationPixelSize| object.
+        
+%% Details
+% |BioFormats| objects are used to contain all raw image data and metadata
+% from Bio-Formats Tif images.   This class relies on existing code from
+% the Bio-Formats library.  For more information, please visit 
+% <http://www.openmicroscopy.org/site/products/bio-formats>.
+
+%% See Also
+% * <matlab:doc('RawImg') |RawImg| class documentation>
+% * <matlab:doc('Metadata') |Metadata| class documentation>
+% * <id_md_Metadata.html |Metadata| quick start guide>
+% * <matlab:doc('CalibrationPixelSize') |CalibrationPixelSize| class documentation>
+% * <id_md_Calibration.html |CalibrationPixelSize| quick start guide>
+
+%% Examples
+% The following examples require the sample images and other files, which
+% can be downloaded manually, from the University of Zurich website
+% (<http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html>), or
+% automatically, by running the function |utils.download_example_imgs()|.
+%
+% In addition, loading Bio-Formats images requires prior installation of
+% the Bio-Formats Java library, which can be downloaded manually from the
+% Open Microscopy Environment website
+% (<'http://www.openmicroscopy.org/site/products/bio-formats>), or
+% automatically by running the function |utils.install_bfmatlab()|.
+%
+% <html><h3>Create a <tt>BioFormats</tt> object interactively</h3></html>
+%
+% The following example will illustrate the process of creating a
+% |BioFormats| object interactively.  It is possible to do so by using the
+% |from_files()| method, rather than the constructor (as is demonstrated in
+% this section).
+%
+%   % Call the BioFormats constructor
+%   bf001 = BioFormats()
+%
+% Use the interactive dialogue box to select the raw image file
+% |cellscan_ome_tiff.ome.tif|.
+%
+% <<bf_sel_rawimg.png>>
+%
+% The next stage is to define the 'meaning' of the image channels.  The
+% first channel represents a cytosolic calcium sensor expressed in
+% astrocytes.  Press three and then enter to complete the selection.
+%
+%  REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- What is shown on channel 1? REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+%  
+%    >> 0) <blank>
+%       1) blood_plasma
+%       2) blood_rbcs
+%       3) Ca_Cyto_Astro
+%       4) Ca_Memb_Astro
+%       5) Ca_Neuron
+%       6) cellular_signal
+%       7) FRET_ratio
+%  
+%  Answer: 3
+%
+% We have now created a |BioFormats| object interactively.
+%
+%  bf001 = 
+% 
+%   BioFormats with properties:
+% 
+%              filename: 'C:\...'
+%            isDenoised: 0
+%     isMotionCorrected: 0
+%     metadata_original: [1x1 loci.formats.ome.OMEXMLMetadataImpl]
+%                  name: 'cellscan_ome_tiff.ome'
+%               rawdata: [4-D uint16]
+%                    t0: 0
+%              metadata: [1x1 Metadata]
+%
+% The process is almost exactly the same to create an array of |BioFormats|
+% objects; when the software prompts you to select one or more raw images,
+% simply select multiple images by using either the shift or control key.
+
+%%
+%
+% <html><h3>Create a <tt>BioFormats</tt> object without any interaction</h3></html>
+%
+
+% Specify the full path to the raw image object
+fnST002 = fullfile(utils.CHIPS_rootdir, 'tests', 'res', ...
+    'cellscan_ome_tiff.ome.tif');
+
+% Specify the channels relevant for this raw image
+channels = struct('Ca_Cyto_Astro', 1);
+
+% Create the SCIM_Tif object without any interaction
+bf002 = BioFormats(fnST002, channels);
+
+% View the SCIM_Tif object 
+bf002.plot()
+
+##### SOURCE END #####
+--></body></html>

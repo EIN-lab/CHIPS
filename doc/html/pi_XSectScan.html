@@ -1,0 +1,426 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>XSectScan</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-06-23"><meta name="DC.source" content="pi_XSectScan.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>XSectScan</h1><!--introduction--><p>Analyse cross section images of vessel diameters</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Arguments</a></li><li><a href="#3">Details</a></li><li><a href="#4">See Also</a></li><li><a href="#5">Examples</a></li></ul></div><h2>Usage<a name="1"></a></h2><pre class="language-matlab">OBJ = XSectScan(NAME, RAWIMG, CONFIG, ISDP)
+</pre><h2>Arguments<a name="2"></a></h2><div><ul><li><tt>NAME</tt> is the name for this <tt>LineScanVel</tt> object.</li><li><tt>RAWIMG</tt> is the <tt>RawImg</tt> object that will be used to create the <tt>LineScanVel</tt> object.</li><li><tt>CONFIG</tt> contains the configuration parameters needed for the <tt>calcDiameter</tt> object.</li><li><tt>ISDP</tt> specifies whether the vessel lumen to analyse is bright (i.e. positively labelled) or dark (i.e. negatively labelled).</li></ul></div><h2>Details<a name="3"></a></h2><p><tt>XSectScan</tt> objects are used to analyse the diameters of vessels using axial cross section images.  Typically, the vessel lumen will be labelled by a fluorescent marker, like a dextran conjugated fluorophore (e.g. FITC), but the method also works with a negatively labelled vessel lumen (e.g. everything but the vessel lumen is labelled).</p><p><img vspace="5" hspace="5" src="xss_example_rawImg.png" alt=""> </p><h2>See Also<a name="4"></a></h2><div><ul><li><a href="matlab:doc('XSectScan')"><tt>XSectScan</tt> class documentation</a></li><li><a href="matlab:doc('ConfigDiameterTiRS')"><tt>ConfigDiameterTiRS</tt> class documentation</a></li><li><a href="matlab:doc('CalcDiameterTiRS')"><tt>CalcDiameterTiRS</tt> class documentation</a></li><li><a href="matlab:doc('ImgGroup')"><tt>ImgGroup</tt> class documentation</a></li><li><a href="ig_ImgGroup.html"><tt>ImgGroup</tt> quick start guide</a></li></ul></div><h2>Examples<a name="5"></a></h2><p>The following examples require the sample images and other files, which can be downloaded manually, from the University of Zurich website (<a href="http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html">http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html</a>), or automatically, by running the function <tt>utils.download_example_imgs()</tt>.</p><p><h3>Create a <tt>XSectScan</tt> object interactively</h3></p><p>The following example will illustrate the process of creating a <tt>XSectScan</tt> object interactively, starting with calling the constructor.</p><pre class="language-matlab"><span class="comment">% Call the XSectScan constructor</span>
+xss01 = XSectScan()
+</pre><p>Since no RawImg has been specified, the first stage is to select the type of RawImg to create.  Press 2 and then enter to select the SCIM_Tif.</p><pre>----- What type of RawImg would you like to load? -----</pre><pre>  &gt;&gt; 1) BioFormats
+     2) SCIM_Tif</pre><pre>Select a format: 2</pre><p>Then, use the interactive dialogue box to select the raw image file <tt>xsectscan_scim.tif</tt>, which should be located in the subfolder tests&gt;res, within the CHIPS root directory.</p><p><img vspace="5" hspace="5" src="xss_sel_rawImg.png" alt=""> </p><p>Use the interactive dialogue box to select the dummy calibration (<tt>calibration_dummy.mat</tt>):</p><p><img vspace="5" hspace="5" src="sel_cal.png" alt=""> </p><p>The next stage is to define the 'meaning' of the image channels.  The first channel is not needed for now, and the second channel represents the blood plasma.  Press enter, followed by 1 and then enter, to complete the selection.</p><pre>----- What is shown on channel 1? -----</pre><pre>  &gt;&gt; 0) &lt;blank&gt;
+     1) blood_plasma
+     2) blood_rbcs</pre><pre>Answer:</pre><pre>----- What is shown on channel 2? -----</pre><pre>  &gt;&gt; 0) &lt;blank&gt;
+     1) blood_plasma
+     2) blood_rbcs</pre><pre>Answer: 1</pre><p>We have now created a <tt>XSectScan</tt> object interactively.</p><pre>xss01 =</pre><pre>  XSectScan with properties:</pre><pre>   calcDiameter: [1x1 CalcDiameterTiRS]
+   channelToUse: 2
+   isDarkPlasma: 0
+       plotList: [1x1 struct]
+          state: 'unprocessed'
+           name: 'xsectscan_scim'
+         rawImg: [1x1 SCIM_Tif]</pre><p>The process is almost exactly the same to create an array of <tt>XSectScan</tt> objects; when the software prompts you to select one or more raw images, simply select multiple images by using either the shift or control key.</p><p><h3>Prepare a <tt>RawImg</tt> for use in these examples</h3></p><pre class="codeinput"><span class="comment">% Prepare a rawImg for use in these examples</span>
+fnRawImg = fullfile(utils.CHIPS_rootdir, <span class="string">'tests'</span>, <span class="string">'res'</span>, <span class="keyword">...</span>
+    <span class="string">'xsectscan_scim.tif'</span>);
+channels = struct(<span class="string">'blood_plasma'</span>, 2);
+fnCalibration = fullfile(utils.CHIPS_rootdir, <span class="string">'tests'</span>, <span class="string">'res'</span>, <span class="keyword">...</span>
+    <span class="string">'calibration_dummy.mat'</span>);
+calibration = CalibrationPixelSize.load(fnCalibration);
+rawImg = SCIM_Tif(fnRawImg, channels, calibration);
+</pre><pre class="codeoutput">Opening xsectscan_scim.tif: 100% [=================================]
+</pre><p><h3>Create a <tt>XSectScan</tt> object without any interaction</h3></p><pre class="codeinput"><span class="comment">% Create a XSectScan object without any interaction</span>
+nameXSS02 = <span class="string">'test XSS 02'</span>;
+configTiRS = ConfigDiameterTiRS();
+xss02 = XSectScan(nameXSS02, rawImg, configTiRS)
+</pre><pre class="codeoutput">
+xss02 = 
+
+  XSectScan with properties:
+
+    calcDiameter: [1x1 CalcDiameterTiRS]
+    channelToUse: 2
+    isDarkPlasma: 0
+        plotList: [1x1 struct]
+           state: 'unprocessed'
+            name: 'test XSS 02'
+          rawImg: [1x1 SCIM_Tif]
+
+</pre><p><h3>Create a <tt>XSectScan</tt> object with a custom config</h3></p><pre class="codeinput"><span class="comment">% Create a XSectScan object with a custom config</span>
+configCustom = ConfigDiameterTiRS(<span class="string">'thresholdFWHM'</span>, 0.65, <span class="keyword">...</span>
+    <span class="string">'thresholdInv'</span>, 0.35);
+xss03 = XSectScan(<span class="string">'test XSS 03'</span>, rawImg, configCustom);
+confDiam = xss03.calcDiameter.config
+</pre><pre class="codeoutput">
+confDiam = 
+
+  ConfigDiameterTiRS with properties:
+
+     connectivity: 8
+    thresholdFWHM: 0.6500
+     thresholdInv: 0.3500
+     thresholdSTD: 3
+
+</pre><p><h3>Create a <tt>XSectScan</tt> object array</h3></p><pre class="codeinput"><span class="comment">% Create the RawImg array first</span>
+rawImgArray(1:3) = copy(rawImg);
+rawImgArray = copy(rawImgArray)
+</pre><pre class="codeoutput">
+rawImgArray = 
+
+  1x3 SCIM_Tif array with properties:
+
+    filename
+    isDenoised
+    isMotionCorrected
+    metadata_original
+    name
+    rawdata
+    t0
+    metadata
+
+</pre><pre class="codeinput"><span class="comment">% Then create a XSectScan object array</span>
+xssArray = XSectScan(<span class="string">'test XSS Array'</span>, rawImgArray, configCustom)
+</pre><pre class="codeoutput">Warning: All of the RawImg objects are assumed to have the same channel
+structure. If this is not true, the processing will not work as
+expected; in this case you will need to create the objects seperately. 
+
+xssArray = 
+
+  1x3 XSectScan array with properties:
+
+    calcDiameter
+    channelToUse
+    isDarkPlasma
+    plotList
+    state
+    name
+    rawImg
+
+</pre><p><h3>Process a scalar <tt>XSectScan</tt> object</h3></p><pre class="codeinput"><span class="comment">% Process a scalar XSectScan object</span>
+xss03 = xss03.process()
+</pre><pre class="codeoutput">Calculating diameter: 100% [=======================================]
+
+xss03 = 
+
+  XSectScan with properties:
+
+    calcDiameter: [1x1 CalcDiameterTiRS]
+    channelToUse: 2
+    isDarkPlasma: 0
+        plotList: [1x1 struct]
+           state: 'processed'
+            name: 'test XSS 03'
+          rawImg: [1x1 SCIM_Tif]
+
+</pre><p><h3>Process a <tt>XSectScan</tt> object array (in parallel)</h3></p><pre class="codeinput"><span class="comment">% Process a XSectScan object array (in parallel).</span>
+<span class="comment">% This code requires the Parallel Computing Toolbox to run in parallel</span>
+useParallel = true;
+xssArray = xssArray.process(useParallel);
+xssArray_state = {xssArray.state}
+</pre><pre class="codeoutput">Processing array: 100% [===========================================]
+
+xssArray_state = 
+
+    'processed'    'processed'    'processed'
+
+</pre><p><h3>Plot a figure showing the output</h3></p><pre class="codeinput"><span class="comment">% Plot a figure showing the output</span>
+hFig03 = xss03.plot();
+set(hFig03, <span class="string">'Position'</span>, [50, 50, 600, 600]);
+</pre><img vspace="5" hspace="5" src="pi_XSectScan_01.png" alt=""> <p><h3>Produce a GUI to optimise the parameters</h3></p><pre class="codeinput"><span class="comment">% Produce a GUI to optimise the parameters</span>
+hFigOpt = xss03.opt_config();
+</pre><img vspace="5" hspace="5" src="pi_XSectScan_02.png" alt=""> <p><h3>Output the data</h3></p><pre class="codeinput"><span class="comment">% Output the data.  This requires write access to the working directory</span>
+fnCSV03 = xss03.output_data(<span class="string">'xss02'</span>, <span class="string">'overwrite'</span>, true);
+fID03 = fopen(fnCSV03{1}, <span class="string">'r'</span>);
+fileContents03 = textscan(fID03, <span class="string">'%s'</span>);
+fileContents03{1}{1:5}
+fclose(fID03);
+</pre><pre class="codeoutput">
+ans =
+
+time,diameter,areaPixels,maskSTD,mask
+
+
+ans =
+
+0.070,86.702,1476,FALSE,FALSE
+
+
+ans =
+
+0.209,88.963,1554,FALSE,FALSE
+
+
+ans =
+
+0.348,86.290,1462,FALSE,FALSE
+
+
+ans =
+
+0.488,85.994,1452,FALSE,FALSE
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% XSectScan
+% Analyse cross section images of vessel diameters
+
+%% Usage
+%   OBJ = XSectScan(NAME, RAWIMG, CONFIG, ISDP)
+
+%% Arguments
+% * |NAME| is the name for this |LineScanVel| object.
+% * |RAWIMG| is the |RawImg| object that will be used to create the
+% |LineScanVel| object.
+% * |CONFIG| contains the configuration parameters needed for the
+% |calcDiameter| object.
+% * |ISDP| specifies whether the vessel lumen to analyse is bright (i.e.
+% positively labelled) or dark (i.e. negatively labelled).
+        
+%% Details
+% |XSectScan| objects are used to analyse the diameters of vessels using
+% axial cross section images.  Typically, the vessel lumen will be labelled
+% by a fluorescent marker, like a dextran conjugated fluorophore (e.g.
+% FITC), but the method also works with a negatively labelled vessel lumen
+% (e.g. everything but the vessel lumen is labelled).
+%
+% <<xss_example_rawImg.png>>
+
+%% See Also
+% * <matlab:doc('XSectScan') |XSectScan| class documentation>
+% * <matlab:doc('ConfigDiameterTiRS') |ConfigDiameterTiRS| class documentation>
+% * <matlab:doc('CalcDiameterTiRS') |CalcDiameterTiRS| class documentation>
+% * <matlab:doc('ImgGroup') |ImgGroup| class documentation>
+% * <ig_ImgGroup.html |ImgGroup| quick start guide>
+
+%% Examples
+% The following examples require the sample images and other files, which
+% can be downloaded manually, from the University of Zurich website
+% (<http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html>), or
+% automatically, by running the function |utils.download_example_imgs()|.
+%
+% <html><h3>Create a <tt>XSectScan</tt> object interactively</h3></html>
+%
+% The following example will illustrate the process of creating a
+% |XSectScan| object interactively, starting with calling the constructor.
+%
+%   % Call the XSectScan constructor
+%   xss01 = XSectScan()
+%
+% Since no RawImg has been specified, the first stage is to select the type
+% of RawImg to create.  Press 2 and then enter to select the SCIM_Tif.  
+%
+%  REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- What type of RawImg would you like to load? REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+%  
+%    >> 1) BioFormats
+%       2) SCIM_Tif
+%  
+%  Select a format: 2
+%
+% Then, use the interactive dialogue box to select the raw image file
+% |xsectscan_scim.tif|, which should be located in the subfolder
+% tests>res, within the CHIPS root directory.
+%
+% <<xss_sel_rawImg.png>>
+%
+% Use the interactive dialogue box to select the dummy calibration 
+% (|calibration_dummy.mat|):
+%
+% <<sel_cal.png>>
+%
+% The next stage is to define the 'meaning' of the image channels.  The
+% first channel is not needed for now, and the second channel represents
+% the blood plasma.  Press enter, followed by 1 and then enter, to complete
+% the selection.
+%
+%  REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- What is shown on channel 1? REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+%  
+%    >> 0) <blank>
+%       1) blood_plasma
+%       2) blood_rbcs
+%  
+%  Answer: 
+%  
+%  REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- What is shown on channel 2? REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+%  
+%    >> 0) <blank>
+%       1) blood_plasma
+%       2) blood_rbcs
+%  
+%  Answer: 1
+%
+% We have now created a |XSectScan| object interactively.
+%
+%  xss01 = 
+% 
+%    XSectScan with properties:
+% 
+%     calcDiameter: [1x1 CalcDiameterTiRS]
+%     channelToUse: 2
+%     isDarkPlasma: 0
+%         plotList: [1x1 struct]
+%            state: 'unprocessed'
+%             name: 'xsectscan_scim'
+%           rawImg: [1x1 SCIM_Tif]
+%
+% The process is almost exactly the same to create an array of |XSectScan|
+% objects; when the software prompts you to select one or more raw images,
+% simply select multiple images by using either the shift or control key.
+
+%%
+%
+% <html><h3>Prepare a <tt>RawImg</tt> for use in these examples</h3></html>
+%
+
+% Prepare a rawImg for use in these examples
+fnRawImg = fullfile(utils.CHIPS_rootdir, 'tests', 'res', ...
+    'xsectscan_scim.tif');
+channels = struct('blood_plasma', 2);
+fnCalibration = fullfile(utils.CHIPS_rootdir, 'tests', 'res', ...
+    'calibration_dummy.mat');
+calibration = CalibrationPixelSize.load(fnCalibration);
+rawImg = SCIM_Tif(fnRawImg, channels, calibration);
+
+%%
+%
+% <html><h3>Create a <tt>XSectScan</tt> object without any interaction</h3></html>
+%
+
+% Create a XSectScan object without any interaction
+nameXSS02 = 'test XSS 02';
+configTiRS = ConfigDiameterTiRS();
+xss02 = XSectScan(nameXSS02, rawImg, configTiRS)
+
+%%
+%
+% <html><h3>Create a <tt>XSectScan</tt> object with a custom config</h3></html>
+%
+
+% Create a XSectScan object with a custom config
+configCustom = ConfigDiameterTiRS('thresholdFWHM', 0.65, ...
+    'thresholdInv', 0.35);
+xss03 = XSectScan('test XSS 03', rawImg, configCustom);
+confDiam = xss03.calcDiameter.config
+
+%%
+%
+% <html><h3>Create a <tt>XSectScan</tt> object array</h3></html>
+%
+
+% Create the RawImg array first 
+rawImgArray(1:3) = copy(rawImg);
+rawImgArray = copy(rawImgArray)
+%%
+
+% Then create a XSectScan object array
+xssArray = XSectScan('test XSS Array', rawImgArray, configCustom)
+
+%%
+%
+% <html><h3>Process a scalar <tt>XSectScan</tt> object</h3></html>
+%
+
+% Process a scalar XSectScan object
+xss03 = xss03.process()
+
+%%
+%
+% <html><h3>Process a <tt>XSectScan</tt> object array (in parallel)</h3></html>
+%
+
+% Process a XSectScan object array (in parallel).
+% This code requires the Parallel Computing Toolbox to run in parallel
+useParallel = true;
+xssArray = xssArray.process(useParallel);
+xssArray_state = {xssArray.state}
+
+%%
+%
+% <html><h3>Plot a figure showing the output</h3></html>
+%
+
+% Plot a figure showing the output
+hFig03 = xss03.plot();
+set(hFig03, 'Position', [50, 50, 600, 600]);
+
+%%
+%
+% <html><h3>Produce a GUI to optimise the parameters</h3></html>
+%
+
+% Produce a GUI to optimise the parameters
+hFigOpt = xss03.opt_config();
+
+%%
+%
+% <html><h3>Output the data</h3></html>
+%
+
+% Output the data.  This requires write access to the working directory
+fnCSV03 = xss03.output_data('xss02', 'overwrite', true);
+fID03 = fopen(fnCSV03{1}, 'r');
+fileContents03 = textscan(fID03, '%s');
+fileContents03{1}{1:5}
+fclose(fID03);
+
+##### SOURCE END #####
+--></body></html>

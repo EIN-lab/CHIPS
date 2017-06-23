@@ -1,0 +1,3 @@
+peakAUC,prominence,amplitude,peakTime,peakStart,peakStartHalf,halfWidth,fullWidth,numPeaks,peakType,roiName
+NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NoPeak,roi0001_0146_0056
+65.389,NaN,0.925,85.488,0.678,0.678,NaN,101.094,1.000,Plateau,roi0002_0234_0177
