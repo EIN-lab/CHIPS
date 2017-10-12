@@ -17,11 +17,13 @@ function varargout = plot_signals(self, objPI, varargin)
 
 % Setup the default parameter names and values
 pNames = {
-        'plotROIs' ...
-        };
-    pValues = {
-        [] ...
-        };
+    'plotROIs'; ...
+    'annotateSigs' ...
+    };
+pValues = {
+    []; ...
+    true ...
+    };
 dflts = cell2struct(pValues, pNames);
 params = utils.parse_params(dflts, varargin{:});
 
@@ -61,7 +63,12 @@ for iROI = 1:nROIs_req
     [~, hFig{currROI}] = self.peakClassMeasure(...
         tracesNorm(:, currROI), frameRate, fBand, ...
         roiName, doPlot, flagVersion);
-
+    
+    % Annotate signals
+    if params.annotateSigs
+        self.annotate_signals(objPI, hFig{currROI}, currROI, params)
+    end
+    
 end
 
 % Setup the output arguments

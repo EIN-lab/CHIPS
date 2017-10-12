@@ -27,12 +27,17 @@ function varargout = plot(self, objPI, varargin)
 %   plot(..., 'attribute', value, ...) uses the specified attribute/value
 %   pairs.  Valid attributes (case insensitive) are:
 %
-%       'doWholeFrame' -> Logical scalar indicating whether to display the
-%                       whole frame trace(s). [default = true]
+%       'annotateSigs'  -> A boolean flag indiciating whether to add
+%                       annotations to plots of individual ROI's responses.
+%                       Applicable for plot type 'signals' only. 
+%                       [default = true]
 %
 %       'doHeatmap' ->  Logical scalar indicating whether to display the
 %                       traces as a heatmap or regular 2d lines. 
 %                       [default = true if > 15 ROIs, otherwise false]
+%
+%       'doWholeFrame' -> Logical scalar indicating whether to display the
+%                       whole frame trace(s). [default = true]
 %
 %       'isDebug' ->    Logical scalar indicating whether to show debugging
 %                       information and/or plots on the figure. 

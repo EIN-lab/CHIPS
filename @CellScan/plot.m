@@ -51,12 +51,17 @@ function varargout = plot(self, varargin)
 %                       transparent the ROI overlays should appear.  
 %                       [default = 0.6]
 %
-%       'doWholeFrame' -> Logical scalar indicating whether to display the
-%                       whole frame trace(s). [default = true]
+%       'annotateSigs'  -> A boolean flag indiciating whether to add
+%                       annotations to plots of individual ROI's responses.
+%                       Applicable for plot type 'signals' only. 
+%                       [default = true]
 %
 %       'doHeatmap' ->  Logical scalar indicating whether to display the
 %                       traces as a heatmap or regular 2d lines. 
 %                       [default = true if > 15 ROIs, otherwise false]
+%
+%       'doWholeFrame' -> Logical scalar indicating whether to display the
+%                       whole frame trace(s). [default = true]
 %
 %       'FilledROIs' ->	Logical scalar indicating whether the ROIs should
 %                       be displayed filled or only as an outline. 

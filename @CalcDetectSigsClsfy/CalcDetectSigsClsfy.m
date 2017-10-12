@@ -158,6 +158,11 @@ classdef CalcDetectSigsClsfy < CalcDetectSigs
         
         varargout = plot_signals(self, objPI, varargin)
         
+        % -------------------------------------------------------------- %
+        
+        varargout = annotate_signals(self, objPI, hFig, currROI, params)
+        
+        % -------------------------------------------------------------- %
     end
     
     % ================================================================== %

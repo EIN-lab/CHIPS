@@ -58,8 +58,7 @@ classdef Test_CalcDetectSigs < matlab.unittest.TestCase
                 warning(wngState)
                 return
             end
-            hFigs = objCDS.plot(csObj, 'signals', ...
-                'plotROIs', 1);
+            hFigs = objCDS.plot(csObj, 'signals', 'plotROIs', 1);
             warning(wngState)
             if ~isempty(hFigs)
                 % Test that the plotting works

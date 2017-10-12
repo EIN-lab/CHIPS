@@ -21,14 +21,16 @@ function annotate_traces(self, objPI, hAxTraces, varargin)
         'doWholeFrame'; ...
         'normTraces'; ...
         'plotROIs'; ...
-        'spacingFactor' ...
+        'spacingFactor'; ...
+        'annotateSigs' ...
         };
     pValues = {
         [];
         true; ...
         true; ...
         []; ...
-        1 ...
+        1; ...
+        false ...
         };
     dflts = cell2struct(pValues, pNames);
     params = utils.parse_params(dflts, varargin{:});
@@ -56,15 +58,21 @@ function annotate_traces(self, objPI, hAxTraces, varargin)
     else
         traces = objPI.calcMeasureROIs.data.traces;
     end
-    tracesAdj = utils.adjust_traces(traces(:, params.plotROIs), ...
-        params.spacingFactor);
+    
+    % If we annotate individual signals, we don't need to do any adjustment
+    if ~params.annotateSigs
+        tracesAdj = utils.adjust_traces(traces(:, params.plotROIs), ...
+            params.spacingFactor);
+    else
+        tracesAdj = traces(:, params.plotROIs);
+    end
 
     % Plot the traces
     for iROI = nROIs:-1:1
         
         % Extract the current ROI and trace
         currROI = params.plotROIs(iROI);
-        trace = tracesAdj(:,iROI);
+        iTrace = tracesAdj(:,iROI);
 
         % Extract the peaks for this ROI
         peakIdxAll = strcmp(self.data.roiName, roiNames{currROI});
@@ -77,8 +85,8 @@ function annotate_traces(self, objPI, hAxTraces, varargin)
             peakStarts = [self.data.peakStart{peakIdxAll}];
             peakWidths = [self.data.fullWidth{peakIdxAll}];
             nPeaks = numel(peakStarts);
-            minVal = utils.nansuite.nanmin(trace);
-            barVal = minVal + 0.02*(utils.nansuite.nanmax(trace) - minVal);
+            minVal = utils.nansuite.nanmin(iTrace);
+            barVal = minVal + 0.02*(utils.nansuite.nanmax(iTrace) - minVal);
             hold(hAxTraces, 'on')
             for iPeak = 1:nPeaks
                 xPeak = peakStarts(iPeak) + [0, peakWidths(iPeak)];
@@ -105,7 +113,7 @@ function annotate_traces(self, objPI, hAxTraces, varargin)
                 colTxt = 'r';
             else
                 vAlign = 'Bottom';
-                peakVals = interp1(time, trace, peakTimes);
+                peakVals = interp1(time, iTrace, peakTimes);
                 colTxt = 'k';
             end
             
