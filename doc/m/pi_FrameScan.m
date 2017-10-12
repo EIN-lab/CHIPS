@@ -38,7 +38,7 @@
 % * <matlab:doc('CalcVelocityLSPIV') |CalcVelocityLSPIV| class documentation>
 % * <matlab:doc('CalcDiameterFWHM') |CalcDiameterFWHM| class documentation>
 % * <matlab:doc('ImgGroup') |ImgGroup| class documentation>
-% * <ig_ImgGroup.html |ImgGroup| quick start guide>
+% * <./ig_ImgGroup.html |ImgGroup| quick start guide>
 
 %% Examples
 % The following examples require the sample images and other files, which
@@ -255,3 +255,7 @@ fID03_velocity = fopen(fnCSV03{2}, 'r');
 fileContents03v = textscan(fID03_velocity, '%s');
 fileContents03v{1}{1:5}
 fclose(fID03_velocity);
+
+%%
+%
+% <./index.html Home>

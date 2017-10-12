@@ -28,7 +28,7 @@
 % * <matlab:doc('ConfigDiameterTiRS') |ConfigDiameterTiRS| class documentation>
 % * <matlab:doc('CalcDiameterTiRS') |CalcDiameterTiRS| class documentation>
 % * <matlab:doc('ImgGroup') |ImgGroup| class documentation>
-% * <ig_ImgGroup.html |ImgGroup| quick start guide>
+% * <./ig_ImgGroup.html |ImgGroup| quick start guide>
 
 %% Examples
 % The following examples require the sample images and other files, which
@@ -200,3 +200,7 @@ fID03 = fopen(fnCSV03{1}, 'r');
 fileContents03 = textscan(fID03, '%s');
 fileContents03{1}{1:5}
 fclose(fID03);
+
+%%
+%
+% <./index.html Home>

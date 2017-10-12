@@ -309,6 +309,14 @@ to the terms of the MIT licence as listed at the bottom of this section
   http://www.mathworks.com/matlabcentral/fileexchange/27485. We have modified
   the original code in our implementation.
 
+- "publishreadme-pkg", Copyright (c) 2016 Kelly Kearney, retrieved from 
+  https://github.com/kakearney/publishreadme-pkg. We have modified the 
+  original code in our implementation.
+
+- "mxdom2md.xsl", Copyright (c) 2015 Aslak Grinsted, retrieved from 
+  https://github.com/grinsted/gwmcmc/blob/master/private/mxdom2md.xsl. We 
+  have modified the original code in our implementation.
+
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
 the Software without restriction, including without limitation the rights to

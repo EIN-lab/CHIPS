@@ -23,9 +23,9 @@
 %% See Also
 % * <matlab:doc('CompositeImg') |CompositeImg| class documentation>
 % * <matlab:doc('ImgGroup') |ImgGroup| class documentation>
-% * <ig_ImgGroup.html |ImgGroup| quick start guide>
+% * <./ig_ImgGroup.html |ImgGroup| quick start guide>
 % * <matlab:doc('ProcessedImg') |ProcessedImg| class documentation>
-% * <pi_.html |ProcessedImg| quick start guide>
+% * <./pi_.html |ProcessedImg| quick start guide>
 % * <matlab:doc('Config') |Config| class documentation>
 % * <matlab:doc('RawImgComposite') |RawImgComposite| class documentation>
 
@@ -344,3 +344,7 @@ fID02 = fopen(fnCSV02{end}{1}, 'r');
 fileContents02 = textscan(fID02, '%s');
 fileContents02{1}{1:5}
 fclose(fID02);
+
+%%
+%
+% <./index.html Home>

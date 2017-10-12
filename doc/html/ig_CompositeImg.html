@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>CompositeImg</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-09-01"><meta name="DC.source" content="ig_CompositeImg.m"><style type="text/css">
+      --><title>CompositeImg</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-09-20"><meta name="DC.source" content="ig_CompositeImg.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,8 +66,8 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>CompositeImg</h1><!--introduction--><p>Contain and analyse groups of images from the same RawImg</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Arguments</a></li><li><a href="#3">Details</a></li><li><a href="#4">See Also</a></li><li><a href="#5">Examples</a></li></ul></div><h2>Usage<a name="1"></a></h2><pre>OBJ = CompositeImg(RAWIMG, CONFIG, PROCTYPE)
-OBJ = CompositeImg(NAME, ...)</pre><h2>Arguments<a name="2"></a></h2><div><ul><li><tt>RAWIMG</tt> is the <tt>RawImg</tt> object array that will be used to create the <tt>ProcessedImg</tt> child objects in the <tt>CompositeImg</tt> object.</li><li><tt>CONFIG</tt> is the <tt>Config</tt> object that will be used to create the <tt>ProcessedImg</tt> child objects in the <tt>CompositeImg</tt> object.</li><li><tt>PROCTYPE</tt> is the type of <tt>ProcessedImg</tt> child objects that will be created in the <tt>CompositeImg</tt> object.</li><li><tt>NAME</tt> is the name for this <tt>CompositeImg</tt> object.</li></ul></div><h2>Details<a name="3"></a></h2><p><tt>CompositeImg</tt> objects are used to contain and analyse groups of processable objects that are derived from the same <tt>RawImg</tt>.  This allows efficient use of memory, since the same <tt>RawImg</tt> object does not need to be duplicated to be analysed in different ways.</p><h2>See Also<a name="4"></a></h2><div><ul><li><a href="matlab:doc('CompositeImg')"><tt>CompositeImg</tt> class documentation</a></li><li><a href="matlab:doc('ImgGroup')"><tt>ImgGroup</tt> class documentation</a></li><li><a href="ig_ImgGroup.html"><tt>ImgGroup</tt> quick start guide</a></li><li><a href="matlab:doc('ProcessedImg')"><tt>ProcessedImg</tt> class documentation</a></li><li><a href="pi_.html"><tt>ProcessedImg</tt> quick start guide</a></li><li><a href="matlab:doc('Config')"><tt>Config</tt> class documentation</a></li><li><a href="matlab:doc('RawImgComposite')"><tt>RawImgComposite</tt> class documentation</a></li></ul></div><h2>Examples<a name="5"></a></h2><p>The following examples require the sample images and other files, which can be downloaded manually, from the University of Zurich website (<a href="http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html">http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html</a>), or automatically, by running the function <tt>utils.download_example_imgs()</tt>.</p><p><h3>Create a <tt>CompositeImg</tt> object interactively from one or more files</h3></p><p>The following example will illustrate the process of creating a <tt>CompositeImg</tt> object interactively.  Although it is possible to do so by using the constructor method followed by the <tt>add()</tt> method, it can be easier to use the static method <tt>from_files</tt>, as illustrated below.</p><pre class="language-matlab"><span class="comment">% Construct an CompositeImg using the static method from_files</span>
+  </style></head><body><div class="content"><h1>CompositeImg</h1><!--introduction--><p>Contain and analyse groups of images from the same RawImg</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Arguments</a></li><li><a href="#3">Details</a></li><li><a href="#4">See Also</a></li><li><a href="#5">Examples</a></li></ul></div><h2 id="1">Usage</h2><pre>OBJ = CompositeImg(RAWIMG, CONFIG, PROCTYPE)
+OBJ = CompositeImg(NAME, ...)</pre><h2 id="2">Arguments</h2><div><ul><li><tt>RAWIMG</tt> is the <tt>RawImg</tt> object array that will be used to create the <tt>ProcessedImg</tt> child objects in the <tt>CompositeImg</tt> object.</li><li><tt>CONFIG</tt> is the <tt>Config</tt> object that will be used to create the <tt>ProcessedImg</tt> child objects in the <tt>CompositeImg</tt> object.</li><li><tt>PROCTYPE</tt> is the type of <tt>ProcessedImg</tt> child objects that will be created in the <tt>CompositeImg</tt> object.</li><li><tt>NAME</tt> is the name for this <tt>CompositeImg</tt> object.</li></ul></div><h2 id="3">Details</h2><p><tt>CompositeImg</tt> objects are used to contain and analyse groups of processable objects that are derived from the same <tt>RawImg</tt>.  This allows efficient use of memory, since the same <tt>RawImg</tt> object does not need to be duplicated to be analysed in different ways.</p><h2 id="4">See Also</h2><div><ul><li><a href="matlab:doc('CompositeImg')"><tt>CompositeImg</tt> class documentation</a></li><li><a href="matlab:doc('ImgGroup')"><tt>ImgGroup</tt> class documentation</a></li><li><a href="./ig_ImgGroup.html"><tt>ImgGroup</tt> quick start guide</a></li><li><a href="matlab:doc('ProcessedImg')"><tt>ProcessedImg</tt> class documentation</a></li><li><a href="./pi_.html"><tt>ProcessedImg</tt> quick start guide</a></li><li><a href="matlab:doc('Config')"><tt>Config</tt> class documentation</a></li><li><a href="matlab:doc('RawImgComposite')"><tt>RawImgComposite</tt> class documentation</a></li></ul></div><h2 id="5">Examples</h2><p>The following examples require the sample images and other files, which can be downloaded manually, from the University of Zurich website (<a href="http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html">http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html</a>), or automatically, by running the function <tt>utils.download_example_imgs()</tt>.</p><p><h3>Create a <tt>CompositeImg</tt> object interactively from one or more files</h3></p><p>The following example will illustrate the process of creating a <tt>CompositeImg</tt> object interactively.  Although it is possible to do so by using the constructor method followed by the <tt>add()</tt> method, it can be easier to use the static method <tt>from_files</tt>, as illustrated below.</p><pre class="language-matlab"><span class="comment">% Construct an CompositeImg using the static method from_files</span>
 ci01 = CompositeImg.from_files()
 </pre><p>In order to load a raw image file, we must first select the type of <tt>RawImg</tt> to create.  Press three and then enter to select the SCIM_Tif.</p><pre>----- What type of RawImg would you like to load? -----</pre><pre>  &gt;&gt; 1) BioFormats
      2) RawImgDummy
@@ -171,20 +171,17 @@ fnCalibration = fullfile(utils.CHIPS_rootdir, <span class="string">'tests'</span
 calibration = CalibrationPixelSize.load(fnCalibration);
 rawImg = SCIM_Tif(fnRawImg, channels, calibration)
 </pre><pre class="codeoutput">Opening xsectscan_scim.tif: 100% [=================================]
-
 rawImg = 
-
   SCIM_Tif with properties:
 
-             filename: 'C:\Users\Matthew Barrett\Documents\UZH\Code\2p-img...'
+             filename: 'D:\Code\Matlab\2p-img-analysis\tests\res\xsectscan_scim.tif'
            isDenoised: 0
     isMotionCorrected: 0
-    metadata_original: [1x1 struct]
+    metadata_original: [1&times;1 struct]
                  name: 'xsectscan_scim'
-              rawdata: [4-D uint16]
+              rawdata: [128&times;128&times;2&times;50 uint16]
                    t0: 0
-             metadata: [1x1 Metadata]
-
+             metadata: [1&times;1 Metadata]
 </pre><p><h3>Create a <tt>CompositeImg</tt> object without any interaction</h3></p><pre class="codeinput"><span class="comment">% Prepare a blank mask for convenience, and a square mask for this example</span>
 maskBlank = false(rawImg.metadata.nLinesPerFrame, <span class="keyword">...</span>
     rawImg.metadata.nPixelsPerLine);
@@ -197,19 +194,16 @@ configTiRS = ConfigDiameterTiRS(<span class="string">'thresholdFWHM'</span>, 0.6
     <span class="string">'thresholdInv'</span>, 0.35);
 procImgType = <span class="string">'XSectScan'</span>;
 ci02 = CompositeImg(nameCI02, rawImg, configTiRS, procImgType, maskSquare)
-</pre><pre class="codeoutput">
-ci02 = 
-
+</pre><pre class="codeoutput">ci02 = 
   CompositeImg with properties:
 
      imgTypes: {'XSectScan'}
-        masks: {{1x1 cell}}
-     children: {[1x1 XSectScan]}
+        masks: {{1&times;1 cell}}
+     children: {[1&times;1 XSectScan]}
     nChildren: 1
         state: 'unprocessed'
          name: 'test CI 02'
-       rawImg: [1x1 SCIM_Tif]
-
+       rawImg: [1&times;1 SCIM_Tif]
 </pre><p><h3>Add <tt>RawImg</tt> objects to an existing <tt>CompositeImg</tt> object with a custom config</h3></p><pre class="codeinput"><span class="comment">% Prepare a channel mask for this example</span>
 maskChannel = cat(3, true(size(maskBlank)), maskBlank);
 
@@ -222,37 +216,31 @@ configCS = ConfigCellScan(<span class="keyword">...</span>
     ConfigDetectSigsDummy());
 ci02.add(configCS, procImgType, maskChannel)
 ci02
-</pre><pre class="codeoutput">
-ci02 = 
-
+</pre><pre class="codeoutput">ci02 = 
   CompositeImg with properties:
 
      imgTypes: {'CellScan'  'XSectScan'}
-        masks: {{1x1 cell}  {1x1 cell}}
-     children: {[1x1 XSectScan]  [1x1 CellScan]}
+        masks: {{1&times;1 cell}  {1&times;1 cell}}
+     children: {[1&times;1 XSectScan]  [1&times;1 CellScan]}
     nChildren: 2
         state: 'unprocessed'
          name: 'test CI 02'
-       rawImg: [1x1 SCIM_Tif]
-
+       rawImg: [1&times;1 SCIM_Tif]
 </pre><p><h3>Process an <tt>CompositeImg</tt> object (in parallel)</h3></p><pre class="codeinput"><span class="comment">% Process an CompositeImg object (in parallel).</span>
 <span class="comment">% This code requires the Parallel Computing Toolbox to run in parallel</span>
 useParallel = true;
 ci02 = ci02.process(useParallel)
 </pre><pre class="codeoutput">Processing children: 100% [========================================]
-
 ci02 = 
-
   CompositeImg with properties:
 
      imgTypes: {'CellScan'  'XSectScan'}
-        masks: {{1x1 cell}  {1x1 cell}}
-     children: {[1x1 XSectScan]  [1x1 CellScan]}
+        masks: {{1&times;1 cell}  {1&times;1 cell}}
+     children: {[1&times;1 XSectScan]  [1&times;1 CellScan]}
     nChildren: 2
         state: 'processed'
          name: 'test CI 02'
-       rawImg: [1x1 SCIM_Tif]
-
+       rawImg: [1&times;1 SCIM_Tif]
 </pre><p><h3>Plot a figure showing the output from all children</h3></p><pre class="codeinput"><span class="comment">% Plot a figure showing the output from all children.</span>
 <span class="comment">% Note: the figures are deliberately displayed smaller here</span>
 hFig = ci02.plot();
@@ -263,34 +251,18 @@ fID02 = fopen(fnCSV02{end}{1}, <span class="string">'r'</span>);
 fileContents02 = textscan(fID02, <span class="string">'%s'</span>);
 fileContents02{1}{1:5}
 fclose(fID02);
-</pre><pre class="codeoutput">Warning: The Data object has no output defined, so no data will be
-output. 
-
+</pre><pre class="codeoutput">Warning: The Data object has no output defined, so no data will be output. 
 ans =
-
-roiNames,area,centroidX,centroidY
-
-
+    'roiNames,area,centroidX,centroidY'
 ans =
-
-roi0001_0008_0012,32,13.50000,8.00000
-
-
+    'roi0001_0008_0012,32,13.50000,8.00000'
 ans =
-
-roi0002_0004_0021,32,22.00000,4.50000
-
-
+    'roi0002_0004_0021,32,22.00000,4.50000'
 ans =
-
-roi0003_0077_0034,168,38.07143,79.09524
-
-
+    'roi0003_0077_0034,168,38.07143,79.09524'
 ans =
-
-roi0004_0008_0037,32,38.50000,7.50000
-
-</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+    'roi0004_0008_0037,32,38.50000,7.50000'
+</pre><p><a href="./index.html">Home</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% CompositeImg
 % Contain and analyse groups of images from the same RawImg
@@ -317,9 +289,9 @@ roi0004_0008_0037,32,38.50000,7.50000
 %% See Also
 % * <matlab:doc('CompositeImg') |CompositeImg| class documentation>
 % * <matlab:doc('ImgGroup') |ImgGroup| class documentation>
-% * <ig_ImgGroup.html |ImgGroup| quick start guide>
+% * <./ig_ImgGroup.html |ImgGroup| quick start guide>
 % * <matlab:doc('ProcessedImg') |ProcessedImg| class documentation>
-% * <pi_.html |ProcessedImg| quick start guide>
+% * <./pi_.html |ProcessedImg| quick start guide>
 % * <matlab:doc('Config') |Config| class documentation>
 % * <matlab:doc('RawImgComposite') |RawImgComposite| class documentation>
 
@@ -639,5 +611,8 @@ fileContents02 = textscan(fID02, '%s');
 fileContents02{1}{1:5}
 fclose(fID02);
 
+%%
+%
+% <./index.html Home>
 ##### SOURCE END #####
 --></body></html>

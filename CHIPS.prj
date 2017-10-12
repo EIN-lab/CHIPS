@@ -29,8 +29,11 @@ make*.m
 %
 % A single directory in the toolbox folder
 .git
-tests
+_layouts
+assets
 doc/m
+doc/md
+tests
 %
 % A single file in a subfolder of the toolbox folder:
 % example/.svn

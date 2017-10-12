@@ -39,7 +39,7 @@
 % * <matlab:doc('CalcDetectSigsDummy') |CalcDetectSigsDummy| class documentation>
 % * <matlab:doc('CalcDetectSigsClsfy') |CalcDetectSigsClsfy| class documentation>
 % * <matlab:doc('ImgGroup') |ImgGroup| class documentation>
-% * <ig_ImgGroup.html |ImgGroup| quick start guide>
+% * <./ig_ImgGroup.html |ImgGroup| quick start guide>
 
 %% Examples
 % The following examples require the sample images and other files, which
@@ -277,3 +277,7 @@ fID03_detect = fopen(fnCS03{3}, 'r');
 fileContents03d = textscan(fID03_detect, '%s');
 fileContents03d{1}{1:5}
 fclose(fID03_detect);
+
+%%
+%
+% <./index.html Home>

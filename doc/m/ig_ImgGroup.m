@@ -25,7 +25,7 @@
 %% See Also
 % * <matlab:doc('ImgGroup') |ImgGroup| class documentation>
 % * <matlab:doc('ProcessedImg') |ProcessedImg| class documentation>
-% * <pi_.html |ProcessedImg| quick start guide>
+% * <./pi_.html |ProcessedImg| quick start guide>
 % * <matlab:doc('Config') |Config| class documentation>
 
 %% Examples
@@ -222,3 +222,7 @@ fID02 = fopen(fnCSV02{end}{1}, 'r');
 fileContents02 = textscan(fID02, '%s');
 fileContents02{1}{1:5}
 fclose(fID02);
+
+%%
+%
+% <./index.html Home>

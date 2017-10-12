@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>RawImgDummy</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-09-01"><meta name="DC.source" content="id_ri_RawImgDummy.m"><style type="text/css">
+      --><title>RawImgDummy</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-09-20"><meta name="DC.source" content="id_ri_RawImgDummy.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,9 +66,9 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>RawImgDummy</h1><!--introduction--><p>Store 'dummy' raw image data</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Arguments</a></li><li><a href="#3">Details</a></li><li><a href="#4">See Also</a></li><li><a href="#5">Examples</a></li></ul></div><h2>Usage<a name="1"></a></h2><pre class="language-matlab">OBJ = RawImgDummy(FILENAME, CHS, CAL, ACQ)
+  </style></head><body><div class="content"><h1>RawImgDummy</h1><!--introduction--><p>Store 'dummy' raw image data</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Arguments</a></li><li><a href="#3">Details</a></li><li><a href="#4">See Also</a></li><li><a href="#5">Examples</a></li></ul></div><h2 id="1">Usage</h2><pre class="language-matlab">OBJ = RawImgDummy(FILENAME, CHS, CAL, ACQ)
 OBJ = RawImgDummy(NAME, RAWDATA, CHS, CAL, ACQ)
-</pre><h2>Arguments<a name="2"></a></h2><div><ul><li><tt>FILENAME</tt> is the original filename (including the path) of this <tt>RawImgDummy</tt> object.</li><li><tt>CHS</tt> is a scalar structure that contains information about the meaning of the image channels.</li><li><tt>CAL</tt> is a scalar <tt>CalibrationPixelSize</tt> object.</li><li><tt>ACQ</tt> is a scalar structure containing information about the image acquisition (e.g. line time, zoom factor etc).</li><li><tt>NAME</tt> is the name of this <tt>RawImgDummy</tt> object.</li><li><tt>RAWDATA</tt> is the raw image data for the <tt>RawImgDummy</tt> object.</li></ul></div><h2>Details<a name="3"></a></h2><p><tt>RawImgDummy</tt> objects are used to contain all raw image data and metadata from 'dummy' raw image data, i.e. images that don't have a specific class designed to import their format.  This makes it possible to create functional RawImg objects from any data without requiring the overhead of creating a class (but also without the benefits of a streamlined creation/import process).  RawImgDummy objects are also created when RawImg objects are modified in certain ways (e.g. concatenated together or split up), since the modified objects no longer represent the original raw image file.</p><h2>See Also<a name="4"></a></h2><div><ul><li><a href="matlab:doc('RawImg')"><tt>RawImg</tt> class documentation</a></li><li><a href="matlab:doc('Metadata')"><tt>Metadata</tt> class documentation</a></li><li><a href="id_md_Metadata.html"><tt>Metadata</tt> quick start guide</a></li><li><a href="matlab:doc('CalibrationPixelSize')"><tt>CalibrationPixelSize</tt> class documentation</a></li><li><a href="id_md_Calibration.html"><tt>CalibrationPixelSize</tt> quick start guide</a></li></ul></div><h2>Examples<a name="5"></a></h2><p>The following examples require the sample images and other files, which can be downloaded manually, from the University of Zurich website (<a href="http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html">http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html</a>), or automatically, by running the function <tt>utils.download_example_imgs()</tt>.</p><p><h3>Create a <tt>RawImgDummy</tt> object interactively</h3></p><p>The following example will illustrate the process of creating a <tt>RawImgDummy</tt> object interactively, using already existing image data.</p><pre class="language-matlab"><span class="comment">% Call the RawImgDummy constructor with some randomly-generated data</span>
+</pre><h2 id="2">Arguments</h2><div><ul><li><tt>FILENAME</tt> is the original filename (including the path) of this <tt>RawImgDummy</tt> object.</li><li><tt>CHS</tt> is a scalar structure that contains information about the meaning of the image channels.</li><li><tt>CAL</tt> is a scalar <tt>CalibrationPixelSize</tt> object.</li><li><tt>ACQ</tt> is a scalar structure containing information about the image acquisition (e.g. line time, zoom factor etc).</li><li><tt>NAME</tt> is the name of this <tt>RawImgDummy</tt> object.</li><li><tt>RAWDATA</tt> is the raw image data for the <tt>RawImgDummy</tt> object.</li></ul></div><h2 id="3">Details</h2><p><tt>RawImgDummy</tt> objects are used to contain all raw image data and metadata from 'dummy' raw image data, i.e. images that don't have a specific class designed to import their format.  This makes it possible to create functional RawImg objects from any data without requiring the overhead of creating a class (but also without the benefits of a streamlined creation/import process).  RawImgDummy objects are also created when RawImg objects are modified in certain ways (e.g. concatenated together or split up), since the modified objects no longer represent the original raw image file.</p><h2 id="4">See Also</h2><div><ul><li><a href="matlab:doc('RawImg')"><tt>RawImg</tt> class documentation</a></li><li><a href="matlab:doc('Metadata')"><tt>Metadata</tt> class documentation</a></li><li><a href="./id_md_Metadata.html"><tt>Metadata</tt> quick start guide</a></li><li><a href="matlab:doc('CalibrationPixelSize')"><tt>CalibrationPixelSize</tt> class documentation</a></li><li><a href="./id_md_Calibration.html"><tt>CalibrationPixelSize</tt> quick start guide</a></li></ul></div><h2 id="5">Examples</h2><p>The following examples require the sample images and other files, which can be downloaded manually, from the University of Zurich website (<a href="http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html">http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html</a>), or automatically, by running the function <tt>utils.download_example_imgs()</tt>.</p><p><h3>Create a <tt>RawImgDummy</tt> object interactively</h3></p><p>The following example will illustrate the process of creating a <tt>RawImgDummy</tt> object interactively, using already existing image data.</p><pre class="language-matlab"><span class="comment">% Call the RawImgDummy constructor with some randomly-generated data</span>
 rid001 = RawImgDummy(<span class="string">'test'</span>, rand(128, 128, 2, 4))
 </pre><p>Answer some questions about the image acquisition.  For example, specify that the image was not bidirectional, that the line time was 2ms, and that the zoom factor was 4.</p><pre>  Please enter a value for if the image is bidirectional [1/0]: 0
   Please enter a value for the line time [ms]: 2
@@ -133,7 +133,7 @@ rid003 = RawImgDummy(fnRID003, channels003, calibration, acq003);
 <span class="comment">% View the RawImgDummy object</span>
 rid003.plot()
 </pre><pre class="codeoutput">Opening ArtificialData_SNR_0.1_FOV_250.tif: 100% [=================]
-</pre><img vspace="5" hspace="5" src="id_ri_RawImgDummy_02.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+</pre><img vspace="5" hspace="5" src="id_ri_RawImgDummy_02.png" alt=""> <p><a href="./index.html">Home</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% RawImgDummy
 % Store 'dummy' raw image data
@@ -167,9 +167,9 @@ rid003.plot()
 %% See Also
 % * <matlab:doc('RawImg') |RawImg| class documentation>
 % * <matlab:doc('Metadata') |Metadata| class documentation>
-% * <id_md_Metadata.html |Metadata| quick start guide>
+% * <./id_md_Metadata.html |Metadata| quick start guide>
 % * <matlab:doc('CalibrationPixelSize') |CalibrationPixelSize| class documentation>
-% * <id_md_Calibration.html |CalibrationPixelSize| quick start guide>
+% * <./id_md_Calibration.html |CalibrationPixelSize| quick start guide>
 %
 
 %% Examples
@@ -298,5 +298,8 @@ rid003 = RawImgDummy(fnRID003, channels003, calibration, acq003);
 % View the RawImgDummy object
 rid003.plot()
 
+%%
+%
+% <./index.html Home>
 ##### SOURCE END #####
 --></body></html>

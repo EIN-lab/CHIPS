@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>Other Preprocessing Utilities</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-09-01"><meta name="DC.source" content="id_pp_utilities.m"><style type="text/css">
+      --><title>Other Preprocessing Utilities</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-09-20"><meta name="DC.source" content="id_pp_utilities.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>Other Preprocessing Utilities</h1><!--introduction--><p>A number of other preprocessing utilities are included in the CHIPS toolbox.  For example, it is possible to calculate a new channel using information from other channels (e.g. for FRET ratiometric sensors), to split images up into multiple smaller images, and to concatenate images together.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">See Also</a></li><li><a href="#2">Examples</a></li></ul></div><h2>See Also<a name="1"></a></h2><div><ul><li><a href="matlab:doc('RawImg.ch_calc')"><tt>ch_calc</tt> method documentation</a></li><li><a href="matlab:doc('RawImg.split1')"><tt>split1</tt> method documentation</a></li><li><a href="matlab:doc('RawImg.cat_data')"><tt>cat_data</tt> function documentation</a></li><li><a href="id_ri.html"><tt>RawImg</tt> quick start guide</a></li></ul></div><h2>Examples<a name="2"></a></h2><p>The following examples require the sample images and other files, which can be downloaded manually, from the University of Zurich website (<a href="http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html">http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html</a>), or automatically, by running the function <tt>utils.download_example_imgs()</tt>.</p><p><h3>Prepare a <tt>RawImg</tt> for use in these examples</h3></p><pre class="codeinput"><span class="comment">% Prepare a rawImg for use in these examples</span>
+  </style></head><body><div class="content"><h1>Other Preprocessing Utilities</h1><!--introduction--><p>A number of other preprocessing utilities are included in the CHIPS toolbox.  For example, it is possible to calculate a new channel using information from other channels (e.g. for FRET ratiometric sensors), to split images up into multiple smaller images, and to concatenate images together.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">See Also</a></li><li><a href="#2">Examples</a></li></ul></div><h2 id="1">See Also</h2><div><ul><li><a href="matlab:doc('RawImg.ch_calc')"><tt>ch_calc</tt> method documentation</a></li><li><a href="matlab:doc('RawImg.split1')"><tt>split1</tt> method documentation</a></li><li><a href="matlab:doc('RawImg.cat_data')"><tt>cat_data</tt> function documentation</a></li><li><a href="./id_ri.html"><tt>RawImg</tt> quick start guide</a></li></ul></div><h2 id="2">Examples</h2><p>The following examples require the sample images and other files, which can be downloaded manually, from the University of Zurich website (<a href="http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html">http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html</a>), or automatically, by running the function <tt>utils.download_example_imgs()</tt>.</p><p><h3>Prepare a <tt>RawImg</tt> for use in these examples</h3></p><pre class="codeinput"><span class="comment">% Prepare a rawImg for use in these examples</span>
 fnRawImg = fullfile(utils.CHIPS_rootdir, <span class="string">'tests'</span>, <span class="string">'res'</span>, <span class="keyword">...</span>
     <span class="string">'xsectscan_scim.tif'</span>);
 channels = struct(<span class="string">'cellular_signal'</span>, 1, <span class="string">'blood_plasma'</span>, 2);
@@ -84,16 +84,10 @@ chNums = [1, 2];
 chName = <span class="string">'cellular_signal'</span>;
 ri001.ch_calc_ratio(chNums, chName);
 nChs_post = ri001.metadata.nChannels
-</pre><pre class="codeoutput">
-nChs_pre =
-
+</pre><pre class="codeoutput">nChs_pre =
      2
-
-
 nChs_post =
-
      3
-
 </pre><p><h3>Split the image into separate channels</h3></p><pre class="codeinput"><span class="comment">% Split the image into separate channels</span>
 ri002 = copy(rawImg);
 dim = 3;
@@ -101,33 +95,23 @@ dimDist = [1, 1];
 [ri002_ch1, ri002_ch2] = ri002.split1(dim, dimDist);
 ch1_name = ri002_ch1.metadata.get_ch_name(1)
 ch2_name = ri002_ch2.metadata.get_ch_name(1)
-</pre><pre class="codeoutput">
-ch1_name = 
-
+</pre><pre class="codeoutput">ch1_name =
+  cell
     'cellular_signal'
-
-
-ch2_name = 
-
+ch2_name =
+  cell
     'blood_plasma'
-
 </pre><p><h3>Concatenate multiple images together</h3></p><pre class="codeinput"><span class="comment">% Concatenate multiple images together (including recursively)</span>
 nFrames_pre = rawImg.metadata.nFrames
 dim = 4;
 riArray(1:3) = copy(rawImg);
 ri003 = RawImg.cat_data(dim, copy(rawImg), riArray, copy(rawImg));
 nFrames_post = ri003.metadata.nFrames
-</pre><pre class="codeoutput">
-nFrames_pre =
-
+</pre><pre class="codeoutput">nFrames_pre =
     50
-
-
 nFrames_post =
-
    250
-
-</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+</pre><p><a href="./index.html">Home</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% Other Preprocessing Utilities
 % A number of other preprocessing utilities are included in the CHIPS
@@ -140,7 +124,7 @@ nFrames_post =
 % * <matlab:doc('RawImg.ch_calc') |ch_calc| method documentation>
 % * <matlab:doc('RawImg.split1') |split1| method documentation>
 % * <matlab:doc('RawImg.cat_data') |cat_data| function documentation>
-% * <id_ri.html |RawImg| quick start guide>
+% * <./id_ri.html |RawImg| quick start guide>
 
 %% Examples
 % The following examples require the sample images and other files, which
@@ -200,5 +184,8 @@ riArray(1:3) = copy(rawImg);
 ri003 = RawImg.cat_data(dim, copy(rawImg), riArray, copy(rawImg));
 nFrames_post = ri003.metadata.nFrames
 
+%%
+%
+% <./index.html Home>
 ##### SOURCE END #####
 --></body></html>

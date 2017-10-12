@@ -25,9 +25,9 @@
 %% See Also
 % * <matlab:doc('CalibrationPixelSize') |CalibrationPixelSize| class documentation>
 % * <matlab:doc('Metadata') |Metadata| class documentation>
-% * <id_md_Metadata.html |Metadata| quick start guide>
+% * <./id_md_Metadata.html |Metadata| quick start guide>
 % * <matlab:doc('RawImg') |RawImg| class documentation>
-% * <id_ri.html |RawImg| quick start guide>
+% * <./id_ri.html |RawImg| quick start guide>
 
 %% Examples
 %
@@ -125,3 +125,7 @@ pxSize05_2 = calDummy.calc_pixel_size(zoom05, imgSizeDummy/2)
 % For dummy calibrations, the pixel size is the same for all zoom values
 zoomRange = 1:10:100;
 pxSize05_range = calDummy.calc_pixel_size(zoomRange, imgSizeDummy)
+
+%%
+%
+% <./index.html Home>

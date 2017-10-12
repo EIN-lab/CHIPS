@@ -20,9 +20,9 @@
 %% See Also
 % * <matlab:doc('RawImg') |RawImg| class documentation>
 % * <matlab:doc('Metadata') |Metadata| class documentation>
-% * <id_md_Metadata.html |Metadata| quick start guide>
+% * <./id_md_Metadata.html |Metadata| quick start guide>
 % * <matlab:doc('CalibrationPixelSize') |CalibrationPixelSize| class documentation>
-% * <id_md_Calibration.html |CalibrationPixelSize| quick start guide>
+% * <./id_md_Calibration.html |CalibrationPixelSize| quick start guide>
 
 %% Examples
 % The following examples require the sample images and other files, which
@@ -104,3 +104,7 @@ bf002 = BioFormats(fnST002, channels);
 
 % View the SCIM_Tif object 
 bf002.plot()
+
+%%
+%
+% <./index.html Home>
