@@ -110,15 +110,6 @@ classdef LineScanDiam < ProcessedImg & ICalcDiameterLong
         lineRate
     end
     
-    % ------------------------------------------------------------------ %
-    
-    properties (Transient, Access = protected)
-        
-        %lhCalcDiameter - A listener handle for lhCalcDiameter ProcessNow
-        lhCalcDiameter
-        
-    end
-    
     % ================================================================== %
     
     methods
@@ -291,17 +282,6 @@ classdef LineScanDiam < ProcessedImg & ICalcDiameterLong
             
             % Set the property
             self.calcDiameter = calcDiameter;
-            
-            % Attach a listener to process the object when the user
-            % requests this (via the Config.opt_config GUI.  Make sure we
-            % delete any old listeners, because otherwise the callback
-            % might get executed many times.
-            if ~isempty(self.lhCalcDiameter)
-                delete(self.lhCalcDiameter)
-            end
-            self.lhCalcDiameter = addlistener(...
-                self.calcDiameter.config, 'ProcessNow', ...
-                @ProcessedImg.process_now);
             
         end
         
@@ -483,6 +463,12 @@ classdef LineScanDiam < ProcessedImg & ICalcDiameterLong
         
         function objOut = loadobj(structIn)
         %loadobj - Overload the loadobj method for LineScanDiam objects
+            
+            % Add this field for the older versions where it didn't exist
+            hasDP = isfield(structIn, 'isDarkPlasma');
+            if ~hasDP
+                structIn.isDarkPlasma = false;
+            end
             
             % Create the basic object, which also attaches the listener
             objOut = LineScanDiam(structIn.name_sub, structIn.rawImg, ...

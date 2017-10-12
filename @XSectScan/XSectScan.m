@@ -101,15 +101,6 @@ classdef XSectScan < ProcessedImg
         
     end
     
-    % ------------------------------------------------------------------ %
-    
-    properties (Transient, Access = protected)
-        
-        %lhCalcDiameter - A listener handle for lhCalcDiameter ProcessNow
-        lhCalcDiameter
-        
-    end
-    
     % ================================================================== %
     
     methods
@@ -235,17 +226,6 @@ classdef XSectScan < ProcessedImg
             
             % Set the property
             self.calcDiameter = calcDiameter;
-            
-            % Attach a listener to process the object when the user
-            % requests this (via the Config.opt_config GUI.  Make sure we
-            % delete any old listeners, because otherwise the callback
-            % might get executed many times.
-            if ~isempty(self.lhCalcDiameter) %#ok<MCSUP>
-                delete(self.lhCalcDiameter) %#ok<MCSUP>
-            end
-            self.lhCalcDiameter = addlistener(...
-                self.calcDiameter.config, 'ProcessNow', ...
-                @ProcessedImg.process_now); %#ok<MCSUP>
             
         end
         

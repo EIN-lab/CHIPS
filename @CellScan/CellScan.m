@@ -128,19 +128,6 @@ classdef CellScan < ProcessedImg
         
     end
     
-    % ------------------------------------------------------------------ %
-    
-    properties (Transient, Access = protected)
-        
-        %lhCalcFindROIs - A listener handle for lhCalcFindROIs ProcessNow
-        lhCalcFindROIs
-        %lhCalcMeasureROIs - A listener handle for lhCalcMeasureROIs ProcessNow
-        lhCalcMeasureROIs
-        %lhCalcDetectSigs - A listener handle for lhCalcDetectSigs ProcessNow
-        lhCalcDetectSigs
-        
-    end
-    
     % ================================================================== %
     
     methods
@@ -373,17 +360,6 @@ classdef CellScan < ProcessedImg
             % Set the property
             self.calcDetectSigs = calcDetectSigs;
             
-            % Attach a listener to process the object when the user
-            % requests this (via the Config.opt_config GUI.  Make sure we
-            % delete any old listeners, because otherwise the callback
-            % might get executed many times.
-            if ~isempty(self.lhCalcDetectSigs) %#ok<MCSUP>
-                delete(self.lhCalcDetectSigs) %#ok<MCSUP>
-            end
-            self.lhCalcDetectSigs = addlistener(... 
-                self.calcDetectSigs.config, 'ProcessNow', ...
-                @ProcessedImg.process_now); %#ok<MCSUP>
-            
         end
         
         % -------------------------------------------------------------- %
@@ -401,17 +377,6 @@ classdef CellScan < ProcessedImg
             % Set the property
             self.calcFindROIs = calcFindROIs;
             
-            % Attach a listener to process the object when the user
-            % requests this (via the Config.opt_config GUI.  Make sure we
-            % delete any old listeners, because otherwise the callback
-            % might get executed many times.
-            if ~isempty(self.lhCalcFindROIs) %#ok<MCSUP>
-                delete(self.lhCalcFindROIs) %#ok<MCSUP>
-            end
-            self.lhCalcFindROIs = addlistener(...
-                self.calcFindROIs.config, 'ProcessNow', ...
-                @ProcessedImg.process_now); %#ok<MCSUP>
-            
         end
         
         % -------------------------------------------------------------- %
@@ -428,17 +393,6 @@ classdef CellScan < ProcessedImg
             
             % Set the property
             self.calcMeasureROIs = calcMeasureROIs;
-            
-            % Attach a listener to process the object when the user
-            % requests this (via the Config.opt_config GUI.  Make sure we
-            % delete any old listeners, because otherwise the callback
-            % might get executed many times.
-            if ~isempty(self.lhCalcMeasureROIs) %#ok<MCSUP>
-                delete(self.lhCalcMeasureROIs) %#ok<MCSUP>
-            end
-            self.lhCalcMeasureROIs = addlistener(...
-                self.calcMeasureROIs.config, 'ProcessNow', ...
-                @ProcessedImg.process_now); %#ok<MCSUP>
             
         end
         

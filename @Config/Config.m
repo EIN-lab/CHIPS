@@ -113,6 +113,9 @@ classdef (Abstract) Config < ConfigHelper
             % Check that the config is ok
             ConfigObj.check_optList()
             
+            % Attach the listener
+            ConfigObj.add_pn_listener
+            
         end
         
         % -------------------------------------------------------------- %
@@ -215,7 +218,33 @@ classdef (Abstract) Config < ConfigHelper
     % ================================================================== %
     
     methods (Access = protected)
+        
+        function add_pn_listener(self)
+            
+            % Attach a listener to process the object when the user
+            % requests this (via the Config.opt_config GUI).  
+            addlistener(self, 'ProcessNow', @ProcessedImg.process_now);
+            
+        end
+        
+        % -------------------------------------------------------------- %
+        
         check_optList(self)
+        
+        % -------------------------------------------------------------- %
+        
+        function cpObj = copyElement(obj)
+        %copyElement - Customised copyElement class method to ensure that
+        %   the listener is created
+            
+            % Make a shallow copy of the object
+            cpObj = copyElement@matlab.mixin.Copyable(obj);
+             
+            % Attach the listener
+            cpObj.add_pn_listener()
+             
+        end
+        
     end
     
     % ================================================================== %
@@ -240,6 +269,17 @@ classdef (Abstract) Config < ConfigHelper
                 'defined for this class. Please construct the config ' ...
                 'object by calling the constructor (i.e. class name) ' ...
                 'directly.'])
+            
+        end
+        
+        % -------------------------------------------------------------- %
+        
+        function objOut = loadobj(objIn)
+        %loadobj - Overload the loadobj method for Config objects
+            
+            % Create the basic object, which also attaches the listener
+            hConstructor = str2func(class(objIn));
+            objOut = hConstructor(objIn);
             
         end
         
