@@ -87,7 +87,7 @@ classdef (Abstract) DataVelocityStreaks < DataVelocity
         
         function self = set.estSNR(self, val)
             utils.checks.rfv(val, 'estSNR')
-            utils.checks.positive(val, 'estSNR')
+            utils.checks.greater_than(val, 0, true, 'estSNR')
             self.estSNR = val;
         end
         
