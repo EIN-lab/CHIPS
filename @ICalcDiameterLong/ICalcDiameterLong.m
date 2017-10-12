@@ -6,6 +6,9 @@ classdef (HandleCompatible) ICalcDiameterLong
 %   properties) functionality related to calculating diameter using a long
 %   section of the vessel.
 %
+% ICalcDiameterLong public properties:
+%   isDarkPlasma - Flag for whether the plasma is dark or bright
+%
 % ICalcDiameterLong public methods:
 %   get_diamProfile - Get the profile needed to calculate diameter
 %
@@ -28,15 +31,54 @@ classdef (HandleCompatible) ICalcDiameterLong
 
     % ================================================================== %
     
+    properties
+                
+        %isDarkPlasma - Flag for whether the plasma is dark or bright
+        %
+        %   The isDarkPlasma property represents whether the plasma/vessel
+        %   lumen is positively labelled (e.g. by a fluorophore) or
+        %   negatively labelled (e.g. all other parts of the image are
+        %   positively labelled). isDarkPlasma must be a scalar value
+        %   convertible to a logical. [default = false]
+        isDarkPlasma = false;
+        
+    end
+    
+    % ------------------------------------------------------------------ %
+    
     properties (Abstract, Dependent, Access = protected)
         lineRate
     end
     
     % ================================================================== %
     
+    methods
+        
+        function self = set.isDarkPlasma(self, isDarkPlasma)
+            
+            % Check isDarkPlasma is a boolean scalar
+            utils.checks.scalar_logical_able(isDarkPlasma, 'isDarkPlasma');
+            
+            % Set the property
+            self.isDarkPlasma = isDarkPlasma;
+            
+        end
+        
+    end
+    
+    % ================================================================== %
+    
     methods (Abstract)
+        
         %get_diamProfile - Get the profile needed to calculate diameter
+        %
+        %   [PROFILE, LINE_RATE] = get_diamProfile(OBJ) returns the image
+        %   profile needed to calculate diameter, along with the line rate
+        %   of the profile [Hz].
+        %
+        %   See also CalcDiameterLong, ICalcDiameterLong
         [diamProfile, lineRate] = get_diamProfile(self)
+        
     end
     
     % ================================================================== %

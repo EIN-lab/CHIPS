@@ -253,11 +253,8 @@ classdef XSectScan < ProcessedImg
         
         function set.isDarkPlasma(self, isDarkPlasma)
             
-            % Check isDarkPlasma is boolean
-            utils.checks.logical_able(isDarkPlasma, 'isDarkPlasma');
-            
-            % Check isDarkPlasma is scalar
-            utils.checks.scalar(isDarkPlasma, 'isDarkPlasma');
+            % Check isDarkPlasma is a boolean scalar
+            utils.checks.scalar_logical_able(isDarkPlasma, 'isDarkPlasma');
             
             % Set the property
             self.isDarkPlasma = isDarkPlasma;

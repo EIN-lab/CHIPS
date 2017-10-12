@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>LineScanDiam</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-06-23"><meta name="DC.source" content="pi_LineScanDiam.m"><style type="text/css">
+      --><title>LineScanDiam</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-10-12"><meta name="DC.source" content="pi_LineScanDiam.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,8 +66,8 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>LineScanDiam</h1><!--introduction--><p>Analyse line scan images of vessel diameters</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Arguments</a></li><li><a href="#3">Details</a></li><li><a href="#4">See Also</a></li><li><a href="#5">Examples</a></li></ul></div><h2>Usage<a name="1"></a></h2><pre class="language-matlab">OBJ = LineScanDiam(NAME, RAWIMG, CONFIG, COLS)
-</pre><h2>Arguments<a name="2"></a></h2><div><ul><li><tt>NAME</tt> is the name for this <tt>LineScanDiam</tt> object.</li><li><tt>RAWIMG</tt> is the <tt>RawImg</tt> object that will be used to create the <tt>LineScanDiam</tt> object.</li><li><tt>CONFIG</tt> contains the configuration parameters needed for the <tt>calcDiameter</tt> object.</li><li><tt>COLS</tt> specifies the left and right columns that will form the edges of the <tt>RawImg</tt> data to use in the calculation.</li></ul></div><h2>Details<a name="3"></a></h2><p><tt>LineScanDiam</tt> objects are used to analyse the diameters from line scan images acquired by scanning perpendicular to the vessel axis.  Typically, the blood plasma will be labelled by a fluorescent marker, like a dextran conjugated fluorophore (e.g. FITC, as in the figure below).</p><p><img vspace="5" hspace="5" src="lsd_example_rawImg.png" alt=""> </p><h2>See Also<a name="4"></a></h2><div><ul><li><a href="matlab:doc('LineScanDiam')"><tt>LineScanDiam</tt> class documentation</a></li><li><a href="matlab:doc('ConfigDiameterFWHM')"><tt>ConfigDiameterFWHM</tt> class documentation</a></li><li><a href="matlab:doc('CalcDiameterFWHM')"><tt>CalcDiameterFWHM</tt> class documentation</a></li><li><a href="matlab:doc('ImgGroup')"><tt>ImgGroup</tt> class documentation</a></li><li><a href="ig_ImgGroup.html"><tt>ImgGroup</tt> quick start guide</a></li></ul></div><h2>Examples<a name="5"></a></h2><p>The following examples require the sample images and other files, which can be downloaded manually, from the University of Zurich website (<a href="http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html">http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html</a>), or automatically, by running the function <tt>utils.download_example_imgs()</tt>.</p><p><h3>Create a <tt>LineScanDiam</tt> object interactively</h3></p><p>The following example will illustrate the process of creating a <tt>LineScanDiam</tt> object interactively, starting with calling the constructor.</p><pre class="language-matlab"><span class="comment">% Call the LineScanDiam constructor</span>
+  </style></head><body><div class="content"><h1>LineScanDiam</h1><!--introduction--><p>Analyse line scan images of vessel diameters</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Arguments</a></li><li><a href="#3">Details</a></li><li><a href="#4">See Also</a></li><li><a href="#5">Examples</a></li></ul></div><h2>Usage<a name="1"></a></h2><pre class="language-matlab">OBJ = LineScanDiam(NAME, RAWIMG, CONFIG, COLS, CH, ISDP)
+</pre><h2>Arguments<a name="2"></a></h2><div><ul><li><tt>NAME</tt> is the name for this <tt>LineScanDiam</tt> object.</li><li><tt>RAWIMG</tt> is the <tt>RawImg</tt> object that will be used to create the <tt>LineScanDiam</tt> object.</li><li><tt>CONFIG</tt> contains the configuration parameters needed for the <tt>calcDiameter</tt> object.</li><li><tt>COLS</tt> specifies the left and right columns that will form the edges of the <tt>RawImg</tt> data to use in the calculation.</li><li><tt>CH</tt> specifies the channel to be used for calculating the diameter.</li><li><tt>ISDP</tt> specifies whether the vessel lumen to analyse is bright (i.e. positively labelled) or dark (i.e. negatively labelled).</li></ul></div><h2>Details<a name="3"></a></h2><p><tt>LineScanDiam</tt> objects are used to analyse the diameters from line scan images acquired by scanning perpendicular to the vessel axis.  Typically, the blood plasma will be labelled by a fluorescent marker, like a dextran conjugated fluorophore (e.g. FITC, as in the figure below).</p><p><img vspace="5" hspace="5" src="lsd_example_rawImg.png" alt=""> </p><h2>See Also<a name="4"></a></h2><div><ul><li><a href="matlab:doc('LineScanDiam')"><tt>LineScanDiam</tt> class documentation</a></li><li><a href="matlab:doc('ConfigDiameterFWHM')"><tt>ConfigDiameterFWHM</tt> class documentation</a></li><li><a href="matlab:doc('CalcDiameterFWHM')"><tt>CalcDiameterFWHM</tt> class documentation</a></li><li><a href="matlab:doc('ImgGroup')"><tt>ImgGroup</tt> class documentation</a></li><li><a href="ig_ImgGroup.html"><tt>ImgGroup</tt> quick start guide</a></li></ul></div><h2>Examples<a name="5"></a></h2><p>The following examples require the sample images and other files, which can be downloaded manually, from the University of Zurich website (<a href="http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html">http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html</a>), or automatically, by running the function <tt>utils.download_example_imgs()</tt>.</p><p><h3>Create a <tt>LineScanDiam</tt> object interactively</h3></p><p>The following example will illustrate the process of creating a <tt>LineScanDiam</tt> object interactively, starting with calling the constructor.</p><pre class="language-matlab"><span class="comment">% Call the LineScanDiam constructor</span>
 lsd01 = LineScanDiam()
 </pre><p>Since no RawImg has been specified, the first stage is to select the type of RawImg to create.  Press 2 and then enter to select the SCIM_Tif.</p><pre>----- What type of RawImg would you like to load? -----</pre><pre>  &gt;&gt; 1) BioFormats
      2) SCIM_Tif</pre><pre>Select a format: 2</pre><p>Then, use the interactive dialogue box to select the raw image file <tt>linescandiam_scim.tif</tt>, which should be located in the subfolder tests&gt;res, within the CHIPS root directory.</p><p><img vspace="5" hspace="5" src="lsd_sel_rawImg.png" alt=""> </p><p>Use the interactive dialogue box to select the dummy calibration (<tt>calibration_dummy.mat</tt>):</p><p><img vspace="5" hspace="5" src="sel_cal.png" alt=""> </p><p>The next stage is to define the 'meaning' of the image channels.  The first channel represents the blood plasma.  Press one and then enter to complete the selection.</p><pre>----- What is shown on channel 2? -----</pre><pre>  &gt;&gt; 0) &lt;blank&gt;
@@ -78,7 +78,8 @@ lsd01 = LineScanDiam()
         plotList: [1x1 struct]
            state: 'unprocessed'
             name: 'diamlinescan_scim'
-          rawImg: [1x1 SCIM_Tif]</pre><p>The process is almost exactly the same to create an array of <tt>LineScanDiam</tt> objects; when the software prompts you to select one or more raw images, simply select multiple images by using either the shift or control key.</p><p><h3>Prepare a <tt>RawImg</tt> for use in these examples</h3></p><pre class="codeinput"><span class="comment">% Prepare a rawImg for use in these examples</span>
+          rawImg: [1x1 SCIM_Tif]
+    isDarkPlasma: 0</pre><p>The process is almost exactly the same to create an array of <tt>LineScanDiam</tt> objects; when the software prompts you to select one or more raw images, simply select multiple images by using either the shift or control key.</p><p><h3>Prepare a <tt>RawImg</tt> for use in these examples</h3></p><pre class="codeinput"><span class="comment">% Prepare a rawImg for use in these examples</span>
 fnRawImg = fullfile(utils.CHIPS_rootdir, <span class="string">'tests'</span>, <span class="string">'res'</span>, <span class="keyword">...</span>
     <span class="string">'linescandiam_scim.tif'</span>);
 channels = struct(<span class="string">'blood_plasma'</span>, 1);
@@ -104,6 +105,7 @@ lsd02 =
             state: 'unprocessed'
              name: 'test LSD 02'
            rawImg: [1x1 SCIM_Tif]
+     isDarkPlasma: 0
 
 </pre><p><h3>Create a <tt>LineScanDiam</tt> object with a custom config</h3></p><pre class="codeinput"><span class="comment">% Create a LineScanDiam object with a custom config</span>
 configCustom = ConfigDiameterFWHM(<span class="string">'maxRate'</span>, 10, <span class="string">'lev50'</span>, 0.7);
@@ -153,6 +155,7 @@ lsdArray =
     state
     name
     rawImg
+    isDarkPlasma
 
 </pre><p><h3>Process a scalar <tt>LineScanDiam</tt> object</h3></p><pre class="codeinput"><span class="comment">% Process a scalar LineScanDiam object</span>
 lsd03 = lsd03.process()
@@ -169,6 +172,7 @@ lsd03 =
             state: 'processed'
              name: 'test LSD 03'
            rawImg: [1x1 SCIM_Tif]
+     isDarkPlasma: 0
 
 </pre><p><h3>Process a <tt>LineScanDiam</tt> object array (in parallel)</h3></p><pre class="codeinput"><span class="comment">% Process a LineScanDiam object array (in parallel).</span>
 <span class="comment">% This code requires the Parallel Computing Toolbox to run in parallel</span>
@@ -222,7 +226,7 @@ ans =
 % Analyse line scan images of vessel diameters
 
 %% Usage
-%   OBJ = LineScanDiam(NAME, RAWIMG, CONFIG, COLS)
+%   OBJ = LineScanDiam(NAME, RAWIMG, CONFIG, COLS, CH, ISDP)
 
 %% Arguments
 % * |NAME| is the name for this |LineScanDiam| object.
@@ -232,6 +236,9 @@ ans =
 % |calcDiameter| object.
 % * |COLS| specifies the left and right columns that will form the edges of
 % the |RawImg| data to use in the calculation.
+% * |CH| specifies the channel to be used for calculating the diameter.
+% * |ISDP| specifies whether the vessel lumen to analyse is bright (i.e.
+% positively labelled) or dark (i.e. negatively labelled).
         
 %% Details
 % |LineScanDiam| objects are used to analyse the diameters from line scan
@@ -316,6 +323,7 @@ ans =
 %             state: 'unprocessed'
 %              name: 'diamlinescan_scim'
 %            rawImg: [1x1 SCIM_Tif]
+%      isDarkPlasma: 0
 %
 % The process is almost exactly the same to create an array of
 % |LineScanDiam| objects; when the software prompts you to select one or

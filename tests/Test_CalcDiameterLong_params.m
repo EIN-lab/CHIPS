@@ -7,6 +7,7 @@ classdef Test_CalcDiameterLong_params < matlab.unittest.TestCase
     properties (TestParameter)
         classCDL = utils.find_subclasses('CalcDiameterLong');
         classDL = utils.find_subclasses('ICalcDiameterLong');
+        isDP = {false, true};
     end
 
     % ================================================================== %
@@ -26,10 +27,17 @@ classdef Test_CalcDiameterLong_params < matlab.unittest.TestCase
         
         % -------------------------------------------------------------- %
         
-        function testProcess(self, classCDL, classDL)
+        function testProcess(self, classCDL, classDL, isDP)
             
             % Create a copy to avoid any problems
             dlObj = copy(Test_CalcDiameterLong_params.get_dlObj(classDL));
+            
+            % Check the cases for dark plasma
+            if isDP
+                dlObj.rawImg.rawdata = max(dlObj.rawImg.rawdata(:)) - ...
+                    dlObj.rawImg.rawdata;
+                dlObj.isDarkPlasma = true;
+            end
             
             % Create an object from the classname
             fConstructor = str2func(classCDL);

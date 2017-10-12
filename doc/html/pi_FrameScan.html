@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>FrameScan</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-06-23"><meta name="DC.source" content="pi_FrameScan.m"><style type="text/css">
+      --><title>FrameScan</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-07-25"><meta name="DC.source" content="pi_FrameScan.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -82,7 +82,8 @@ fs01 = FrameScan()
    isDarkStreaks: 1
            state: 'unprocessed'
             name: 'framescan_scim'
-          rawImg: [1x1 SCIM_Tif]</pre><p>The process is almost exactly the same to create an array of <tt>FrameScan</tt> objects; when the software prompts you to select one or more raw images, simply select multiple images by using either the shift or control key.</p><p><h3>Prepare a <tt>RawImg</tt> for use in these examples</h3></p><pre class="codeinput"><span class="comment">% Prepare a rawImg for use in these examples</span>
+          rawImg: [1x1 SCIM_Tif]
+    isDarkPlasma: 0</pre><p>The process is almost exactly the same to create an array of <tt>FrameScan</tt> objects; when the software prompts you to select one or more raw images, simply select multiple images by using either the shift or control key.</p><p><h3>Prepare a <tt>RawImg</tt> for use in these examples</h3></p><pre class="codeinput"><span class="comment">% Prepare a rawImg for use in these examples</span>
 fnRawImg = fullfile(utils.CHIPS_rootdir, <span class="string">'tests'</span>, <span class="string">'res'</span>, <span class="keyword">...</span>
     <span class="string">'framescan_scim.tif'</span>);
 channels = struct(<span class="string">'blood_plasma'</span>, 1);
@@ -115,6 +116,7 @@ fs02 =
             state: 'unprocessed'
              name: 'test FS 02'
            rawImg: [1x1 SCIM_Tif]
+     isDarkPlasma: 0
 
 </pre><p><h3>Create a <tt>FrameScan</tt> object with a custom config</h3></p><pre class="codeinput"><span class="comment">% Create a FrameScan object with a custom config</span>
 configCustom = ConfigFrameScan(<span class="keyword">...</span>
@@ -190,6 +192,7 @@ fsArray =
     state
     name
     rawImg
+    isDarkPlasma
 
 </pre><p><h3>Process a scalar <tt>FrameScan</tt> object</h3></p><pre class="codeinput"><span class="comment">% Process a scalar FrameScan object</span>
 fs03 = fs03.process()
@@ -210,6 +213,7 @@ fs03 =
             state: 'processed'
              name: 'test FS 03'
            rawImg: [1x1 SCIM_Tif]
+     isDarkPlasma: 0
 
 </pre><p><h3>Process a <tt>FrameScan</tt> object array (in parallel)</h3></p><pre class="codeinput"><span class="comment">% Process a FrameScan object array (in parallel).</span>
 <span class="comment">% This code requires the Parallel Computing Toolbox to run in parallel</span>
@@ -427,6 +431,7 @@ ans =
 %             state: 'unprocessed'
 %              name: 'framescan_scim'
 %            rawImg: [1x1 SCIM_Tif]
+%      isDarkPlasma: 0
 %
 % The process is almost exactly the same to create an array of |FrameScan|
 % objects; when the software prompts you to select one or more raw images,

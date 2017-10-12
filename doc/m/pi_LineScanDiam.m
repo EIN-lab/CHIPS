@@ -2,7 +2,7 @@
 % Analyse line scan images of vessel diameters
 
 %% Usage
-%   OBJ = LineScanDiam(NAME, RAWIMG, CONFIG, COLS)
+%   OBJ = LineScanDiam(NAME, RAWIMG, CONFIG, COLS, CH, ISDP)
 
 %% Arguments
 % * |NAME| is the name for this |LineScanDiam| object.
@@ -12,6 +12,9 @@
 % |calcDiameter| object.
 % * |COLS| specifies the left and right columns that will form the edges of
 % the |RawImg| data to use in the calculation.
+% * |CH| specifies the channel to be used for calculating the diameter.
+% * |ISDP| specifies whether the vessel lumen to analyse is bright (i.e.
+% positively labelled) or dark (i.e. negatively labelled).
         
 %% Details
 % |LineScanDiam| objects are used to analyse the diameters from line scan
@@ -96,6 +99,7 @@
 %             state: 'unprocessed'
 %              name: 'diamlinescan_scim'
 %            rawImg: [1x1 SCIM_Tif]
+%      isDarkPlasma: 0
 %
 % The process is almost exactly the same to create an array of
 % |LineScanDiam| objects; when the software prompts you to select one or

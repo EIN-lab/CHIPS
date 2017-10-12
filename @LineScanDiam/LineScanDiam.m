@@ -21,6 +21,7 @@ classdef LineScanDiam < ProcessedImg & ICalcDiameterLong
 %   calcDiameter    - A scalar CalcDiameterLong object
 %	channelToUse    - The numeric index of the channel to use
 %   colsToUseDiam   - The columns from the raw image to use for diameter
+%   isDarkPlasma    - Flag for whether the plasma is dark or bright
 %   name            - The object name
 %   plotList        - The list of plot options for each Calc
 %   rawImg          - A scalar RawImgHelper object
@@ -128,9 +129,9 @@ classdef LineScanDiam < ProcessedImg & ICalcDiameterLong
         %   OBJ = LineScanDiam() prompts for all required information
         %   and creates a LineScanDiam object.
         %
-        %   OBJ = LineScanDiam(NAME, RAWIMG, CONFIG, COLS, CHANNEL) creates
-        %   a LineScanDiam object based on the specified NAME, RAWIMG,
-        %   CONFIG, COLS, and CHANNEL.
+        %   OBJ = LineScanDiam(NAME, RAWIMG, CONFIG, COLS, CHANNEL, ISDP)
+        %   creates a LineScanDiam object based on the specified NAME,
+        %   RAWIMG, CONFIG, COLS, and CHANNEL, and ISDP.
         %
         %   Any of the arguments can be replaced by [] to prompt for the
         %   required information.
@@ -148,6 +149,10 @@ classdef LineScanDiam < ProcessedImg & ICalcDiameterLong
         %   representing the first and last columns of RAWIMG to be used.
         %   CHANNEL must be an integer scalar representing the index of the
         %   channel to be used for calculating the diameter.
+        %   ISDP must be a scalar value that is convertible to a logical
+        %   representing whether or not the plasma is dark (i.e. negatively
+        %   labelled: ISDP = true) or bright (i.e. positively labelled:
+        %   ISDP = false). [default = false]
         %
         %   If RAWIMG is not scalar, the values for the other arguments are
         %   assumed to apply to all elements of RAWIMG.  This is true
@@ -165,8 +170,9 @@ classdef LineScanDiam < ProcessedImg & ICalcDiameterLong
         %   CalcDiameterFWHM, ConfigDiameterFWHM, ImgGroup
             
             % Parse arguments
-            [name, rawImg, configDiamIn, colsToUseDiamIn, channelToUseIn] = ...
-                utils.parse_opt_args({'', [], [], [], [], []}, varargin);
+            [name, rawImg, configDiamIn, colsToUseDiamIn, ...
+             channelToUseIn, isDPin] = utils.parse_opt_args(...
+                {'', [], [], [], [], [], false}, varargin);
             
             % Call RawImg (i.e. parent class) constructor
             LineScanDiamObj = LineScanDiamObj@ProcessedImg(...
@@ -196,6 +202,11 @@ classdef LineScanDiam < ProcessedImg & ICalcDiameterLong
             % Choose colsToUseDiam after the rest so we know which channel
             % to show in the image
             LineScanDiamObj.set_cols_diam(colsToUseDiamIn)
+            
+            % Set dark streaks
+            if ~isempty(isDPin)
+                [LineScanDiamObj(:).isDarkPlasma] = deal(isDPin);
+            end
             
         end
         
@@ -228,6 +239,11 @@ classdef LineScanDiam < ProcessedImg & ICalcDiameterLong
             colsToUse = self.colsToUseDiam(1) : self.colsToUseDiam(2);
             diamProfile = self.rawImg.rawdata(:, colsToUse, ...
                 self.channelToUse);
+            % Invert the image sequence if necessary
+            if self.isDarkPlasma
+                diamProfile = utils.nansuite.nanmax(diamProfile(:)) - ...
+                    diamProfile;
+            end
             lineRate = self.lineRate;
             
         end
@@ -471,7 +487,7 @@ classdef LineScanDiam < ProcessedImg & ICalcDiameterLong
             % Create the basic object, which also attaches the listener
             objOut = LineScanDiam(structIn.name_sub, structIn.rawImg, ...
                 structIn.calcDiameter.config, structIn.colsToUseDiam, ...
-                structIn.channelToUse);
+                structIn.channelToUse, structIn.isDarkPlasma);
             
             % Update the calcs to ensure any data is also loaded
             objOut.calcDiameter = structIn.calcDiameter;

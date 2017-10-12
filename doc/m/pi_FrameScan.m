@@ -134,6 +134,7 @@
 %             state: 'unprocessed'
 %              name: 'framescan_scim'
 %            rawImg: [1x1 SCIM_Tif]
+%      isDarkPlasma: 0
 %
 % The process is almost exactly the same to create an array of |FrameScan|
 % objects; when the software prompts you to select one or more raw images,

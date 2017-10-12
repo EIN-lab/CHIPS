@@ -2,7 +2,7 @@
 % Analyse cross section images of vessel diameters
 
 %% Usage
-%   OBJ = XSectScan(NAME, RAWIMG, CONFIG, ISDP)
+%   OBJ = XSectScan(NAME, RAWIMG, CONFIG, CH, ISDP)
 
 %% Arguments
 % * |NAME| is the name for this |LineScanVel| object.
@@ -10,6 +10,7 @@
 % |LineScanVel| object.
 % * |CONFIG| contains the configuration parameters needed for the
 % |calcDiameter| object.
+% * |CH| specifies the channel to be used for calculating the diameter.
 % * |ISDP| specifies whether the vessel lumen to analyse is bright (i.e.
 % positively labelled) or dark (i.e. negatively labelled).
         
