@@ -60,7 +60,7 @@ wngState = warning('off', 'ParseOptArgs:TooManyInputs');
 % and work out where the rest of the arguments are
 hAxes = [];
 hasAxes = (nargin > 1) && all(ishghandle(varargin{1})) && ...
-    all(isgraphics(varargin{1}, 'axes'));
+    all(strcmp(get(varargin{1}, 'type'), 'axes'));
 if hasAxes
     
     % Check we have enough arguments in this case
@@ -232,7 +232,7 @@ end
 for iVar = nVars:-1:1
     
     % Create new axes, if necessary
-    doCreate = isempty(hAxes) || ~isgraphics(hAxes(iVar), 'axes');
+    doCreate = isempty(hAxes) || ~strcmp(get(hAxes(iVar), 'type'), 'axes');
     if doCreate
         hAxes(iVar) = subplot(nVars, 1, iVar);
     end

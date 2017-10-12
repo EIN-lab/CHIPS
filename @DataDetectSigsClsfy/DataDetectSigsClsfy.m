@@ -191,7 +191,7 @@ classdef DataDetectSigsClsfy < DataDetectSigs
             % are
             hAxes = [];
             hasAxes = (nargin > 1) && all(ishghandle(varargin{1})) && ...
-                all(isgraphics(varargin{1}, 'axes'));
+                all(strcmp(get(varargin{1}, 'type'), 'axes'));
             if hasAxes
 
                 % Check we have enough arguments in this case

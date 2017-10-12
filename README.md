@@ -1,4 +1,4 @@
-CHIPS 
+CHIPS
 =====
 
 CHIPS, or Cellular and Hemodynamic Image Processing Suite, is an open-source MATLAB toolbox designed to analyse functional images of cells and blood vessels, primarily from confocal or two-photon microscopy.  CHIPS is hosted at [GitHub](https://github.com/EIN-lab/CHIPS).
@@ -28,7 +28,7 @@ Users wishing to load images using the Bio-Formats library will also need to dow
 
 #### Denoising
 
-Users wishing to perform denoising using the `RawImg.denoise()` function will also need to download additional files from the _BM3D_ and _invansc_ packages.  This can be done manually, from the Tampere University of Technology website ([_BM3D_](http://www.cs.tut.fi/~foi/GCF-BM3D/) and [_invansc_]()), or automatically, by running the function `utils.install_denoise()` (see also [here](../master/%2Butils/install_denoise.m)), which is included with CHIPS.
+Users wishing to perform denoising using the `RawImg.denoise()` function will also need to download additional files from the _BM3D_ and _invansc_ packages.  This can be done manually, from the Tampere University of Technology website ([_BM3D_](http://www.cs.tut.fi/~foi/GCF-BM3D/) and [_invansc_](http://www.cs.tut.fi/~foi/invansc/)), or automatically, by running the function `utils.install_denoise()` (see also [here](../master/%2Butils/install_denoise.m)), which is included with CHIPS.
 
 #### Images and files for examples and tests
 
@@ -52,12 +52,17 @@ There are also examples, along with further documentation, available via the Hel
 
 Although we are unable to guarantee a response to all requests for assistance, please submit questions or bug reports via the GitHub repository [issues page](https://github.com/EIN-lab/CHIPS/issues).
 
+Contributing
+-------
+
+Please see the [CONTRIBUTING.md](https://github.com/EIN-lab/CHIPS/tree/master/CONTRIBUTING.md) file for details.
+
 License
 -------
 
-This project is licensed under the GNU General Public License. Please see the [LICENSE](../master/LICENSE) file for details.
+This project is licensed under the GNU General Public License. Please see the [LICENSE.txt](https://github.com/EIN-lab/CHIPS/tree/master/LICENSE.txt) file for details.
 
-Although the GNU General Public License does not permit terms requiring users to cite the research paper where this software was originally published (see [here](https://www.gnu.org/licenses/gpl-faq.en.html#RequireCitation)), we request that any research making use of this software does cite the paper, as well as papers describing any algorithms used, in keeping with normal academic practice.  The function `utils.citation()`, which is included with CHIPS (see also [here](../master/%2Butils/citation.m)), will output the citation details.
+Although the GNU General Public License does not permit terms requiring users to cite the research paper where this software was originally published (see [here](https://www.gnu.org/licenses/gpl-faq.en.html#RequireCitation)), we request that any research making use of this software does cite the paper, as well as papers describing any algorithms used, in keeping with normal academic practice.  The function `utils.citation()`, which is included with CHIPS (see also [here](https://github.com/EIN-lab/CHIPS/tree/master/%2Butils/citation.m)), will output the citation details.
 
 Authors
 -------
@@ -70,7 +75,12 @@ CHIPS has been developed at the University of Zurich by:
 - Jillian L. Stobart
 - Bruno Weber
 
+Code of Conduct
+-------
+
+Please see the [CODE_OF_CONDUCT.md](https://github.com/EIN-lab/CHIPS/tree/master/CODE_OF_CONDUCT.md) file for details.
+
 Acknowledgments
 ---------------
 
-Please see the [acknowledgements.txt](../master/acknowledgements.txt) file for details.
+Please see the [ACKNOWLEDGEMENTS.txt](https://github.com/EIN-lab/CHIPS/tree/master/ACKNOWLEDGEMENTS.txt) file for details.
