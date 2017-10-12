@@ -44,7 +44,7 @@ function rawImg = from_files(varargin)
 
     % Parse arguments
     wngState = warning('off', 'ParseOptArgs:TooManyInputs');
-    [strRawImgType, fileNameList, chsIn, calIn] = utils.parse_opt_args(...
+    [strRawImgType, fileNameList] = utils.parse_opt_args(...
         {'', [], [], []}, varargin);
     warning(wngState)
     
@@ -52,6 +52,6 @@ function rawImg = from_files(varargin)
     hRawImg = RawImg.create_constructor_rawImg(strRawImgType);
     
     % Create the RawImg Object Array
-    rawImg = hRawImg(fileNameList, chsIn, calIn);
+    rawImg = hRawImg(fileNameList, varargin{3:end});
 
 end

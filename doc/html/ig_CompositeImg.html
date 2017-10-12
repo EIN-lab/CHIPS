@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>CompositeImg</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-06-23"><meta name="DC.source" content="ig_CompositeImg.m"><style type="text/css">
+      --><title>CompositeImg</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-09-01"><meta name="DC.source" content="ig_CompositeImg.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -69,8 +69,9 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
   </style></head><body><div class="content"><h1>CompositeImg</h1><!--introduction--><p>Contain and analyse groups of images from the same RawImg</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Arguments</a></li><li><a href="#3">Details</a></li><li><a href="#4">See Also</a></li><li><a href="#5">Examples</a></li></ul></div><h2>Usage<a name="1"></a></h2><pre>OBJ = CompositeImg(RAWIMG, CONFIG, PROCTYPE)
 OBJ = CompositeImg(NAME, ...)</pre><h2>Arguments<a name="2"></a></h2><div><ul><li><tt>RAWIMG</tt> is the <tt>RawImg</tt> object array that will be used to create the <tt>ProcessedImg</tt> child objects in the <tt>CompositeImg</tt> object.</li><li><tt>CONFIG</tt> is the <tt>Config</tt> object that will be used to create the <tt>ProcessedImg</tt> child objects in the <tt>CompositeImg</tt> object.</li><li><tt>PROCTYPE</tt> is the type of <tt>ProcessedImg</tt> child objects that will be created in the <tt>CompositeImg</tt> object.</li><li><tt>NAME</tt> is the name for this <tt>CompositeImg</tt> object.</li></ul></div><h2>Details<a name="3"></a></h2><p><tt>CompositeImg</tt> objects are used to contain and analyse groups of processable objects that are derived from the same <tt>RawImg</tt>.  This allows efficient use of memory, since the same <tt>RawImg</tt> object does not need to be duplicated to be analysed in different ways.</p><h2>See Also<a name="4"></a></h2><div><ul><li><a href="matlab:doc('CompositeImg')"><tt>CompositeImg</tt> class documentation</a></li><li><a href="matlab:doc('ImgGroup')"><tt>ImgGroup</tt> class documentation</a></li><li><a href="ig_ImgGroup.html"><tt>ImgGroup</tt> quick start guide</a></li><li><a href="matlab:doc('ProcessedImg')"><tt>ProcessedImg</tt> class documentation</a></li><li><a href="pi_.html"><tt>ProcessedImg</tt> quick start guide</a></li><li><a href="matlab:doc('Config')"><tt>Config</tt> class documentation</a></li><li><a href="matlab:doc('RawImgComposite')"><tt>RawImgComposite</tt> class documentation</a></li></ul></div><h2>Examples<a name="5"></a></h2><p>The following examples require the sample images and other files, which can be downloaded manually, from the University of Zurich website (<a href="http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html">http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html</a>), or automatically, by running the function <tt>utils.download_example_imgs()</tt>.</p><p><h3>Create a <tt>CompositeImg</tt> object interactively from one or more files</h3></p><p>The following example will illustrate the process of creating a <tt>CompositeImg</tt> object interactively.  Although it is possible to do so by using the constructor method followed by the <tt>add()</tt> method, it can be easier to use the static method <tt>from_files</tt>, as illustrated below.</p><pre class="language-matlab"><span class="comment">% Construct an CompositeImg using the static method from_files</span>
 ci01 = CompositeImg.from_files()
-</pre><p>In order to load a raw image file, we must first select the type of <tt>RawImg</tt> to create.  Press 2 and then enter to select the SCIM_Tif.</p><pre>----- What type of RawImg would you like to load? -----</pre><pre>  &gt;&gt; 1) BioFormats
-     2) SCIM_Tif</pre><pre>Select a format: 2</pre><p>Then, use the interactive dialogue box to select the raw image file <tt>xsectscan_scim.tif</tt>, which should be located in the subfolder tests&gt;res, within the CHIPS root directory.</p><p><img vspace="5" hspace="5" src="xss_sel_rawimg.png" alt=""> </p><p>Use the interactive dialogue box to select the dummy calibration (<tt>calibration_dummy.mat</tt>):</p><p><img vspace="5" hspace="5" src="sel_cal.png" alt=""> </p><p>The next stage is to define the 'meaning' of the image channels.  For this example we will specify the first channel as a cellular signal, and the second channel as blood plasma.  Press six and enter, followed by one and enter, to complete the selection.</p><pre>----- What is shown on channel 1? -----</pre><pre>  &gt;&gt; 0) &lt;blank&gt;
+</pre><p>In order to load a raw image file, we must first select the type of <tt>RawImg</tt> to create.  Press three and then enter to select the SCIM_Tif.</p><pre>----- What type of RawImg would you like to load? -----</pre><pre>  &gt;&gt; 1) BioFormats
+     2) RawImgDummy
+     3) SCIM_Tif</pre><pre>Select a format: 3</pre><p>Then, use the interactive dialogue box to select the raw image file <tt>xsectscan_scim.tif</tt>, which should be located in the subfolder tests&gt;res, within the CHIPS root directory.</p><p><img vspace="5" hspace="5" src="xss_sel_rawimg.png" alt=""> </p><p>Use the interactive dialogue box to select the dummy calibration (<tt>calibration_dummy.mat</tt>):</p><p><img vspace="5" hspace="5" src="sel_cal.png" alt=""> </p><p>The next stage is to define the 'meaning' of the image channels.  For this example we will specify the first channel as a cellular signal, and the second channel as blood plasma.  Press six and enter, followed by one and enter, to complete the selection.</p><pre>----- What is shown on channel 1? -----</pre><pre>  &gt;&gt; 0) &lt;blank&gt;
      1) blood_plasma
      2) blood_rbcs
      3) Ca_Cyto_Astro
@@ -339,14 +340,15 @@ roi0004_0008_0037,32,38.50000,7.50000
 %   ci01 = CompositeImg.from_files()
 %
 % In order to load a raw image file, we must first select the type of
-% |RawImg| to create.  Press 2 and then enter to select the SCIM_Tif.
+% |RawImg| to create.  Press three and then enter to select the SCIM_Tif.  
 %
 %  REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- What type of RawImg would you like to load? REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
 %  
 %    >> 1) BioFormats
-%       2) SCIM_Tif
+%       2) RawImgDummy
+%       3) SCIM_Tif
 %  
-%  Select a format: 2
+%  Select a format: 3
 %
 % Then, use the interactive dialogue box to select the raw image file
 % |xsectscan_scim.tif|, which should be located in the subfolder

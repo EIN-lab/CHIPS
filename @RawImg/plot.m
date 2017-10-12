@@ -12,19 +12,29 @@ function varargout = plot(self, varargin)
 %   plot(..., 'attribute', value, ...) uses the specified attribute/value
 %   pairs.  Valid attributes (case insensitive) are:
 %
-%       'scaleBarOn'->  Boolean flag whether to add a scale bar.
-%                       [default = true] 
 %       'barlength' ->  Scalar numeric specifying the desired length of the
 %                       scale bar in micrometers. Only used when displaying 
 %                       a scale bar.[default = []] 
-%       'location'  ->  String describing the desired location of the scale 
-%                       bar in the image. Possible options are 'northeast',
-%                       'northwest', southeast, 'southwest'. Only used when 
-%                       displaying a scale bar. [default = 'southeast']
+%
+%       'CAxis' ->      An empty, scalar, or length two numeric vector
+%                       corresponding to the desired image colour/intensity
+%                       axis limits. If empty, the image minimum and
+%                       maximum will be used.  If scalar, [0, CAxis] will
+%                       be used.  If length two, CAxis should correspond to
+%                       [CMin, CMax]. [default = []]
+%
 %       'color'     ->  A numeric vector of length=3 that specifies the
 %                       desired scale bar color in RGB images. In grayscale
 %                       images, the bar will always be white. Only used 
 %                       when displaying a scale bar. [default = [1,1,1]]
+%
+%       'location'  ->  String describing the desired location of the scale 
+%                       bar in the image. Possible options are 'northeast',
+%                       'northwest', southeast, 'southwest'. Only used when 
+%                       displaying a scale bar. [default = 'southeast']
+%
+%       'scaleBarOn'->  Boolean flag whether to add a scale bar.
+%                       [default = true] 
 %
 %   H = plot(...) returns a handle to the figure.  If OBJ is non-scalar,
 %   the figure handles are returned as an array.

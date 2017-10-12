@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>Motion Correction</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-06-23"><meta name="DC.source" content="id_pp_motion_corr.m"><style type="text/css">
+      --><title>Motion Correction</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-09-01"><meta name="DC.source" content="id_pp_motion_corr.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -84,19 +84,19 @@ ri001.motion_correct(<span class="string">'doPlot'</span>, true);
 </pre><img vspace="5" hspace="5" src="id_pp_motion_corr_01.png" alt=""> <p><h3>Motion correct using custom parameters</h3></p><pre class="codeinput"><span class="comment">% Motion correct using custom parameters</span>
 ri002 = copy(rawImg);
 ri002.motion_correct(<span class="string">'minCorr'</span>, 0.843, <span class="string">'doPlot'</span>, true);
-</pre><pre class="codeoutput">Correcting motion:  13% [=====&gt;                                    ]
+</pre><pre class="codeoutput">Correcting motion:  25% [==========&gt;                               ]
 Warning: Correlation is 0.843 and lower than the specified minimal correlation 0.843.
 &gt; In utils.convnfft.calcShifts&gt;pmatch (line 159)
   In utils.convnfft.calcShifts&gt;pattern_matching (line 115)
   In parallel_function&gt;make_general_channel/channel_general (line 914)
   In remoteParallelFunction (line 38)
-Correcting motion:  39% [================&gt;                         ]
+Correcting motion:  49% [====================&gt;                     ]
 Warning: Correlation is 0.843 and lower than the specified minimal correlation 0.843.
 &gt; In utils.convnfft.calcShifts&gt;pmatch (line 159)
   In utils.convnfft.calcShifts&gt;pattern_matching (line 115)
   In parallel_function&gt;make_general_channel/channel_general (line 914)
   In remoteParallelFunction (line 38)
-Correcting motion:  81% [=================================&gt;        ]
+Correcting motion:  79% [================================&gt;         ]
 Warning: Correlation is 0.843 and lower than the specified minimal correlation 0.843.
 &gt; In utils.convnfft.calcShifts&gt;pmatch (line 159)
   In utils.convnfft.calcShifts&gt;pattern_matching (line 115)

@@ -8,7 +8,7 @@ function CAxis = check_cAxis(CAxis, img)
 %   empty, the minimum and maximum values of IMG will be returned.  If
 %   scalar, [0, CAxis] will be returned.  If length two, CAxis should
 %   correspond to [CMin, CMax].
-%
+
 %   Copyright (C) 2017  Matthew J.P. Barrett, Kim David Ferrari et al.
 %
 %   This program is free software: you can redistribute it and/or modify

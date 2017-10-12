@@ -55,14 +55,15 @@
 %   fs01 = FrameScan()
 %
 % Since no RawImg has been specified, the first stage is to select the type
-% of RawImg to create.  Press 2 and then enter to select the SCIM_Tif.  
+% of RawImg to create.  Press three and then enter to select the SCIM_Tif.  
 %
 %  ----- What type of RawImg would you like to load? -----
 %  
 %    >> 1) BioFormats
-%       2) SCIM_Tif
+%       2) RawImgDummy
+%       3) SCIM_Tif
 %  
-%  Select a format: 2
+%  Select a format: 3
 %
 % A warning may appear about the pixel aspect ratio, but this is not
 % relevant for |FrameScan| images.

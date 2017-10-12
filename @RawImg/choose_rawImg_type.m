@@ -16,11 +16,9 @@ function [hConstructor, strClass] = choose_rawImg_type()
 %   You should have received a copy of the GNU General Public License 
 %   along with this program.  If not, see <http://www.gnu.org/licenses/>.
    
-    % Create a list of all the non-abstract subclasses of RawImg,
-    % excluding RawImgDummy
+    % Create a list of all the non-abstract subclasses of RawImg
     subclasses = utils.find_subclasses('RawImg');
-    maskRID = strcmp('RawImgDummy', subclasses);
-    imgOptions = [{''}, subclasses(~maskRID)];
+    imgOptions = [{''}, subclasses];
     defOption = 1;
 
     % Ask the user to choose which image type to use

@@ -4,6 +4,12 @@ classdef Test_RawImgDummy < matlab.unittest.TestCase
     
     % ================================================================== %
     
+    properties (Constant)
+        fnDummy = 'ArtificialData_SNR_0.1_FOV_250.tif';
+    end
+    
+    % ================================================================== %
+    
     methods (Test)
         
         function testConstructorData(self)
@@ -40,7 +46,7 @@ classdef Test_RawImgDummy < matlab.unittest.TestCase
         function testConstructorFile(self)
             
             % Variables to establish
-            fnIn = Test_SCIM_Tif.fnSCIMCellScan;
+            fnIn = Test_RawImgDummy.fnDummy;
             chsIn = Test_Metadata.channelsAC;
             calIn = Test_CalibrationPixelSize.CalObj;
             acqIn = Test_SCIM_Tif.CellScanSCIMObj.metadata.get_acq();
@@ -57,6 +63,35 @@ classdef Test_RawImgDummy < matlab.unittest.TestCase
             self.verifyEqual(RawImgDummyObj2.metadata.calibration, ...
                 calIn, ['RawImgDummy Constructor failed ' ...
                 'to correctly set calibration.']);
+            
+        end
+        
+    end
+    
+    % ================================================================== %
+    
+    methods (Static)
+        
+        function tArray = select_dummy_tif(varargin)
+            
+            % Parse optional arguments
+            defFN = Test_RawImgDummy.fnDummy;
+            defChannels = 1;
+            [startTime, fileNameStart, channels] = utils.parse_opt_args(...
+                {0, defFN, defChannels}, varargin);
+            
+            % Create a timer to interact with the file select gui
+            tObj1 = Test_RawImg.select_file(startTime, fileNameStart);
+            
+            % Create a timer to select the other metadata
+            tArray1 = Test_Metadata.select_metadata(tObj1.StartDelay + 3);
+            
+            % Create a timer to enter the channel selection process
+            tArray2 = Test_Metadata.select_channels(...
+                tArray1(end).StartDelay + 2, channels);
+            
+            % Create the array of timer objects
+            tArray = [tObj1, tArray1, tArray2];
             
         end
         

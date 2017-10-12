@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>ImgGroup</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-06-23"><meta name="DC.source" content="ig_ImgGroup.m"><style type="text/css">
+      --><title>ImgGroup</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-09-01"><meta name="DC.source" content="ig_ImgGroup.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -78,8 +78,9 @@ ig01 = ImgGroup.from_files()
      6) LineScanDiam
      7) LineScanVel
      8) MultiChImg
-     9) XSectScan</pre><pre>Select a class: 7</pre><p>Since we are going to choose <tt>RawImg</tt> files, we must also select the type of <tt>RawImg</tt> to create.  Press two and then enter to select the SCIM_Tif.</p><pre>----- What type of RawImg would you like to load? -----</pre><pre>  &gt;&gt; 1) BioFormats
-     2) SCIM_Tif</pre><pre>Select a format: 2</pre><p>Then, use the interactive dialogue box to select the raw image files <tt>framescan_scim.tif</tt> and <tt>linescanvel_scim.tif</tt> (press shift or control/command to select multiple images), which should be located in the subfolder tests&gt;res, within the CHIPS root directory. Although these two images are not really the same type, they will illustrate how to create an <tt>ImgGroup</tt> object.</p><p><img vspace="5" hspace="5" src="ig_sel_rawImgs.png" alt=""> </p><p>Use the interactive dialogue box to select the dummy calibration (<tt>calibration_dummy.mat</tt>):</p><p><img vspace="5" hspace="5" src="sel_cal.png" alt=""> </p><p>The next stage is to define the 'meaning' of the image channels.  For this example we will specify the first channel as blood plasma.  Press one and enter to complete the selection.</p><pre>----- What is shown on channel 1? -----</pre><pre>  &gt;&gt; 0) &lt;blank&gt;
+     9) XSectScan</pre><pre>Select a class: 7</pre><p>Since we are going to choose <tt>RawImg</tt> files, we must also select the type of <tt>RawImg</tt> to create.  Press three and then enter to select the SCIM_Tif.</p><pre>----- What type of RawImg would you like to load? -----</pre><pre>  &gt;&gt; 1) BioFormats
+     2) RawImgDummy
+     3) SCIM_Tif</pre><pre>Select a format: 3</pre><p>Then, use the interactive dialogue box to select the raw image files <tt>framescan_scim.tif</tt> and <tt>linescanvel_scim.tif</tt> (press shift or control/command to select multiple images), which should be located in the subfolder tests&gt;res, within the CHIPS root directory. Although these two images are not really the same type, they will illustrate how to create an <tt>ImgGroup</tt> object.</p><p><img vspace="5" hspace="5" src="ig_sel_rawImgs.png" alt=""> </p><p>Use the interactive dialogue box to select the dummy calibration (<tt>calibration_dummy.mat</tt>):</p><p><img vspace="5" hspace="5" src="sel_cal.png" alt=""> </p><p>The next stage is to define the 'meaning' of the image channels.  For this example we will specify the first channel as blood plasma.  Press one and enter to complete the selection.</p><pre>----- What is shown on channel 1? -----</pre><pre>  &gt;&gt; 0) &lt;blank&gt;
      1) blood_plasma
      2) blood_rbcs
      3) Ca_Cyto_Astro
@@ -104,7 +105,7 @@ rawImgArray = copy(rawImgArray)
 
 rawImgArray = 
 
-  1x2 SCIM_Tif array with properties:
+  1x3 SCIM_Tif array with properties:
 
     filename
     isDenoised
@@ -125,7 +126,7 @@ lsvArray = LineScanVel(nameLSV, rawImgArray, configRadon, <span class="keyword">
 </pre><pre class="codeoutput">
 lsvArray = 
 
-  1x2 LineScanVel array with properties:
+  1x3 LineScanVel array with properties:
 
     plotList
     calcVelocity
@@ -143,7 +144,7 @@ ig02 =
 
   ImgGroup with properties:
 
-     children: {[1x2 LineScanVel]}
+     children: {[1x3 LineScanVel]}
     nChildren: 1
         state: 'unprocessed'
          name: 'test IG 02'
@@ -166,7 +167,7 @@ ig02 =
 
   ImgGroup with properties:
 
-     children: {[1x2 LineScanVel]  [1x1 XSectScan]}
+     children: {[1x3 LineScanVel]  [1x1 XSectScan]}
     nChildren: 2
         state: 'unprocessed'
          name: 'test IG 02'
@@ -181,7 +182,7 @@ ig02 =
 
   ImgGroup with properties:
 
-     children: {[1x2 LineScanVel]  [1x1 XSectScan]}
+     children: {[1x3 LineScanVel]  [1x1 XSectScan]}
     nChildren: 2
         state: 'processed'
          name: 'test IG 02'
@@ -190,7 +191,7 @@ ig02 =
 <span class="comment">% Note: the figures are deliberately displayed smaller here</span>
 hFig = ig02.plot();
 set(hFig, <span class="string">'Position'</span>, [50, 50, 300, 500]);
-</pre><img vspace="5" hspace="5" src="ig_ImgGroup_01.png" alt=""> <img vspace="5" hspace="5" src="ig_ImgGroup_02.png" alt=""> <img vspace="5" hspace="5" src="ig_ImgGroup_03.png" alt=""> <p><h3>Output the data from all children</h3></p><pre class="codeinput"><span class="comment">% Output the data.  This requires write access to the working directory</span>
+</pre><img vspace="5" hspace="5" src="ig_ImgGroup_01.png" alt=""> <img vspace="5" hspace="5" src="ig_ImgGroup_02.png" alt=""> <img vspace="5" hspace="5" src="ig_ImgGroup_03.png" alt=""> <img vspace="5" hspace="5" src="ig_ImgGroup_04.png" alt=""> <p><h3>Output the data from all children</h3></p><pre class="codeinput"><span class="comment">% Output the data.  This requires write access to the working directory</span>
 fnCSV02 = ig02.output_data(<span class="string">'ig02'</span>, <span class="string">'overwrite'</span>, true);
 fID02 = fopen(fnCSV02{end}{1}, <span class="string">'r'</span>);
 fileContents02 = textscan(fID02, <span class="string">'%s'</span>);
@@ -288,14 +289,15 @@ ans =
 %  Select a class: 7
 %
 % Since we are going to choose |RawImg| files, we must also select the type
-% of |RawImg| to create.  Press two and then enter to select the SCIM_Tif.  
+% of |RawImg| to create.  Press three and then enter to select the SCIM_Tif.  
 %
 %  REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- What type of RawImg would you like to load? REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
 %  
 %    >> 1) BioFormats
-%       2) SCIM_Tif
+%       2) RawImgDummy
+%       3) SCIM_Tif
 %  
-%  Select a format: 2
+%  Select a format: 3
 %
 % Then, use the interactive dialogue box to select the raw image files
 % |framescan_scim.tif| and |linescanvel_scim.tif| (press shift or

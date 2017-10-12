@@ -197,7 +197,6 @@ classdef RawImgDummy < RawImg
                 end
                 
                 % If we do, load the data
-                
                 info = imfinfo(self.filename);
                 nFrames = numel(info);
                 
@@ -217,7 +216,7 @@ classdef RawImgDummy < RawImg
                         rawdataTemp = imread(self.filename, ...
                             iFrame, 'Info', info);
                         szImg = [size(rawdataTemp), 1, numel(info)];
-                        rawdata = zeros(szImg, class(rawdataTemp)); %#ok<ZEROLIKE>
+                        rawdata = zeros(szImg, class(rawdataTemp));
                     end
                     
                     % Load the data
