@@ -56,6 +56,13 @@ function varargout = plot(self, varargin)
 %                       Applicable for plot type 'signals' only. 
 %                       [default = true]
 %
+%       'CAxis' ->      An empty, scalar, or length two numeric vector
+%                       corresponding to the desired image colour/intensity
+%                       axis limits. If empty, the image minimum and
+%                       maximum will be used.  If scalar, [0, CAxis] will
+%                       be used.  If length two, CAxis should correspond to
+%                       [CMin, CMax]. [default = []]
+%
 %       'doHeatmap' ->  Logical scalar indicating whether to display the
 %                       traces as a heatmap or regular 2d lines. 
 %                       [default = true if > 15 ROIs, otherwise false]
@@ -153,11 +160,7 @@ function varargout = plot(self, varargin)
             
         case {'video'}
             
-            tempRawData = self.rawImg.rawdata(:,:,self.channelToUse,:);
-            CAxis = [min(tempRawData(:)) max(tempRawData(:))];
-            clear tempRawData
-            self.calcFindROIs.plot(self, 'video', 'CAxis', CAxis, ...
-                varargin{idxStart:end});
+            self.calcFindROIs.plot(self, 'video', varargin{idxStart:end});
             
         case {'pc_filters'}
             

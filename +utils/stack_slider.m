@@ -7,6 +7,12 @@ function varargout = stack_slider(varargin)
 %   stack_slider(..., 'attribute', value, ...) uses the specified
 %   attribute/value pairs.  Valid attributes (case insensitive) are:
 %
+%       'CAxis' ->      An empty, scalar, or length two numeric vector
+%                       corresponding to the desired image colour/intensity
+%                       axis limits. If empty, the image minimum and
+%                       maximum will be used.  If scalar, [0, CAxis] will
+%                       be used.  If length two, CAxis should correspond to
+%                       [CMin, CMax]. [default = []]
 %       'force4D' ->    Boolean flag whether to force the slider to treat
 %                       the IMG as 4D, even if it only has 3 dimension.
 %                       This is useful when trying to view an image that
@@ -79,6 +85,7 @@ end
 
 % Define allowed optional arguments and default values
 pNames = {...
+    'CAxis'; ...
     'force4D'; ...
     'scaleBarOn'; ...
     'pixelSize'; ...
@@ -86,6 +93,7 @@ pNames = {...
     'location'; ...
     'color'};
 pValues  = {...
+    []; ...
     []; ...
     false; ...
     []; ...
@@ -114,6 +122,15 @@ utils.checks.greater_than(nDimsImg, 3, allowEq, 'number of image dimensions')
 switch nDimsImg
     case 4
         
+        % Work out if it's really a grayscale image, and if so recursively 
+        % call the function to do some magic!
+        nChsImg = size(imgSeq, 3);
+        if nChsImg == 1  
+            hFig = utils.stack_slider(hFig, squeeze(imgSeq), ...
+                varargin{idxStart+1:end}, 'force4D', false);
+            return
+        end
+            
         % RGB stack or multichannel img
         mode = 'rgb';
         frameDim = 4;
@@ -127,6 +144,9 @@ switch nDimsImg
             imgSeq = utils.combine_img_chs(imgSeq);
         end
         nChsImg = size(imgSeq, 3);
+        if isempty(params.CAxis)
+            params.CAxis = [0, 1];
+        end
         
     case 3
         
@@ -134,17 +154,29 @@ switch nDimsImg
         mode = 'grayscale';
         frameDim = 3;
         nChsImg = 1;
+        if isempty(params.CAxis)
+            params.CAxis = utils.checks.check_cAxis(params.CAxis, imgSeq);
+        end
 
 end
 utils.checks.less_than(nChsImg, 4, allowEq, 'number of image channels')
 
-
+% Prepare the scale bar, if necessary
 barLabel = [];
 if params.scaleBarOn
+    
+    % Change the scale bar colour, if necessary
+    updateSBCol = ~isempty(params.CAxis) && isempty(params.color);
+    if updateSBCol
+        params.color = params.CAxis(end);
+    end
+    
+    % Add the scale bar to the image stack
     [imgSeq, barLabel] = utils.scaleBar(imgSeq, params.pixelSize, ...
         'barlength', params.barlength, 'location', params.location, ...
         'color', params.color);
     nChsImg = size(imgSeq, 3);
+    
 end
 
 %// Function SliderDemo by stackoverflow user 'Benoit_11'
@@ -154,6 +186,7 @@ set(hFig, 'Position', [100 100 500 500], ...
     'WindowScrollWheelFcn', @figScroll);
 handles.axes1 = axes('Parent', hFig, 'Units', 'normalized', ...
     'Position', [0.05 0.05 0.9 0.9]);
+handles.image = image(zeros(size(imgSeq(:,:,1,1))));
 
 %// Display 1st frame
 switch mode
@@ -161,11 +194,10 @@ switch mode
         szImg = size(imgSeq(:,:,1,1));
         MyMatrix = zeros([szImg, 3, NumFrames], class(imgSeq));
         MyMatrix(:, :, 1:nChsImg, :) = imgSeq;
-        handles.image = image(utils.sc_pkg.sc(MyMatrix(:,:,:,1)));
     case 'grayscale'
         MyMatrix = imgSeq;
-        handles.image = image(utils.sc_pkg.sc(MyMatrix(:,:,1)));
 end
+update_img(mode, handles, MyMatrix, 1, params.CAxis)
 setappdata(hFig, 'MyMatrix', MyMatrix);
 
 % Tidy up the axes
@@ -217,17 +249,12 @@ guidata(hFig, handles);
         set(handles.title, 'String', gen_title(CurrentFrame, barLabel));
         
         %// Display appropriate frame.
-        switch mode
-            case 'rgb'
-                set(handles.image, ...
-                    'CData', utils.sc_pkg.sc(MyMatrix(:,:,:,CurrentFrame)));
-            case 'grayscale'
-                set(handles.image, ...
-                    'CData', utils.sc_pkg.sc(MyMatrix(:,:,CurrentFrame)));
-        end
+        update_img(mode, handles, MyMatrix, CurrentFrame, params.CAxis)
         
         guidata(hFig, handles);
     end
+
+    % ------------------------------------------------------------------- %
 
 %// Slider callback; executed when the slider is release or you press
 %// the arrows.
@@ -241,17 +268,12 @@ guidata(hFig, handles);
         CurrentFrame = round((get(handles.SliderFrame, 'Value')));
         set(handles.title, 'String', gen_title(CurrentFrame, barLabel));
         
-        switch mode
-            case 'rgb'
-                set(handles.image, ...
-                    'CData', utils.sc_pkg.sc(MyMatrix(:,:,:,CurrentFrame)));
-            case 'grayscale'
-                set(handles.image, ...
-                    'CData', utils.sc_pkg.sc(MyMatrix(:,:,CurrentFrame)));
-        end
+        update_img(mode, handles, MyMatrix, CurrentFrame, params.CAxis)
         
         guidata(hFig, handles);
     end
+
+    % ------------------------------------------------------------------- %
     
     %// Figure scroll function. Executed when you use the scroll wheel
     function figScroll(~,callbackdata)
@@ -276,52 +298,63 @@ guidata(hFig, handles);
         set(handles.title, 'String', gen_title(newFrame, barLabel));
         set(handles.SliderFrame, 'Value', newFrame);
         
-        switch mode
-            case 'rgb'
-                set(handles.image, ...
-                    'CData', utils.sc_pkg.sc(MyMatrix(:,:,:,newFrame)));
-            case 'grayscale'
-                set(handles.image, ...
-                    'CData', utils.sc_pkg.sc(MyMatrix(:,:,newFrame)));
-        end
+        update_img(mode, handles, MyMatrix, newFrame, params.CAxis)
         
         guidata(hFig, handles);
     end
 
-    %
-    function save_btn(~, ~, imgSeq, mode)
-        % Save image data to file
-        dialog = 'Save image';
-        filtSpec = '*.tif';
-        [fileName, pathName] = uiputfile(filtSpec, dialog);
-        
-        hasCancelled = ~ischar(fileName) || ~ischar(pathName);
-        if hasCancelled
-            % User has cancelled
-            return
-        end
-        
-        filePath = fullfile(pathName, fileName);
-        
-        switch mode
-            case 'grayscale'
-                % Export the image stack to a grayscale TIFF
-                optsTif = struct('color', false, 'compression', 'lzw', ...
-                    'overwrite', true, 'message', false);
-                
-            case 'rgb'
-                % Export the image stack to a color TIFF
-                optsTif = struct('color', true, 'compression', 'lzw', ...
-                    'overwrite', true, 'message', false);
-                imgSeq = cast(imgSeq*(2^16), 'uint16');
-        end
-        
-        % Save stack using utility function
-        utils.saveastiff(imgSeq, filePath, optsTif);
-        
+end
+
+% ----------------------------------------------------------------------- %
+
+function save_btn(~, ~, imgSeq, mode)
+    % Save image data to file
+    dialog = 'Save image';
+    filtSpec = '*.tif';
+    [fileName, pathName] = uiputfile(filtSpec, dialog);
+
+    hasCancelled = ~ischar(fileName) || ~ischar(pathName);
+    if hasCancelled
+        % User has cancelled
+        return
     end
 
+    filePath = fullfile(pathName, fileName);
+
+    switch mode
+        case 'grayscale'
+            % Export the image stack to a grayscale TIFF
+            optsTif = struct('color', false, 'compression', 'lzw', ...
+                'overwrite', true, 'message', false);
+
+        case 'rgb'
+            % Export the image stack to a color TIFF
+            optsTif = struct('color', true, 'compression', 'lzw', ...
+                'overwrite', true, 'message', false);
+            imgSeq = cast(imgSeq*(2^16), 'uint16');
+    end
+
+    % Save stack using utility function
+    utils.saveastiff(imgSeq, filePath, optsTif);
+
 end
+
+% ----------------------------------------------------------------------- %
+
+function update_img(mode, handles, img, numFrame, cAxis)
+
+    switch mode
+        case 'rgb'
+            set(handles.image, ...
+                'CData', utils.sc_pkg.sc(img(:,:,:,numFrame), cAxis));
+        case 'grayscale'
+            set(handles.image, ...
+                'CData', utils.sc_pkg.sc(img(:,:,numFrame), cAxis));
+    end
+        
+end
+
+% ----------------------------------------------------------------------- %
 
 function strTitle = gen_title(iFrame, barLabel)
 

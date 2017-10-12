@@ -305,6 +305,21 @@ classdef CellScan < ProcessedImg
         
         function refImg = get_refImg(self, varargin)
         %get_refImg - Return a reference image of the field of view
+        %
+        %   REF_IMG = get_refImg(OBJ) produces a reference image for the
+        %   CellScan object OBJ.  At this time get_refImg is only valid for
+        %   scalar CellScan objects.
+        %
+        %   REF_IMG = get_refImg(..., 'attribute', value, ...) uses the
+        %   specified attribute/value pairs.  Valid attributes (case
+        %   insensitive) are:
+        %
+        %       'FrameNum' ->   The (scalar, integer) frame number of the
+        %                       raw image to display as a reference image.
+        %                       If empty, the average of all frames is
+        %                       used. [default = []]
+        %
+        %   See also CellScan.plot
         
             % Setup the default parameter names and values
             pNames = {
@@ -315,6 +330,9 @@ classdef CellScan < ProcessedImg
                 };
             dflts = cell2struct(pValues, pNames);
             params = utils.parse_params(dflts, varargin{:});
+            
+            % Check it's a scalar object
+            utils.checks.scalar(self, 'CellScan object')
             
             % Produce a reference image to use in the plots
             if isempty(params.FrameNum)

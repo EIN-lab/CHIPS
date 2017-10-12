@@ -17,12 +17,14 @@ function plot_imgs_sub(self, objPI, hAxes, varargin)
 
     % Setup the default parameter names and values
     pNames = {
-        'isDebug'; ...
         'AlphaSpec'; ...
+        'CAxis'; ...
+        'isDebug'
         };
     pValues = {
-        true; ...
         0.6; ...
+        []; ...
+        true
         };
     dflts = cell2struct(pValues, pNames);
     params = utils.parse_params(dflts, varargin{:});
@@ -32,7 +34,8 @@ function plot_imgs_sub(self, objPI, hAxes, varargin)
         
         % Convert the reference image to RGB
         refImg = objPI.get_refImg(varargin{:});
-        refImgRGB = utils.sc_pkg.sc(refImg, 'gray');
+        params.CAxis = utils.checks.check_cAxis(params.CAxis, refImg);
+        refImgRGB = utils.sc_pkg.sc(refImg, 'gray', params.CAxis);
 
         % Extract the masks and turn them into overlays
         [maskFilters, maskSegments] = ROIsToMask(self);
