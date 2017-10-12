@@ -109,17 +109,7 @@ classdef CalcVelocityRadon < CalcVelocityStreaks
             % Pull out some properties
             pixelSize = objPI.rawImg.metadata.pixelSize;
             lineTime = objPI.rawImg.metadata.lineTime;
-            pixelTime = objPI.rawImg.metadata.pixelTime;
-            if isempty(pixelTime)
-                if ~isempty(objPI.rawImg.metadata.nPixelsPerLineOrig)
-                    pixPerLine = objPI.rawImg.metadata.nPixelsPerLineOrig;
-                else
-                    pixPerLine = objPI.rawImg.metadata.nPixelsPerLine;
-                end
-                pixelTime = lineTime ./ pixPerLine;
-                warning('CalcVelocityRadon:Process:NoPixelTime', ...
-                    'No pixel time was found so using an assumed value.')
-            end
+            pixelTime = CalcVelocityRadon.get_pixelTime(objPI, lineTime);
             t0 = objPI.rawImg.t0;
             
             % Split the long data format into windows
@@ -229,6 +219,24 @@ classdef CalcVelocityRadon < CalcVelocityStreaks
         
         function dataObj = create_data()
             dataObj = DataVelocityRadon();
+        end
+        
+        % -------------------------------------------------------------- %
+        
+        function pixelTime = get_pixelTime(objPI, lineTime)
+            
+            pixelTime = objPI.rawImg.metadata.pixelTime;
+            if isempty(pixelTime)
+                if ~isempty(objPI.rawImg.metadata.nPixelsPerLineOrig)
+                    pixPerLine = objPI.rawImg.metadata.nPixelsPerLineOrig;
+                else
+                    pixPerLine = objPI.rawImg.metadata.nPixelsPerLine;
+                end
+                pixelTime = 1e3 * lineTime ./ pixPerLine;
+                warning('CalcVelocityRadon:GetPixelTime:NoPixelTime', ...
+                    'No pixel time was found so using an assumed value.')
+            end
+            
         end
         
         % -------------------------------------------------------------- %

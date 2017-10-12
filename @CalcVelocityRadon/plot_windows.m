@@ -30,8 +30,8 @@ function hAx = plot_windows(self, objPI, hAx, varargin)
         split_into_windows(objPI, windowTime, nOverlap);
     isDarkStreaks = objPI.isDarkStreaks;
     pixelSize = objPI.rawImg.metadata.pixelSize;
-    pixelTime = objPI.rawImg.metadata.pixelTime;
     lineTime = objPI.rawImg.metadata.lineTime;
+    pixelTime = CalcVelocityRadon.get_pixelTime(objPI, lineTime);
 
     % Split the long data format into windows
     windows = fWindows(self.config.windowTime, ...
