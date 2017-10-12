@@ -22,6 +22,8 @@
 .gitignore
 CHIPS.prj
 CHIPS.vpp
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
 run_tests*.m
 make*.m
 %
