@@ -1,5 +1,5 @@
 function peakData = analyse_peak(trace, frameTime, pk, idx, width, ...
-    prom, type, numPeaks)
+    prom, pType, numPeaks)
 
 %   Copyright (C) 2017  Matthew J.P. Barrett, Kim David Ferrari et al.
 %
@@ -23,6 +23,7 @@ if isNaN
     peakTrace = NaN;
     idxStart = NaN;
     idxStartHalf = NaN;
+    idxEndHalf = NaN;
     idxEnd = NaN;
     
 else
@@ -32,13 +33,13 @@ else
     peakTrace = trace(idxStart:idxEnd);
     
     doHalfProm = true;
-    [idxStartHalf, ~] = CalcDetectSigsClsfy.peakStartEnd(trace, ...
+    [idxStartHalf, idxEndHalf] = CalcDetectSigsClsfy.peakStartEnd(trace, ...
         idx, pk, prom, doHalfProm);
     
 end
 
 % Extract the measurements of the peak
-peakData.peakType = type;
+peakData.peakType = pType;
 peakData.numPeaks = numPeaks;
 peakData.amplitude = pk;
 peakData.prominence = prom;
@@ -46,7 +47,8 @@ peakData.peakAUC = trapz(peakTrace - min(peakTrace))*frameTime;
 peakData.peakTime = idx*frameTime;
 peakData.peakStart = idxStart*frameTime;
 peakData.peakStartHalf = idxStartHalf*frameTime;
-peakData.halfWidth = width;
+peakData.peakEndHalf = idxEndHalf*frameTime;
+peakData.halfWidth = (idxEndHalf - idxStartHalf)*frameTime;
 peakData.fullWidth = (idxEnd - idxStart)*frameTime;
     
 end

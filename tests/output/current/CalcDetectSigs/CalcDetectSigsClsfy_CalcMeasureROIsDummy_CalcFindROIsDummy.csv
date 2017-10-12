@@ -1,2 +1,2 @@
-peakAUC,prominence,amplitude,peakTime,peakStart,peakStartHalf,halfWidth,fullWidth,numPeaks,peakType,roiName
-NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NoPeak,wholeFrame
+peakAUC,prominence,amplitude,peakTime,peakStart,peakStartHalf,peakEndHalf,halfWidth,fullWidth,numPeaks,peakType,roiName
+NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NoPeak,wholeFrame

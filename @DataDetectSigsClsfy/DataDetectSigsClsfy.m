@@ -19,7 +19,8 @@ classdef DataDetectSigsClsfy < DataDetectSigs
 %   numPeaks        - The number of peaks per signal
 %   peakAUC         - The peak area under the curve [dF/F*s]
 %   peakStart       - The estimated peak start time [s]
-%   peakStartHalf   - The peak half height start time [s]
+%   peakStartHalf   - The peak time at half height rising [s]
+%   peakEndHalf     - The peak time at half height falling [s]
 %   peakTime        - The time of peak maximum [s]
 %   peakType        - The peak type classification
 %   prominence      - The peak prominence [dF/F]
@@ -113,14 +114,23 @@ classdef DataDetectSigsClsfy < DataDetectSigs
         %   CalcDetectSigsClsfy.peakStartEnd
         peakStart
         
-        %peakStartHalf - The peak half height start time [s]
+        %peakStartHalf - The peak time at half height rising [s]
         %
-        %   A cell vector of the estimated time at which the peak half
-        %   height starts in seconds.
+        %   A cell vector of the estimated time at which the peak reaches
+        %   half height while rising in seconds.
         %
         %   See also CalcMeasureROIsClsfy.measure_ROIs,
         %   CalcDetectSigsClsfy.peakStartEnd
         peakStartHalf
+        
+        %peakEndHalf - The peak time at half height falling [s]
+        %
+        %   A cell vector of the estimated time at which the peak reaches
+        %   half height while falling in seconds.
+        %
+        %   See also CalcMeasureROIsClsfy.measure_ROIs,
+        %   CalcDetectSigsClsfy.peakStartEnd
+        peakEndHalf
         
         %peakType - The peak type classification
         %
@@ -150,7 +160,8 @@ classdef DataDetectSigsClsfy < DataDetectSigs
         listRaw = {};
         listProcessed = {'peakType', 'numPeaks', 'amplitude', ...
             'prominence', 'peakAUC', 'peakTime', 'peakStart', ...
-            'peakStartHalf', 'halfWidth', 'fullWidth', 'roiName'};
+            'peakStartHalf', 'peakEndHalf', 'halfWidth', 'fullWidth', ...
+            'roiName'};
         listMask = {};
         
         listPlotDebug = {'peakAUC', 'amplitude', 'prominence', ...
@@ -168,8 +179,8 @@ classdef DataDetectSigsClsfy < DataDetectSigs
         listMean = {};
         
         listOutput = {'peakAUC', 'prominence', 'amplitude', ...
-            'peakTime', 'peakStart', 'peakStartHalf', 'halfWidth', ...
-            'fullWidth', 'numPeaks', 'peakType', 'roiName'};
+            'peakTime', 'peakStart', 'peakStartHalf', 'peakEndHalf', ...
+            'halfWidth', 'fullWidth', 'numPeaks', 'peakType', 'roiName'};
         nameDataClass = 'Signal Detection (Clsfy)';
         suffixDataClass = 'sigDetectionClsfy';
         

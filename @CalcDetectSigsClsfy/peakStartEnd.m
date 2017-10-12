@@ -32,8 +32,9 @@ else
 end
 
 % Calculate the outer indices of the peak
-idxStart = find(trace(1:peakLoc) < heightRef, 1, 'last');
-idxEnd = find(trace(peakLoc:end) < heightRef, 1, 'first') + peakLoc - 1;
+[~, idxStart] = min(abs(trace(1:peakLoc) - heightRef));
+[~, idxEnd] = min(abs(trace(peakLoc:end) - heightRef));
+idxEnd =  idxEnd + peakLoc - 1;
 
 % Correct for edge cases
 if isempty(idxStart)
