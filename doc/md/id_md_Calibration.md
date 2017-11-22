@@ -84,7 +84,7 @@ zoom =
      1     2     4     8    16    32
 pxSize =
     0.9548    0.5306    0.2376    0.1137    0.0596    0.0294
-cal001 = 
+cal001 =
   CalibrationPixelSize with properties:
 
          date: 'yesterday'
@@ -116,7 +116,7 @@ isEqual = cal001 == cal001_reloaded
 ```
 
 ```text
-cal001_reloaded = 
+cal001_reloaded =
   CalibrationPixelSize with properties:
 
          date: 'yesterday'
@@ -193,5 +193,6 @@ pxSize05_range =
     1.2340    1.2340    1.2340
 
 ```
-[Home](./index.html)
 
+---
+[Home](./index.html)

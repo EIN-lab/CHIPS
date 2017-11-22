@@ -11,5 +11,5 @@ Release Notes
    + `repmat` with objects: There can be some unexpected behaviour in older MATLAB versions when using the function `repmat` with certain CHIPS classes.  For example, in R2013a, `scimArray = repmat(SCIM_TIF(), 1, 3)` does not behave as expected, but the alternative `scimArray(1:3) = SCIM_TIF()` does.
    + Tests: There are several compatability issues when running the tests. Please contact the developers for more information.
 
+---
 [Home](./index.html)
-

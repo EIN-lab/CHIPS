@@ -161,7 +161,7 @@ lsd02 = LineScanDiam(nameLSD02, rawImg, configFWHM, colsToUse)
 ```
 
 ```text
-lsd02 = 
+lsd02 =
   LineScanDiam with properties:
 
      calcDiameter: [1×1 CalcDiameterFWHM]
@@ -184,7 +184,7 @@ confDiam = lsd03.calcDiameter.config
 ```
 
 ```text
-confDiam = 
+confDiam =
   ConfigDiameterFWHM with properties:
 
            lev50: 0.7000
@@ -201,7 +201,7 @@ rawImgArray = copy(rawImgArray)
 ```
 
 ```text
-rawImgArray = 
+rawImgArray =
   1×3 SCIM_Tif array with properties:
 
     filename
@@ -224,8 +224,8 @@ lsdArray = LineScanDiam('test LSD Array', rawImgArray, configCustom, ...
 ```text
 Warning: All of the RawImg objects are assumed to have the same channel
 structure. If this is not true, the processing will not work as expected; in
-this case you will need to create the objects seperately. 
-lsdArray = 
+this case you will need to create the objects seperately.
+lsdArray =
   1×3 LineScanDiam array with properties:
 
     calcDiameter
@@ -248,7 +248,7 @@ lsd03 = lsd03.process()
 
 ```text
 Calculating diameter: 100% [=======================================]
-lsd03 = 
+lsd03 =
   LineScanDiam with properties:
 
      calcDiameter: [1×1 CalcDiameterFWHM]
@@ -318,5 +318,6 @@ ans =
     '0.354,108.011,FALSE,FALSE'
 
 ```
-[Home](./index.html)
 
+---
+[Home](./index.html)

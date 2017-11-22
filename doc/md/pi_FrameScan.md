@@ -201,7 +201,7 @@ fs02 = FrameScan(nameFS02, rawImg, configFS, isDarkStreaks, ...
 ```
 
 ```text
-fs02 = 
+fs02 =
   FrameScan with properties:
 
      calcDiameter: [1×1 CalcDiameterFWHM]
@@ -231,13 +231,13 @@ confVel = fs03.calcVelocity.config
 ```
 
 ```text
-confDiam = 
+confDiam =
   ConfigDiameterFWHM with properties:
 
            lev50: 0.6000
          maxRate: 10
     thresholdSTD: 3
-confVel = 
+confVel =
   ConfigVelocityRadon with properties:
 
        windowTime: 30
@@ -267,7 +267,7 @@ rawImgArray = copy(rawImgArray)
 ```
 
 ```text
-rawImgArray = 
+rawImgArray =
   1×3 SCIM_Tif array with properties:
 
     filename
@@ -288,7 +288,7 @@ fsArray = FrameScan('test FS Array', rawImgArray, configCustom, ...
 ```
 
 ```text
-fsArray = 
+fsArray =
   1×3 FrameScan array with properties:
 
     calcDiameter
@@ -315,7 +315,7 @@ fs03 = fs03.process()
 ```text
 Calculating velocity: 100% [=======================================]
 Calculating diameter: 100% [=======================================]
-fs03 = 
+fs03 =
   FrameScan with properties:
 
      calcDiameter: [1×1 CalcDiameterFWHM]
@@ -413,5 +413,6 @@ ans =
     '0.028,36.452,166.223,4.560,0.324,143,85.100,9.288,FALSE,FALSE,FALSE'
 
 ```
-[Home](./index.html)
 
+---
+[Home](./index.html)

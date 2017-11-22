@@ -180,7 +180,7 @@ lsv02 = LineScanVel(nameLSV02, rawImg, configRadon, ...
 ```
 
 ```text
-lsv02 = 
+lsv02 =
   LineScanVel with properties:
 
          plotList: [1×1 struct]
@@ -201,7 +201,7 @@ rawImgArray = copy(rawImgArray)
 ```
 
 ```text
-rawImgArray = 
+rawImgArray =
   1×3 SCIM_Tif array with properties:
 
     filename
@@ -222,7 +222,7 @@ lsvArray = LineScanVel('test LSV Array', rawImgArray, configRadon, ...
 ```
 
 ```text
-lsvArray = 
+lsvArray =
   1×3 LineScanVel array with properties:
 
     plotList
@@ -247,7 +247,7 @@ confVel = lsv03.calcVelocity.config
 ```
 
 ```text
-confVel = 
+confVel =
   ConfigVelocityLSPIV with properties:
 
       windowTime: 100
@@ -328,5 +328,6 @@ ans =
     '0.125,5.267,NaN,26.966,2.406,FALSE,FALSE,FALSE'
 
 ```
-[Home](./index.html)
 
+---
+[Home](./index.html)

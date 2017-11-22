@@ -166,7 +166,7 @@ xss02 = XSectScan(nameXSS02, rawImg, configTiRS)
 ```
 
 ```text
-xss02 = 
+xss02 =
   XSectScan with properties:
 
     calcDiameter: [1×1 CalcDiameterTiRS]
@@ -189,7 +189,7 @@ confDiam = xss03.calcDiameter.config
 ```
 
 ```text
-confDiam = 
+confDiam =
   ConfigDiameterTiRS with properties:
 
      connectivity: 8
@@ -207,7 +207,7 @@ rawImgArray = copy(rawImgArray)
 ```
 
 ```text
-rawImgArray = 
+rawImgArray =
   1×3 SCIM_Tif array with properties:
 
     filename
@@ -229,8 +229,8 @@ xssArray = XSectScan('test XSS Array', rawImgArray, configCustom)
 ```text
 Warning: All of the RawImg objects are assumed to have the same channel
 structure. If this is not true, the processing will not work as expected; in
-this case you will need to create the objects seperately. 
-xssArray = 
+this case you will need to create the objects seperately.
+xssArray =
   1×3 XSectScan array with properties:
 
     calcDiameter
@@ -252,7 +252,7 @@ xss03 = xss03.process()
 
 ```text
 Calculating diameter: 100% [=======================================]
-xss03 = 
+xss03 =
   XSectScan with properties:
 
     calcDiameter: [1×1 CalcDiameterTiRS]
@@ -322,5 +322,6 @@ ans =
     '0.488,85.994,1452,FALSE,FALSE'
 
 ```
-[Home](./index.html)
 
+---
+[Home](./index.html)

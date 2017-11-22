@@ -135,7 +135,7 @@ md002 = Metadata(imgSize, acq, channels, calibration)
 ```
 
 ```text
-md002 = 
+md002 =
   Metadata with properties:
 
            calibration: [1×1 CalibrationPixelSize]
@@ -156,5 +156,6 @@ md002 =
          knownChannels: {1×7 cell}
 
 ```
-[Home](./index.html)
 
+---
+[Home](./index.html)

@@ -221,7 +221,7 @@ cs02 = CellScan(nameCS02, rawImg, configCS, channelToUse)
 ```
 
 ```text
-cs02 = 
+cs02 =
   CellScan with properties:
 
        calcFindROIs: [1×1 CalcFindROIsFLIKA_3D]
@@ -244,7 +244,7 @@ csArray = CellScan('test CS Array', rawImgArray, configCS, channelToUse)
 ```
 
 ```text
-csArray = 
+csArray =
   1×3 CellScan array with properties:
 
     calcFindROIs
@@ -279,7 +279,7 @@ confDetect = cs03.calcDetectSigs.config
 ```
 
 ```text
-confFind = 
+confFind =
   ConfigFindROIsFLIKA_2D with properties:
 
           threshold2D: 0
@@ -299,13 +299,13 @@ confFind =
     discardBorderROIs: 0
            maxROIArea: 2500
            minROIArea: 36
-confMeasure = 
+confMeasure =
   ConfigMeasureROIsDummy with properties:
 
      baselineFrames: [30×1 double]
     backgroundLevel: 1
       propagateNaNs: 0
-confDetect = 
+confDetect =
   ConfigDetectSigsClsfy with properties:
 
     backgroundLevel: 1
@@ -331,7 +331,7 @@ cs03 = cs03.process()
 Finding ROIs: 100% [===============================================]
 Measuring ROIs: 100% [=============================================]
 Detecting signals: 100% [==========================================]
-cs03 = 
+cs03 =
   CellScan with properties:
 
        calcFindROIs: [1×1 CalcFindROIsFLIKA_2D]
@@ -447,5 +447,6 @@ ans =
     '55.831,2.529,3.090,165.549,133.661,142.481,30.066,43.423,3,MultiPeak,roi0003_0053_0107'
 
 ```
-[Home](./index.html)
 
+---
+[Home](./index.html)

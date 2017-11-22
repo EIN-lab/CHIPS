@@ -5,5 +5,5 @@ Raw Images (RawImg Classes)
    + [`BioFormats` quick start guide](./id_ri_BioFormats.html)
    + [`RawImgDummy` quick start guide](./id_ri_RawImgDummy.html)
 
+---
 [Home](./index.html)
-

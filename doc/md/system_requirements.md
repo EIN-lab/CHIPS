@@ -9,5 +9,6 @@ The current Bio-Formats Java library is not compatible with the Java version inc
 
    + Download and install the Java Runtime Environment (JRE) version 7 or 8 from the Oracle [website](http://www.oracle.com/technetwork/java/archive-139210.html). Make sure to choose the correct JRE version for your platform (i.e. the correct operating system and the correct 32/64 bit architecture).  Note: it is not necessary to install the complete Java Development Kit, only the runtime environment.
    + Follow the instructions on the MathWorks website so that your MATLAB installation uses the newly-downloaded JRE.  The instructions are slightly different for [Windows](https://www.mathworks.com/matlabcentral/answers/130359-how-do-i-change-the-java-virtual-machine-jvm-that-matlab-is-using-on-windows), [macOS](https://www.mathworks.com/matlabcentral/answers/103056-how-do-i-change-the-java-virtual-machine-jvm-that-matlab-is-using-for-mac-os) and [Linux](https://uk.mathworks.com/matlabcentral/answers/130360-how-do-i-change-the-java-virtual-machine-jvm-that-matlab-is-using-for-linux).
-[Home](./index.html)
 
+---
+[Home](./index.html)

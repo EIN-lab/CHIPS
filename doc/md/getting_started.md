@@ -6,5 +6,5 @@ Getting Started
    + [Release notes](./release_notes.html)
    + [Acknowledgements](./acknowledgements.html)
 
+---
 [Home](./index.html)
-

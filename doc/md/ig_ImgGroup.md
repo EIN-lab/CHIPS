@@ -179,7 +179,7 @@ rawImgArray = copy(rawImgArray)
 
 ```text
 Opening linescanvel_scim.tif: 100% [===============================]
-rawImgArray = 
+rawImgArray =
   1×2 SCIM_Tif array with properties:
 
     filename
@@ -206,7 +206,7 @@ lsvArray = LineScanVel(nameLSV, rawImgArray, configRadon, ...
 ```
 
 ```text
-lsvArray = 
+lsvArray =
   1×2 LineScanVel array with properties:
 
     plotList
@@ -228,7 +228,7 @@ ig02 = ImgGroup(nameIG02, lsvArray)
 ```
 
 ```text
-ig02 = 
+ig02 =
   ImgGroup with properties:
 
      children: {[1×2 LineScanVel]}
@@ -256,7 +256,7 @@ ig02
 
 ```text
 Opening xsectscan_scim.tif: 100% [=================================]
-ig02 = 
+ig02 =
   ImgGroup with properties:
 
      children: {[1×2 LineScanVel]  [1×1 XSectScan]}
@@ -276,7 +276,7 @@ ig02 = ig02.process(useParallel)
 
 ```text
 Processing children: 100% [========================================]
-ig02 = 
+ig02 =
   ImgGroup with properties:
 
      children: {[1×2 LineScanVel]  [1×1 XSectScan]}
@@ -323,5 +323,6 @@ ans =
     '0.48762,122.57335,2950,FALSE,FALSE'
 
 ```
-[Home](./index.html)
 
+---
+[Home](./index.html)

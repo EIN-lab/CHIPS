@@ -20,5 +20,5 @@ Documentation and Examples
    + [`ImgGroup` quick start guide](./ig_ImgGroup.html)
    + [`CompositeImg` quick start guide](./ig_CompositeImg.html)
 
+---
 [Home](./index.html)
-

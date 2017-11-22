@@ -362,7 +362,7 @@ rawImg = SCIM_Tif(fnRawImg, channels, calibration)
 
 ```text
 Opening xsectscan_scim.tif: 100% [=================================]
-rawImg = 
+rawImg =
   SCIM_Tif with properties:
 
              filename: 'D:\Code\Matlab\2p-img-analysis\tests\res\xsectscan_scim.tif'
@@ -393,7 +393,7 @@ ci02 = CompositeImg(nameCI02, rawImg, configTiRS, procImgType, maskSquare)
 ```
 
 ```text
-ci02 = 
+ci02 =
   CompositeImg with properties:
 
      imgTypes: {'XSectScan'}
@@ -423,7 +423,7 @@ ci02
 ```
 
 ```text
-ci02 = 
+ci02 =
   CompositeImg with properties:
 
      imgTypes: {'CellScan'  'XSectScan'}
@@ -446,7 +446,7 @@ ci02 = ci02.process(useParallel)
 
 ```text
 Processing children: 100% [========================================]
-ci02 = 
+ci02 =
   CompositeImg with properties:
 
      imgTypes: {'CellScan'  'XSectScan'}
@@ -482,7 +482,7 @@ fclose(fID02);
 ```
 
 ```text
-Warning: The Data object has no output defined, so no data will be output. 
+Warning: The Data object has no output defined, so no data will be output.
 ans =
     'roiNames,area,centroidX,centroidY'
 ans =
@@ -495,5 +495,6 @@ ans =
     'roi0004_0008_0037,32,38.50000,7.50000'
 
 ```
-[Home](./index.html)
 
+---
+[Home](./index.html)

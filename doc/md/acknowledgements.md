@@ -16,49 +16,49 @@ these if made aware of them.
 
 % --------------------------------------------------------------------------- %
 
-The CHIPS class CalcFindROIsFLIKA (and other associated classes) are based on 
+The CHIPS class CalcFindROIsFLIKA (and other associated classes) are based on
 the algorithm described in the following paper:
 
-- Ellefsen KL, Settle B, Parker I, Smith IF. An algorithm for automated 
-  detection, localization and measurement of local calcium signals from 
+- Ellefsen KL, Settle B, Parker I, Smith IF. An algorithm for automated
+  detection, localization and measurement of local calcium signals from
   camera-based imaging. Cell Calcium. 2014 56(3):147-56.
-  
-This algorithm is also available as a standalone python package at 
-http://flika-org.github.io/.  The original MATLAB code, which we have 
-modified in our implementation, was kindly provided to us by Kyle Ellefsen and 
+
+This algorithm is also available as a standalone python package at
+http://flika-org.github.io/.  The original MATLAB code, which we have
+modified in our implementation, was kindly provided to us by Kyle Ellefsen and
 Ian Smith under the MIT License.
-  
+
 FLIKA - Copyright (c) 2015-2017 Kyle Ellefsen
 
-Permission is hereby granted, free of charge, to any person obtaining a copy 
-of this software and associated documentation files (the "Software"), to deal 
-in the Software without restriction, including without limitation the rights 
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
-copies of the Software, and to permit persons to whom the Software is 
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all 
+The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 % --------------------------------------------------------------------------- %
 
-The CHIPS class CalcFindROIsCellSort (and other associated classes) are based 
+The CHIPS class CalcFindROIsCellSort (and other associated classes) are based
 on the algorithm described in the following paper:
 
-- Mukamel EA, Nimmerjahn A, Schnitzer MJ. Automated Analysis of Cellular 
-  Signals from Large-Scale Calcium Imaging Data. Neuron. 2009 63(6):747-60. 
+- Mukamel EA, Nimmerjahn A, Schnitzer MJ. Automated Analysis of Cellular
+  Signals from Large-Scale Calcium Imaging Data. Neuron. 2009 63(6):747-60.
 
-The original MATLAB code implementing this algorithm, which we have 
+The original MATLAB code implementing this algorithm, which we have
 modified in our implementation, is available on github at
-https://github.com/mukamel-lab/CellSort, and was kindly released to us by 
+https://github.com/mukamel-lab/CellSort, and was kindly released to us by
 Eran Mukamel under the GNU General Public License v3.
 
 CellSort - Copyright (c) 2009  Eran Mukamel
@@ -73,20 +73,20 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License 
+You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 % --------------------------------------------------------------------------- %
 
-The CHIPS function utils.motion_correction, when using the 'hmm' method (Hidden 
-Markov Model), uses the algorithm and a number of functions described in the 
+The CHIPS function utils.motion_correction, when using the 'hmm' method (Hidden
+Markov Model), uses the algorithm and a number of functions described in the
 following paper:
 
-- Dombeck DA, Khabbaz AN, Collman F, Adelman TL, Tank DW. Imaging Large-Scale 
-  Neural Activity with Cellular Resolution in Awake, Mobile Mice. Neuron. 
-  2007 56(1):43â€“57. 
+- Dombeck DA, Khabbaz AN, Collman F, Adelman TL, Tank DW. Imaging Large-Scale
+  Neural Activity with Cellular Resolution in Awake, Mobile Mice. Neuron.
+  2007 56(1):43â€“57.
 
-The original MATLAB code, which we have modified in our implementation, was 
+The original MATLAB code, which we have modified in our implementation, was
 kindly released to us by David Tank, Daniel Dombeck, and Forrest Collman, under
 the GNU General Public License v3.
 
@@ -102,44 +102,44 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License 
+You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 % --------------------------------------------------------------------------- %
 
-Although the code itself was not used directly, we are also greatful to the 
-authors of the following papers for releasing or otherwise making versions of 
+Although the code itself was not used directly, we are also greatful to the
+authors of the following papers for releasing or otherwise making versions of
 their algorithms and/or code available.
 
-The CHIPS class CalcVelocityRadon (and other associated classes) are based 
+The CHIPS class CalcVelocityRadon (and other associated classes) are based
 on the algorithm described in the following paper:
 
 - Drew PJ, Blinder P, Cauwenberghs G, Shih AY, Kleinfeld D. Rapid determination
-  of particle velocity from space-time images using the Radon transform. 
+  of particle velocity from space-time images using the Radon transform.
   Journal of Computational Neuroscience. 2010;29(1-2):5-11
-  
-The CHIPS class CalcVelocityLSPIV (and other associated classes) are based 
+
+The CHIPS class CalcVelocityLSPIV (and other associated classes) are based
 on the algorithm described in the following paper:
 
-- Kim TN, Goodwill PW, Chen Y, Conolly SM, Schaffer CB, Liepmann D, et al. 
+- Kim TN, Goodwill PW, Chen Y, Conolly SM, Schaffer CB, Liepmann D, et al.
   Line-scanning particle image velocimetry: an optical approach for quantifying
   a wide range of blood flow speeds in live animals. PLoS One. 2012;7(6):e38590
-  
-The CHIPS class CalcDiameterTiRS (and other associated classes) are based 
+
+The CHIPS class CalcDiameterTiRS (and other associated classes) are based
 on the algorithm described in the following paper:
 
-- Gao Y-R, Drew PJ. Determination of vessel cross-sectional area by 
+- Gao Y-R, Drew PJ. Determination of vessel cross-sectional area by
   thresholding in Radon space. J Cereb Blood Flow Metab. 2014;34(7):1180-7
 
 % --------------------------------------------------------------------------- %
 
-The following files/functions are copyright the authors (as listed) according  
+The following files/functions are copyright the authors (as listed) according
 to the terms of the Revised BSD licence as listed at the bottom of this section
 
-- "patchline", (c) 2014, The MathWorks, Inc., retrieved from 
+- "patchline", (c) 2014, The MathWorks, Inc., retrieved from
   http://www.mathworks.com/matlabcentral/fileexchange/36953
-  
-- "makeColorMap", (c) 2016, The MathWorks, Inc., retrieved from 
+
+- "makeColorMap", (c) 2016, The MathWorks, Inc., retrieved from
   http://www.mathworks.com/matlabcentral/fileexchange/17552
 
 All rights reserved.
@@ -171,14 +171,14 @@ POSSIBILITY OF SUCH DAMAGE.
 
 % --------------------------------------------------------------------------- %
 
-The following files/functions are copyright the authors (as listed) according  
+The following files/functions are copyright the authors (as listed) according
 to the terms of the Revised BSD licence as listed at the bottom of this section
 
-- "sc" and its associated files, (c) 2014, Oliver J. Woodford, retrieved from 
-  http://www.mathworks.com/matlabcentral/fileexchange/16233. We have modified 
+- "sc" and its associated files, (c) 2014, Oliver J. Woodford, retrieved from
+  http://www.mathworks.com/matlabcentral/fileexchange/16233. We have modified
   the original code in our implementation.
 
-  
+
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -208,7 +208,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 % --------------------------------------------------------------------------- %
 
-The following files/functions are copyright the authors (as listed) according  
+The following files/functions are copyright the authors (as listed) according
 to the terms of the Revised BSD licence as listed at the bottom of this section
 
 - "inpaintn", (c) 2013, Damien Garcia, retrieved from
@@ -243,44 +243,44 @@ POSSIBILITY OF SUCH DAMAGE.
 
 % --------------------------------------------------------------------------- %
 
-The following files/functions are copyright the authors (as listed) according  
+The following files/functions are copyright the authors (as listed) according
 to the terms of the FreeBSD licence as listed at the bottom of this section
 
-- "bresenham", Copyright (c) 2010, Aaron Wetzler, retrieved from 
+- "bresenham", Copyright (c) 2010, Aaron Wetzler, retrieved from
   http://www.mathworks.com/matlabcentral/fileexchange/28190.
-  
-- "convnfft" and related functions, Copyright (c) 2009, Bruno Luong, retrieved 
-  from http://www.mathworks.com/matlabcentral/fileexchange/24504. We have 
+
+- "convnfft" and related functions, Copyright (c) 2009, Bruno Luong, retrieved
+  from http://www.mathworks.com/matlabcentral/fileexchange/24504. We have
   modified the original code in our implementation.
 
-- "cell2csv", Copyright (c) 2004-2010, Sylvain Fiedler, retrieved from 
+- "cell2csv", Copyright (c) 2004-2010, Sylvain Fiedler, retrieved from
   http://www.mathworks.com/matlabcentral/fileexchange/4400.
 
-- "GetFullPath", Copyright (c) 2010, Jan Simon, retrieved from 
+- "GetFullPath", Copyright (c) 2010, Jan Simon, retrieved from
   http://www.mathworks.com/matlabcentral/fileexchange/28249.
-  
+
 - "lsqnonnegvect", Copyright (c) 2016, David Provencher, retrieved from
   http://www.mathworks.com/matlabcentral/fileexchange/47476.
 
-- "mtit", Copyright (c) 2009, urs (us) schwarz, retrieved from  
+- "mtit", Copyright (c) 2009, urs (us) schwarz, retrieved from
   http://www.mathworks.com/matlabcentral/fileexchange/3218.
-  
+
 - "mygaussfit", Copyright (c) 2007, Yohanan Sivan, retrieved from
   http://www.mathworks.com/matlabcentral/fileexchange/11733. We have modified
   the original code in our implementation.
 
-- "parsepropval", Copyright (c) 2009, Douglas M. Schwarz, retrieved from 
+- "parsepropval", Copyright (c) 2009, Douglas M. Schwarz, retrieved from
   http://www.mathworks.com/matlabcentral/fileexchange/22671. We have modified
-  the original code in our implementation. 
+  the original code in our implementation.
 
-- "saveastiff", Copyright (c) 2016, YoonOh Tak, retrieved from 
+- "saveastiff", Copyright (c) 2016, YoonOh Tak, retrieved from
   http://www.mathworks.com/matlabcentral/fileexchange/35684. We have modified
   the original code in our implementation.
 
-- "slidefun", Copyright (c) 2015, Jos van der Geest, retrieved from 
+- "slidefun", Copyright (c) 2015, Jos van der Geest, retrieved from
   http://www.mathworks.com/matlabcentral/fileexchange/12550.
-  
-- "txtmenu", Copyright (c) 2013, Sky Sartorius, retrieved from 
+
+- "txtmenu", Copyright (c) 2013, Sky Sartorius, retrieved from
   http://www.mathworks.com/matlabcentral/fileexchange/28285.
 
 All rights reserved.
@@ -289,10 +289,10 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-* Redistributions of source code must retain the above copyright 
+* Redistributions of source code must retain the above copyright
   notice, this list of conditions and the following disclaimer.
-	  
-* Redistributions in binary form must reproduce the above copyright 
+
+* Redistributions in binary form must reproduce the above copyright
   notice, this list of conditions and the following disclaimer in
   the documentation and/or other materials provided with the distribution
 
@@ -310,19 +310,19 @@ POSSIBILITY OF SUCH DAMAGE.
 
 % --------------------------------------------------------------------------- %
 
-The following files/functions are copyright the authors (as listed) according  
+The following files/functions are copyright the authors (as listed) according
 to the terms of the MIT licence as listed at the bottom of this section
 
-- "boundedline", Copyright (c) 2015 Kelly Kearney, retrieved from 
+- "boundedline", Copyright (c) 2015 Kelly Kearney, retrieved from
   http://www.mathworks.com/matlabcentral/fileexchange/27485. We have modified
   the original code in our implementation.
 
-- "publishreadme-pkg", Copyright (c) 2016 Kelly Kearney, retrieved from 
-  https://github.com/kakearney/publishreadme-pkg. We have modified the 
+- "publishreadme-pkg", Copyright (c) 2016 Kelly Kearney, retrieved from
+  https://github.com/kakearney/publishreadme-pkg. We have modified the
   original code in our implementation.
 
-- "mxdom2md.xsl", Copyright (c) 2015 Aslak Grinsted, retrieved from 
-  https://github.com/grinsted/gwmcmc/blob/master/private/mxdom2md.xsl. We 
+- "mxdom2md.xsl", Copyright (c) 2015 Aslak Grinsted, retrieved from
+  https://github.com/grinsted/gwmcmc/blob/master/private/mxdom2md.xsl. We
   have modified the original code in our implementation.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -344,12 +344,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 % --------------------------------------------------------------------------- %
 
-The following files/functions are copyright the authors (as listed) according  
+The following files/functions are copyright the authors (as listed) according
 to the terms of the Apache licence v2.0 as listed at the bottom of this section
 
-- "cubehelix", Copyright (c) 2015 Stephen Cobeldick, retrieved from 
+- "cubehelix", Copyright (c) 2015 Stephen Cobeldick, retrieved from
   https://www.mathworks.com/matlabcentral/fileexchange/43700.
-  
+
 Apache License
                            Version 2.0, January 2004
                         http://www.apache.org/licenses/
@@ -527,54 +527,55 @@ Apache License
 
 % --------------------------------------------------------------------------- %
 
-We are not aware of any particular licence terms for the following 
+We are not aware of any particular licence terms for the following
 files/functions/scripts/code snippets.
 
-- "moving_average" by Matlab Central user 'Carlos Adrian Vargas Aguilera', 
+- "moving_average" by Matlab Central user 'Carlos Adrian Vargas Aguilera',
   retrieved from http://www.mathworks.com/matlabcentral/fileexchange/12276.
   We have modified the original code in our implementation.
-  
-- The "nansuite" package by Matlab Central user 'Jan Glaescher', retrieved from 
+
+- The "nansuite" package by Matlab Central user 'Jan Glaescher', retrieved from
   http://www.mathworks.com/matlabcentral/fileexchange/6837.  We have modified
   the original code in our implementation.
 
 - "ReadImageJROI.m", by UZH member Dylan Muir
 
-- Portions of the function "stack_slider", by StackOverflow user 'Benoit_11', 
-  retrieved from   http://stackoverflow.com/questions/28256106/image-stack-display-in-matlab-using-a-slider. 
+- Portions of the function "stack_slider", by StackOverflow user 'Benoit_11',
+  retrieved from   http://stackoverflow.com/questions/28256106/image-stack-display-in-matlab-using-a-slider.
   We have modified the original code in our implementation.
 
-- "scim_openTif.m" and "parseHeader.m", taken from ScanImage v3.8.1.  Refer to 
-  Pologruto TA, Sabatini BL, Svoboda K. ScanImage: Flexible software for 
+- "scim_openTif.m" and "parseHeader.m", taken from ScanImage v3.8.1.  Refer to
+  Pologruto TA, Sabatini BL, Svoboda K. ScanImage: Flexible software for
   operating laser scanning microscopes. BioMed Eng OnLine. 2003;2(1):1-9.
   We have modified the original code in our implementation.
 
 % --------------------------------------------------------------------------- %
-  
-Although the code is not incorporated into CHIPS directly, and must be 
-downloaded separately, we are greatful to the authors of the following software 
-libraries and/or packages  for releasing or otherwise making versions of their 
+
+Although the code is not incorporated into CHIPS directly, and must be
+downloaded separately, we are greatful to the authors of the following software
+libraries and/or packages  for releasing or otherwise making versions of their
 code available.
 
-The CHIPS class BioFormats uses the Bio-Formats java library and MATLAB 
+The CHIPS class BioFormats uses the Bio-Formats java library and MATLAB
 functions, as described in the following paper:
 
-- Linkert M, Rueden CT, Allan C, Burel J-M, Moore W, Patterson A, et al. 
-  Metadata matters: access to image data in the real world. The Journal of 
-  Cell Biology. 2010 May 31;189(5):777â€“82. The Bio-Formats Library is 
+- Linkert M, Rueden CT, Allan C, Burel J-M, Moore W, Patterson A, et al.
+  Metadata matters: access to image data in the real world. The Journal of
+  Cell Biology. 2010 May 31;189(5):777â€“82. The Bio-Formats Library is
   available from https://www.openmicroscopy.org/site/products/bio-formats.
 
-The CHIPS function utils.denoise() calls a number of functions described in the 
+The CHIPS function utils.denoise() calls a number of functions described in the
 following papers:
 
-- Azzari L, MÃ¤kitalo M, Foi A. Optimal inversion of the Anscombe and 
+- Azzari L, MÃ¤kitalo M, Foi A. Optimal inversion of the Anscombe and
   Generalized Anscombe variance-stabilizing transformations. Available from
   http://www.cs.tut.fi/~foi/invansc/.
-  
-- Maggioni M, SÃ¡nchez-Monge E, Foi A, Danielyan A, Dabov K, Katkovnik V, 
-  Egiazarian K. Image and video denoising by sparse 3D transform-domain 
+
+- Maggioni M, SÃ¡nchez-Monge E, Foi A, Danielyan A, Dabov K, Katkovnik V,
+  Egiazarian K. Image and video denoising by sparse 3D transform-domain
   collaborative filtering. Available from http://www.cs.tut.fi/~foi/GCF-BM3D/.
 
 ```
-[Home](./index.html)
 
+---
+[Home](./index.html)

@@ -103,5 +103,6 @@ isMC_array =
    1   1   1
 
 ```
-[Home](./index.html)
 
+---
+[Home](./index.html)
