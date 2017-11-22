@@ -37,7 +37,7 @@ The images and other files used in the examples can be downloaded manually, from
 Quick start guides and examples
 -------------------------------
 
-Find our quick start guides for many applications in the [Documentation](https://ein-lab.github.io/2p-img-analysis/doc/md/).
+Find our quick start guides for many applications in the [Documentation](https://ein-lab.github.io/CHIPS/doc/md/).
 
 Getting Help
 ------------
@@ -60,7 +60,7 @@ Although we are unable to guarantee a response to all requests for assistance, p
 Contributing
 ------------
 
-Please see the [CONTRIBUTING.md](https://github.com/EIN-lab/CHIPS/tree/master/CONTRIBUTING.md) file for details.
+Please see the [CONTRIBUTING.md](https://github.com/EIN-lab/CHIPS/tree/gh-pages/CONTRIBUTING.md) file for details.
 
 License
 -------
@@ -83,7 +83,7 @@ CHIPS has been developed at the University of Zurich by:
 Code of Conduct
 -------
 
-Please see the [CODE_OF_CONDUCT.md](https://github.com/EIN-lab/CHIPS/tree/master/CODE_OF_CONDUCT.md) file for details.
+Please see the [CODE_OF_CONDUCT.md](https://github.com/EIN-lab/CHIPS/tree/gh-pages/CODE_OF_CONDUCT.md) file for details.
 
 Acknowledgments
 ---------------
