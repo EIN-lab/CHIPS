@@ -188,5 +188,6 @@ Opening ArtificialData_SNR_0.1_FOV_250.tif: 100% [=================]
 ```
 
 ![IMAGE](id_ri_RawImgDummy_02.png)
-[Home](./index.html)
 
+---
+[Home](./index.html)

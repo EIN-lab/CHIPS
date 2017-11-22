@@ -128,5 +128,6 @@ Reading series #1
 ```
 
 ![IMAGE](id_ri_BioFormats_01.png)
-[Home](./index.html)
 
+---
+[Home](./index.html)

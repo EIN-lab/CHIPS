@@ -156,5 +156,6 @@ Opening xsectscan_scim.tif: 100% [=================================]
 ```
 
 ![IMAGE](id_ri_SCIM_Tif_01.png)
-[Home](./index.html)
 
+---
+[Home](./index.html)
