@@ -65,8 +65,8 @@ classdef CalcFindROIsFLIKA_2p5D < CalcFindROIsFLIKA
         %   the associated Config class
         validConfig = {'ConfigFindROIsFLIKA_2p5D'};
         
-        %validConfig - Constant, protected property containing the name of
-        %   the associated Config class
+        %validData - Constant, protected property containing the name of
+        %   the associated Data class
         validData = {'DataFindROIsFLIKA_2p5D'};
         
     end
