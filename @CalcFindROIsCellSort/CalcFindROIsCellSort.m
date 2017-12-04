@@ -44,6 +44,9 @@ classdef CalcFindROIsCellSort < CalcFindROIs
         %is3D - Whether or not the ROI mask is 3D
         is3D = false;
         
+        %isLS - Whether or not the RawImg is a linescan
+        isLS = false;
+        
         %CovEvals - largest eigenvalues of the covariance matrix
         %
         % See also utils.cellsort.CellsortPCA

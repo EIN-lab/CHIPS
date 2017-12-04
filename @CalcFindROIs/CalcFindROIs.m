@@ -53,6 +53,9 @@ classdef (Abstract) CalcFindROIs < Calc & IMeasureROIs
     properties (Abstract, Access = protected)
         %is3D - Whether or not the ROI mask is 3D
         is3D
+        
+        %isLS - Whether or not the RawImg is a linescan
+        isLS
     end
     
     % ------------------------------------------------------------------ %
@@ -88,6 +91,16 @@ classdef (Abstract) CalcFindROIs < Calc & IMeasureROIs
             % Call Calc (i.e. parent class) constructor
             CalcFindROIsObj = CalcFindROIsObj@Calc(configIn, dataIn);
             
+        end
+        
+        % -------------------------------------------------------------- %
+        
+        function [isLS, varargout] = get_LS(self, ~, varargin)
+        %get_LS - Get the linescan
+        
+            isLS = self.isLS;
+            varargout(:) = {[]};
+
         end
         
         % -------------------------------------------------------------- %

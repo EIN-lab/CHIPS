@@ -53,7 +53,10 @@ classdef CalcFindROIsFLIKA_2D < CalcFindROIsFLIKA
     
     properties (Access = protected)
         %is3D - Whether or not the ROI mask is 3D
-        is3D = false;        
+        is3D = false;
+        
+        %isLS - Whether or not the RawImg is a linescan
+        isLS = false;        
     end
     
     % ------------------------------------------------------------------ %

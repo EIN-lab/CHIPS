@@ -33,12 +33,25 @@ function plot_imgs_sub(self, objPI, hAxes, varargin)
     if params.isDebug
         
         % Convert the reference image to RGB
-        refImg = objPI.get_refImg(varargin{:});
+        [refImg, isLS] = objPI.get_refImg(varargin{:});
         params.CAxis = utils.checks.check_cAxis(params.CAxis, refImg);
         refImgRGB = utils.sc_pkg.sc(refImg, 'gray', params.CAxis);
 
-        % Extract the masks and turn them into overlays
+        % Extract the masks 
         [pixelMask, groupMask, ~] = ROIsToMask(self);
+        
+        % Transpose linescan masks
+        if isLS
+            pixelMask = pixelMask';
+            groupMask = groupMask';
+            
+            % Cheat a bit to display the masks
+            refImgDims = size(refImgRGB);
+            pixelMask = imresize(pixelMask, [refImgDims(1), refImgDims(2)]);
+            groupMask = imresize(groupMask, [refImgDims(1), refImgDims(2)]);
+        end
+        
+        %Turn masks into overlays
         cmapHot = utils.cubehelix(256, 0.2, 0.5, 2.25, 0.8, ...
             [0.25, 0.9], [0.2, 0.9]);
         pixelOverlay = utils.sc_pkg.sc(...

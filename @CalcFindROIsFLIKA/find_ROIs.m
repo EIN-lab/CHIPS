@@ -40,10 +40,15 @@ end
 
 % Pull out any properties from the metadata that the calc
 % object will need
-frameRate = objPI.rawImg.metadata.frameRate;
-pixelSize = objPI.rawImg.metadata.pixelSize;
-imgSeq = squeeze(...
-    objPI.rawImg.rawdata(:,:,objPI.channelToUse,:));
+if self.isLS
+    [~, imgSeq, frameRate] = self.get_LS(objPI, 'mode', 'average');
+    pixelSize = objPI.rawImg.metadata.pixelSize;
+else
+    frameRate = objPI.rawImg.metadata.frameRate;
+    pixelSize = objPI.rawImg.metadata.pixelSize;
+    imgSeq = squeeze(...
+        objPI.rawImg.rawdata(:,:,objPI.channelToUse,:));
+end
 
 % Convert the imgSeq to a double precision array to ensure we don't lose
 % any data because of subtractions etc
@@ -57,7 +62,14 @@ badDataMask = ~isfinite(imgSeq);
 nBadVals = sum(badDataMask(:));
 doInpaint = (nBadVals > 0) && (self.config.inpaintIters > 0);
 if doInpaint
-    imgSeq = utils.inpaintn(imgSeq, self.config.inpaintIters);
+    if self.isLS
+        % Remove singleton dimension before inpainting
+        imgSeq = permute(imgSeq, [2 3 1]);
+        imgSeq = utils.inpaintn(imgSeq, self.config.inpaintIters);
+        imgSeq = permute(imgSeq, [3 1 2]);
+    else
+        imgSeq = utils.inpaintn(imgSeq, self.config.inpaintIters);
+    end
 end
 
 % ----------------------------------------------------------------------- %
@@ -178,6 +190,19 @@ pixelIdxs = puffs.PixelIdxList;
 puffGroupMask = false(dims);
 puffGroupMask(vertcat(pixelIdxs{:})) = true;
 
+% For averaged linescan data, masks need to be resized to fit rawdata
+if self.isLS
+    [~, imgSeq, ~] = self.get_LS(objPI, 'mode', 'full');
+    nLinesTot = size(imgSeq,3);
+    
+    puffPixelMask = imresize(squeeze(puffPixelMask), [dims(2), nLinesTot]);
+    puffPixelMask = permute(puffPixelMask, [3,1,2]);
+    
+    puffGroupMask = imresize(squeeze(puffGroupMask), [dims(2), nLinesTot]);
+    puffGroupMask = permute(puffGroupMask, [3,1,2]);
+    
+end
+
 % Store raw data
 self.data = self.data.add_raw_data(bgLevel, baselineAverage, ...
     puffGroupMask, puffPixelMask);
@@ -187,6 +212,16 @@ self.data = self.data.add_raw_data(bgLevel, baselineAverage, ...
 % Create the stage 3 mask, final ROI mask and it's associated statistics
 [puffSignificantMask, roiMask, stats] = self.create_roiMask(...
     dims, pixelIdxs, pixelSize, frameRate);
+
+% For averaged linescan data, masks need to be resized to fit rawdata
+if self.isLS
+    [~, imgSeq, ~] = self.get_LS(objPI, 'mode', 'full');
+    nLinesTot = size(imgSeq,3);
+    
+    puffSignificantMask = imresize(squeeze(puffSignificantMask), [dims(2), nLinesTot]);
+    puffSignificantMask = permute(puffSignificantMask, [3,1,2]);
+    
+end
 
 % Create the ROI names
 roiNames = utils.create_ROI_names(roiMask, self.is3D);

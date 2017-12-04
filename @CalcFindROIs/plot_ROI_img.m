@@ -42,7 +42,7 @@ dflts = cell2struct(pValues, pNames);
 params = utils.parse_params(dflts, varargin{:});
 
 % Extract the parameters from the ProcessedImg object
-refImg = objPI.get_refImg(varargin{:});
+[refImg, isLS] = objPI.get_refImg(varargin{:});
 pixelSize = objPI.rawImg.metadata.pixelSize;
 [params.plotROIs, params.nROIs] = objPI.calcMeasureROIs.get_plotROIs(...
     params.plotROIs);
@@ -57,6 +57,19 @@ else
     roiMask = self.data.roiGroup;
 end
 
+% Special reshaping to plot linescan masks
+wngState = warning();
+if isLS
+    roiMask = squeeze(roiMask);
+    if self.is3D
+        roiMask = roiMask';
+    end
+    
+    % Suppress warnings due to linescan ROI
+    warning('off', 'ResizeImg:Resizing');
+    warning('off', 'ResizeImg:NonUniform');
+end
+
 % Check that scale of mask and data is the same
 isSameSize = all(size(roiMask(:,:,1)) == size(refImg(:,:,1)));
 
@@ -65,6 +78,9 @@ if ~isSameSize
     [yDimOrig, xDimOrig] = size(refImg(:,:,1));
     roiMask = utils.resize_img(roiMask, [yDimOrig, xDimOrig]);
 end
+
+%Re-enable warnings
+warning(wngState);
 
 % Call a sub function to magically prepare the ROIs, either everything or
 % only those ROIs that feature in the relevant frame

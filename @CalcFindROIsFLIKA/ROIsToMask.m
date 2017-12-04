@@ -23,14 +23,26 @@ function [pixelMask, groupMask, significantMask] = ROIsToMask(self)
 %   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     % Create stage 1 mask
-    pixelMask = sum(self.data.puffPixelMask, 3);
+    if self.isLS
+        pixelMask = squeeze(self.data.puffPixelMask);
+    else
+        pixelMask = sum(self.data.puffPixelMask, 3);
+    end
     
     % Create stage 2 mask
-    groupMask = max(self.data.puffGroupMask, [], 3);
+    if self.isLS
+        groupMask = squeeze(self.data.puffGroupMask);
+    else    
+        groupMask = max(self.data.puffGroupMask, [], 3);
+    end
     groupMask = bwperim(groupMask);
     
     % Create stage 3 mask
-    significantMask = max(self.data.roiMask, [], 3);
+    if self.isLS
+        significantMask = squeeze(self.data.roiMask);
+    else
+        significantMask = max(self.data.roiMask, [], 3);
+    end
     significantMask = bwperim(significantMask);
     
 end

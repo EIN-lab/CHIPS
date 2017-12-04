@@ -165,8 +165,13 @@ classdef (Abstract) CalcMeasureROIs < Calc
             t0 = objPI.rawImg.t0;
             
             % Get data from RawImg
-            imgSeq = squeeze(...
-                objPI.rawImg.rawdata(:,:,objPI.channelToUse,:));
+            if objPI.calcFindROIs.get_LS(objPI)
+                [~, imgSeq, frameRate] = ...
+                    objPI.calcFindROIs.get_LS(objPI, 'mode', 'full');
+            else
+                imgSeq = squeeze(...
+                    objPI.rawImg.rawdata(:,:,objPI.channelToUse,:));
+            end
             imgSeq = double(imgSeq);
             nFrames = size(imgSeq, 3);
             

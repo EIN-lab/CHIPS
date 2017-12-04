@@ -49,6 +49,9 @@ classdef CalcFindROIsDummy < CalcFindROIs
     properties (Access = protected)
         %is3D - Whether or not the ROI mask is 3D
         is3D
+        
+        %isLS - Whether or not the RawImg is a linescan
+        isLS = false;
     end
     
     % ------------------------------------------------------------------ %

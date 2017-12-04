@@ -290,7 +290,7 @@ classdef CellScan < ProcessedImg
         
         % -------------------------------------------------------------- %
         
-        function refImg = get_refImg(self, varargin)
+        function [refImg, varargout] = get_refImg(self, varargin)
         %get_refImg - Return a reference image of the field of view
         %
         %   REF_IMG = get_refImg(OBJ) produces a reference image for the
@@ -322,22 +322,29 @@ classdef CellScan < ProcessedImg
             utils.checks.scalar(self, 'CellScan object')
             
             % Produce a reference image to use in the plots
-            if isempty(params.FrameNum)
-                refImg = utils.nansuite.nanmean(...
-                    self.rawImg.rawdata(:,:,self.channelToUse, :), 4);
+            [isLS, refImg] = self.calcFindROIs.get_LS(self);
+            if isLS
+                refImg = squeeze(refImg)';
             else
-                
-                % Check the frame number
-                utils.checks.prfsi(params.FrameNum)
-                nFrames = self.rawImg.metadata.nFrames;
-                allowEq = true;
-                utils.checks.less_than(params.FrameNum, nFrames, ...
-                    allowEq, 'frameNum')
-            
-                % Produce the reference image
-                refImg = self.rawImg.rawdata(:,:,...
-                    self.channelToUse, params.FrameNum);
+                if isempty(params.FrameNum)
+                    refImg = utils.nansuite.nanmean(...
+                        self.rawImg.rawdata(:,:,self.channelToUse, :), 4);
+                else
+                    
+                    % Check the frame number
+                    utils.checks.prfsi(params.FrameNum)
+                    nFrames = self.rawImg.metadata.nFrames;
+                    allowEq = true;
+                    utils.checks.less_than(params.FrameNum, nFrames, ...
+                        allowEq, 'frameNum')
+                    
+                    % Produce the reference image
+                    refImg = self.rawImg.rawdata(:,:,...
+                        self.channelToUse, params.FrameNum);
+                end
             end
+            
+            varargout{1} = isLS;
             
         end
         
