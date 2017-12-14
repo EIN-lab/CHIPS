@@ -51,7 +51,7 @@ classdef CalcFindROIsDummy < CalcFindROIs
         is3D
         
         %isLS - Whether or not the RawImg is a linescan
-        isLS = false;
+        isLS
     end
     
     % ------------------------------------------------------------------ %
@@ -92,6 +92,27 @@ classdef CalcFindROIsDummy < CalcFindROIs
             CalcFindROIsDummyObj = ...
                 CalcFindROIsDummyObj@CalcFindROIs(configIn, dataIn);
             
+        end
+        
+        % --------------------------------------------------------------- %
+        
+        function [isLS, varargout] = get_LS(self, objPI, varargin)
+        %get_LS - Get the linescan
+        
+            isLS = self.isLS;
+            varargout{:} = {[]};
+            
+            if isLS
+                [imgSeq, lineRate] = self.get_diamProfile(objPI, ...
+                    varargin{:});
+                
+                if nargout > 1
+                    varargout{1} = imgSeq;
+                end
+                if nargout > 2
+                    varargout{2} = lineRate;
+                end
+            end
         end
                     
     end
@@ -144,8 +165,11 @@ classdef CalcFindROIsDummy < CalcFindROIs
             % Work out if this is a 3D mask or not
             self.is3D = size(imgSeq, 3) == size(roiMask, 3);
             
+            % Work out if this is a linescan mask or not
+            self.isLS = size(roiMask, 1) == 1;
+            
             % Give the ROIs some names if they don't already have any
-            if isempty(roiNames)
+            if isempty(roiNames) || isempty(roiNames{:})
                 roiNames = utils.create_ROI_names(roiMask, self.is3D);
             end
             

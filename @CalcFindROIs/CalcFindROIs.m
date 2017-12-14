@@ -153,6 +153,10 @@ classdef (Abstract) CalcFindROIs < Calc & IMeasureROIs
     
     methods (Access = protected)
         
+        varargout = get_diamProfile(self, objPI, varargin)
+                       
+        % -------------------------------------------------------------- %
+        
         varargout = plot_imgs(self, objPI, hAxes, varargin)
                        
         % -------------------------------------------------------------- %
