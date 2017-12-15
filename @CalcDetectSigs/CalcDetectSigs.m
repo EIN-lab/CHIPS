@@ -116,7 +116,7 @@ classdef (Abstract) CalcDetectSigs < Calc
             roiNames = objPI.calcFindROIs.data.roiNames;
             
             % Do the calculation
-            self = self.detect_sigs(tracesNorm, frameRate, roiNames);
+            self = self.detect_sigs(objPI, tracesNorm, frameRate, roiNames);
             
         end
         
@@ -126,7 +126,7 @@ classdef (Abstract) CalcDetectSigs < Calc
     
     methods (Abstract, Access = protected)
         
-        self = detect_sigs(self, traces, frameRate, roiNames)
+        self = detect_sigs(self, objPI, traces, frameRate, roiNames)
         
         % -------------------------------------------------------------- %
         

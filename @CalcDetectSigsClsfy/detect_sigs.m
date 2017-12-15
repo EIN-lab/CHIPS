@@ -1,4 +1,4 @@
-function self = detect_sigs(self, tracesNorm, frameRate, roiNames)
+function self = detect_sigs(self, objPI, tracesNorm, frameRate, roiNames)
 %detect_sigs - Detect the signals
 
 %   Copyright (C) 2017  Matthew J.P. Barrett, Kim David Ferrari et al.

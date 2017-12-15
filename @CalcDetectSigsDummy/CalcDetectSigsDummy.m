@@ -97,7 +97,7 @@ classdef CalcDetectSigsDummy < CalcDetectSigs
     
     methods (Access = protected)
         
-        function self = detect_sigs(self, ~, ~, roiNames)
+        function self = detect_sigs(self, ~, ~, ~, roiNames)
             % Add the processed data
             self.data = self.data.add_processed_data(roiNames);
         end

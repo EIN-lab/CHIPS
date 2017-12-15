@@ -202,7 +202,7 @@ classdef CellScan < ProcessedImg
                     error('CellScan:NonScalarConfig', ...
                         'The config must be a scalar.')
                 end
-
+                                    
                 configFindIn = configCSIn.configFindROIs;
                 configMeasureIn = configCSIn.configMeasureROIs;
                 configDetectIn = configCSIn.configDetectSigs;
@@ -380,7 +380,7 @@ classdef CellScan < ProcessedImg
             
             % Check calcROIs is scalar
             utils.checks.scalar(calcFindROIs, varName);
-            
+                        
             % Set the property
             self.calcFindROIs = calcFindROIs;
             
@@ -700,6 +700,7 @@ classdef CellScan < ProcessedImg
             listMethods = {...
                 'no signal detection', ...
                 'detect + classify signals', ...
+                'CellSort specific detection'
                 };
             
             % Choose method to find ROIs
@@ -720,6 +721,10 @@ classdef CellScan < ProcessedImg
                 case 2
                     
                     configIn = ConfigDetectSigsClsfy();
+                
+                case 3
+                    
+                    configIn = ConfigDetectSigsCellSort();
                     
                 otherwise
                     

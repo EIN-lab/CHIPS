@@ -165,8 +165,8 @@ classdef (Abstract) CalcFindROIs < Calc & IMeasureROIs
         
         % -------------------------------------------------------------- %
         
-        function varargout = plot_ICAsigs(~, ~, ~)
-            warning('CalcFindROIs:PlotICASigs:NoICAs', ...
+        function varargout = plot_ICAtraces(~, ~, ~)
+            warning('CalcFindROIs:PlotICATraces:NoICAs', ...
                 'This plot does not produce any output for this class')
             if nargout > 0
                 varargout{1} = [];

@@ -6,19 +6,23 @@ function [spmat, spt, spc] = CellsortFindspikes(ica_sig, thresh,...
 %  Deconvolve signal and find spikes using a threshold
 %
 % Inputs:
-%   ica_sig - nIC x T matrix of ICA temporal signals
-%   thresh - threshold for spike detection
-%   dt - time step
-%   deconvtau - time constant for temporal deconvolution (Butterworth
-%   filter); if deconvtau=0 or [], no deconvolution is performed
-%   normalization - type of normalization to apply to ica_sig; 0 - no
-%   normalization; 1 - divide by standard deviation and subtract mean
+%   ica_sig         - nIC x T matrix of ICA temporal signals
+%   thresh          - threshold for spike detection
+%   dt              - time step
+%   deconvtau       - time constant for temporal deconvolution (Butterworth
+%                       filter); if deconvtau=0 or [], no deconvolution is
+%                       performed
+%   normalization   - type of normalization to apply to ica_sig; 0 - no
+%                    normalization; 1 - divide by standard deviation and
+%                    subtract mean
 %
 % Outputs:
-%   spmat - nIC x T sparse binary matrix, containing 1 at the time frame of each
-%   spike
-%   spt - list of all spike times
-%   spc - list of the indices of cells for each spike
+%   spmat - nIC x T sparse binary matrix, containing 1 at the time frame of
+%           each spike
+%   spt   - list of all spike times
+%   spc   - list of the indices of cells for each spike. These are regions of
+%           icTraces. To check family of ROIs given spike comes from, check
+%           CellScan.calcFindROIs.data.segmentlabel.
 %
 % Eran Mukamel, Axel Nimmerjahn and Mark Schnitzer, 2009
 % Email: eran@post.harvard.edu, mschnitz@stanford.edu
@@ -50,6 +54,6 @@ pp2=[zsig(2:end,:);zsig(end,:)];
 spmat = sparse((zsig>=thresh)&(zsig-pp1>=0)&(zsig-pp2>=0));
 
 if nargout>1
-    [spt,spc] = find(spmat);
+    [spt,spc] = find(spmat');
     spt = spt*dt;
 end

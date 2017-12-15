@@ -33,8 +33,9 @@ function varargout = plot(self, varargin)
 %
 %       'signals' ->    A series of figures showing detail on the signals 
 %                       detection and classification process. One figure is
-%                       produced for every ROI. These figures are only
-%                       relevant when using CalcDetectSigsClsfy.
+%                       produced for every ROI for CalcDetectSigsClsfy
+%                       class. For CalcDetectSigsCellSort single plot is
+%                       produced.
 %
 %       'rois' ->       A figure showing the image ROIs.
 %

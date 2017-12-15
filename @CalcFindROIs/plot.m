@@ -111,7 +111,7 @@ function varargout = plot(self, objPI, varargin)
 
             case {'ica_traces'}
 
-                hAx = self.plot_ICAsigs(objPI, hAx, ...
+                hAx = self.plot_ICAtraces(objPI, hAx, ...
                     varargin{idxStart:end});
 
             case {'pc_filters'}

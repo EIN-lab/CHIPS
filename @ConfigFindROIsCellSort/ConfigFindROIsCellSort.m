@@ -271,12 +271,12 @@ classdef ConfigFindROIsCellSort < ConfigFindROIsAuto
             end
                 
             % Check that the value is a single row integer
-            utils.checks.integer(val, 'baselineFrames')
-            utils.checks.vector(val, 'baselineFrames')
-            utils.checks.positive(val, 'baselineFrames')
+            utils.checks.integer(val, 'PCuse')
+            utils.checks.vector(val, 'PCuse')
+            utils.checks.positive(val, 'PCuse')
             
             % Check that the length is greater than a number
-            utils.checks.length(val, 2, 'baselineFrames', 'greater')
+            utils.checks.length(val, 2, 'PCuse', 'greater')
             
             % Assign value
             self.PCuse = val(:);

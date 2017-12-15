@@ -1,33 +1,26 @@
-classdef CalcDetectSigsClsfy < CalcDetectSigs
-%CalcDetectSigsClsfy - Class for detecting and classifying signals
+classdef CalcDetectSigsCellSort < CalcDetectSigs
+%CalcDetectSigsCellSort - Class for detecting and classifying signals
 %
-%   The CalcDetectSigsClsfy class is a Calc class that detects and
-%   classifies signals in previously identified ROIs.  The signals are
-%   classified into up to three main categories: single peaks, plateaus,
-%   and multi-peaks, based on their frequency components.  Single peaks
-%   represent single higher frequency signals; plateaus represent single
-%   lower frequency signals; and multi-peaks represent plateau signals that
-%   also contain one or more single peaks. For further information about
-%   this algorithm, please refer to <a href="matlab:web('http://dx.doi.org/10.1093/cercor/bhw366', '-browser')">Stobart et al. (2017)</a>, Cerebral Cortex,
-%   doi:10.1093/cercor/bhw366.
+%   The CalcDetectSigsCellSort class is a Calc class that detects and
+%   classifies signals in previously identified ROIs. 
 %
-%   CalcDetectSigsClsfy is a subclass of matlab.mixin.Copyable, which is
-%   itself a subclass of handle, meaning that CalcDetectSigsClsfy objects
+%   CalcDetectSigsCellSort is a subclass of matlab.mixin.Copyable, which is
+%   itself a subclass of handle, meaning that CalcDetectSigsCellSort objects
 %   are actually references to the data contained in the object.  This
 %   allows certain features that are only possible with handle objects,
 %   such as events and certain GUI operations.  However, it is important to
 %   use the copy method of matlab.mixin.Copyable to create a new,
-%   independent object; otherwise changes to a CalcDetectSigsClsfy object
+%   independent object; otherwise changes to a CalcDetectSigsCellSort object
 %   used in one place will also lead to changes in another (perhaps
 %   undesired) place.
 %
-% CalcDetectSigsClsfy public properties
+% CalcDetectSigsCellSort public properties
 %   config          - A scalar ConfigDetectSigsClsfy object
 %   data            - A scalar DataDetectSigsClsfy object
 %   nColsDetect     - The number of columns needed for plotting
 %
-% CalcDetectSigsClsfy public methods
-%   CalcDetectSigsClsfy  - CalcDetectSigsClsfy class constructor
+% CalcDetectSigsCellSort public methods
+%   CalcDetectSigsCellSort  - CalcDetectSigsCellSort class constructor
 %   copy            - Copy MATLAB array of handle objects
 %   plot            - Plot a figure
 %   process         - Run the processing
@@ -63,11 +56,11 @@ classdef CalcDetectSigsClsfy < CalcDetectSigs
         
         %validConfig - Constant, protected property containing the name of
         %   the associated Config class
-        validConfig = {'ConfigDetectSigsClsfy'};
+        validConfig = {'ConfigDetectSigsCellSort'};
         
         %validData - Constant, protected property containing the name of
         %   the associated Data class
-        validData = {'DataDetectSigsClsfy'};
+        validData = {'DataDetectSigsCellSort'};
         
     end
     
@@ -75,14 +68,14 @@ classdef CalcDetectSigsClsfy < CalcDetectSigs
     
     methods
         
-        function cdscObj = CalcDetectSigsClsfy(varargin)
-        %CalcDetectSigsClsfy - CalcDetectSigsClsfy class constructor
+        function cdscObj = CalcDetectSigsCellSort(varargin)
+        %CalcDetectSigsCellSort - CalcDetectSigsCellSort class constructor
         %
-        %   OBJ = CalcDetectSigsClsfy() prompts for all required
-        %   information and creates a CalcDetectSigsClsfy object.
+        %   OBJ = CalcDetectSigsCellSort() prompts for all required
+        %   information and creates a CalcDetectSigsCellSort object.
         %
-        %   OBJ = CalcDetectSigsClsfy(CONFIG, DATA) uses the specified
-        %   CONFIG and DATA objects to construct the CalcDetectSigsClsfy
+        %   OBJ = CalcDetectSigsCellSort(CONFIG, DATA) uses the specified
+        %   CONFIG and DATA objects to construct the CalcDetectSigsCellSort
         %   object. If any of the input arguments are empty, the
         %   constructor will prompt for any required information. The
         %   input arguments must be scalar ConfigDetectSigsClsfy and/or
@@ -97,62 +90,31 @@ classdef CalcDetectSigsClsfy < CalcDetectSigs
             cdscObj = cdscObj@CalcDetectSigs(configIn, dataIn);
             
         end
-        
+                         
+        % -------------------------------------------------------------- %
     end
     
     % ================================================================== %
-    
     methods (Access = protected)
         
-        function varargout = get_fBand(self, frameRate)
-            
-            fBP_norm = ...
-                [self.config.spPassBandMin, self.config.spPassBandMax]/ ...
-                (0.5*frameRate);
-            
-            pbRipple = 1; % dB
-            sbAttenuation = 60; % dB
-            
-            if verLessThan('signal', '6.21')
-                
-                % Calculate the zeros, poles and gain of the filter
-                [z, p, k] = ellip(self.config.spFilterOrder/2, ...
-                    pbRipple, sbAttenuation, fBP_norm);
-                % Convert to second order sections format
-                [sos, g] = zp2sos(z,p,k);
-                % Convert to a dfilt obejct
-                Hd = dfilt.df2tsos(sos,g);
-                varargout{1} = Hd;
-                
-            else
-                fBand = designfilt('bandpassiir', ...
-                    'FilterOrder', self.config.spFilterOrder, ...
-                    'PassbandFrequency1', fBP_norm(1), ...
-                    'PassbandFrequency2', fBP_norm(2), ...
-                    'PassbandRipple', pbRipple, ...
-                    'StopbandAttenuation1', sbAttenuation, ...
-                    'StopbandAttenuation2', sbAttenuation);
-                varargout{1} = fBand;
-            end
-            
+        self = detect_sigs(self, objPI, traces, frameRate, roiNames)
+        
+    % -------------------------------------------------------------- %
+        
+        function annotate_traces(~, ~, ~, varargin)
+            warning('CalcDetectSigsCellSort:AnnotateTraces:NoClsfy', ...
+                'This plot does not produce any output for this class')
         end
         
         % -------------------------------------------------------------- %
-
-        self = detect_sigs(self, objPI, tracesNorm, frameRate, roiNames)
         
-        % -------------------------------------------------------------- %
-        
-        varargout = peakClassMeasure(self, traceNorm, frameRate, fBand, ...
-            roiName, doPlot, flagVersion)
-        
-        % -------------------------------------------------------------- %
-        
-        annotate_traces(self, objPI, hAxTraces, varargin)
-        
-        % -------------------------------------------------------------- %
-        
-        varargout = plot_clsfy(self, hAxes, varargin)
+       function varargout = plot_clsfy(~, ~, ~)
+            warning('CalcDetectSigsCellSort:PlotClsfy:NoClsfy', ...
+                'This plot does not produce any output for this class')
+            if nargout > 0
+                varargout{1} = [];
+            end
+        end
         
         % -------------------------------------------------------------- %
         
@@ -160,23 +122,18 @@ classdef CalcDetectSigsClsfy < CalcDetectSigs
         
         % -------------------------------------------------------------- %
         
-        varargout = annotate_signals(self, objPI, hFig, currROI, params)
+        varargout = plot_ICAsigs(self, objPI, hAx, varargin)
         
         % -------------------------------------------------------------- %
     end
     
     % ================================================================== %
-    
+
     methods (Static, Access = protected)
-        
-        peakData = analyse_peak(trace, frameTime, pk, idx, width, ...
-            prom, type, numPeaks)
-        
-        % -------------------------------------------------------------- %
         
         function flagVersion = check_version()
             
-            className = 'CalcDetectSigsClsfy';
+            className = 'CalcDetectSigsCellSort';
             featureSig = 'Signal_Toolbox';
             toolboxdirSig = 'signal';
             verSig = '6.22';
@@ -194,12 +151,13 @@ classdef CalcDetectSigsClsfy < CalcDetectSigs
 
         end
         
+                
         % -------------------------------------------------------------- %
         
         function configObj = create_config()
         %create_config - Creates an object of the associated Config class
         
-            configObj = ConfigDetectSigsClsfy();
+            configObj = ConfigDetectSigsCellSort();
         
         end
         
@@ -208,15 +166,11 @@ classdef CalcDetectSigsClsfy < CalcDetectSigs
         function dataObj = create_data()
         %create_data - Creates an object of the associated Data class
         
-            dataObj = DataDetectSigsClsfy();
+            dataObj = DataDetectSigsCellSort();
         
         end
         
         % -------------------------------------------------------------- %
-        
-        [idxStart, idxEnd] = peakStartEnd(trace, peakLoc, peakHeight, ...
-            peakProm, varargin)
-        
     end
     
     % ================================================================== %

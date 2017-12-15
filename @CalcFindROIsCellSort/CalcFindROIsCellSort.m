@@ -180,7 +180,7 @@ classdef CalcFindROIsCellSort < CalcFindROIs
         
         % -------------------------------------------------------------- %
         
-        varargout = plot_ICAsigs(self, objPI, hAx, varargin)
+        varargout = plot_ICAtraces(self, objPI, hAx, varargin)
         
         % -------------------------------------------------------------- %
         
