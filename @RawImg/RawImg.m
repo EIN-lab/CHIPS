@@ -254,6 +254,10 @@ classdef (Abstract) RawImg < RawImgHelper
         varargout = exclude_frames(self, badFrames, varargin)
         
         % -------------------------------------------------------------- %
+        
+        varargout = flip(self, varargin)
+        
+        % -------------------------------------------------------------- %
 
         mc = get_mc(self)
 
