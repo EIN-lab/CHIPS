@@ -191,8 +191,8 @@ classdef ConfigDetectSigsCellSort < ConfigDetectSigs
         function self = set.normalization(self, val)
             
             % Check that boolean
-            utils.checks.integer(val, 'ratebin')
-            utils.checks.logical_able(val, 'ratebin')
+            utils.checks.integer(val, 'normalization')
+            utils.checks.logical_able(val, 'normalization')
             
             % Assign value
             self.normalization = logical(val);
@@ -204,9 +204,9 @@ classdef ConfigDetectSigsCellSort < ConfigDetectSigs
         function self = set.plottype(self, val)
             
             % Check that integer between 1 and 4 inclusive
-            utils.checks.integer(val, 'ratebin')
-            utils.checks.positive(val, 'ratebin')
-            utils.checks.less_than(val, 4, true, 'ratebin')
+            utils.checks.integer(val, 'plottype')
+            utils.checks.positive(val, 'plottype')
+            utils.checks.less_than(val, 4, true, 'plottype')
             
             % Assign value
             self.plottype = val;
@@ -217,7 +217,7 @@ classdef ConfigDetectSigsCellSort < ConfigDetectSigs
         function self = set.spike_thresh(self, val)
             
             % Check that the float or int in some reasonable range
-            utils.checks.positive(val, 'ratebin')
+            utils.checks.positive(val, 'spike_thresh')
             
             % Assign value
             self.spike_thresh = val;
@@ -263,7 +263,7 @@ classdef ConfigDetectSigsCellSort < ConfigDetectSigs
         function self = set.background(self, val)
             
             % Check that int and one of 1 or 2
-            utils.checks.integer(val, 'ICuse')
+            utils.checks.integer(val, 'background')
             utils.checks.less_than(val, 2, true, 'background')
             
             % Assign value
