@@ -129,6 +129,18 @@ classdef ConfigFindROIsDummy < Config
             
         end
         
+        % -------------------------------------------------------------- %
+        
+        function self = set.roiNames(self, val)
+            
+            % Check property is a cell array
+            utils.checks.cell_array(val, 'roiNames')
+            
+            % Assign property
+            self.roiNames = val;
+            
+        end
+        
     end
     
     % ================================================================== %

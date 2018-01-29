@@ -169,7 +169,7 @@ classdef CalcFindROIsDummy < CalcFindROIs
             self.isLS = size(roiMask, 1) == 1;
             
             % Give the ROIs some names if they don't already have any
-            if isempty(roiNames) || isempty(roiNames{:})
+            if any(cellfun(@isempty, roiNames))
                 roiNames = utils.create_ROI_names(roiMask, self.is3D);
             end
             
