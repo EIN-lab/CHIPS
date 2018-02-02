@@ -334,6 +334,11 @@ function save_btn(~, ~, imgSeq, mode)
             imgSeq = cast(imgSeq*(2^16), 'uint16');
     end
 
+    % Convert double to uint16 to prevent saving as 64bit TIFF
+    if isa(imgSeq, 'double')
+        imgSeq = uint16(imgSeq);
+    end
+    
     % Save stack using utility function
     utils.saveastiff(imgSeq, filePath, optsTif);
 
