@@ -9,7 +9,7 @@
 % * <matlab:doc('RawImg.ch_calc') |ch_calc| method documentation>
 % * <matlab:doc('RawImg.split1') |split1| method documentation>
 % * <matlab:doc('RawImg.cat_data') |cat_data| function documentation>
-% * <id_ri.html |RawImg| quick start guide>
+% * <./id_ri.html |RawImg| quick start guide>
 
 %% Examples
 % The following examples require the sample images and other files, which
@@ -68,3 +68,7 @@ dim = 4;
 riArray(1:3) = copy(rawImg);
 ri003 = RawImg.cat_data(dim, copy(rawImg), riArray, copy(rawImg));
 nFrames_post = ri003.metadata.nFrames
+
+%%
+%
+% <./index.html Home>

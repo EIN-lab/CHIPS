@@ -22,13 +22,18 @@
 .gitignore
 CHIPS.prj
 CHIPS.vpp
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
 run_tests*.m
 make*.m
 %
 % A single directory in the toolbox folder
 .git
-tests
+_layouts
+assets
 doc/m
+doc/md
+tests
 %
 % A single file in a subfolder of the toolbox folder:
 % example/.svn

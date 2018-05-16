@@ -42,6 +42,13 @@ function varargout = plot(self, objPI, varargin)
 %                       transparent the ROI overlays should appear.  
 %                       [default = 0.6]
 %
+%       'CAxis' ->      An empty, scalar, or length two numeric vector
+%                       corresponding to the desired image colour/intensity
+%                       axis limits. If empty, the image minimum and
+%                       maximum will be used.  If scalar, [0, CAxis] will
+%                       be used.  If length two, CAxis should correspond to
+%                       [CMin, CMax]. [default = []]
+%
 %       'FilledROIs' ->	Logical scalar indicating whether the ROIs should
 %                       be displayed filled or only as an outline. 
 %                       [default = true]
@@ -104,7 +111,7 @@ function varargout = plot(self, objPI, varargin)
 
             case {'ica_traces'}
 
-                hAx = self.plot_ICAsigs(objPI, hAx, ...
+                hAx = self.plot_ICAtraces(objPI, hAx, ...
                     varargin{idxStart:end});
 
             case {'pc_filters'}

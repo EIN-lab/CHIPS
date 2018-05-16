@@ -231,7 +231,7 @@ classdef Test_ProcessedImg < matlab.unittest.TestCase
             % Establish a timer that waits for the input
             tObj = timer();
             tObj.StartDelay = startTime + 2.5;
-            tObj.TimerFcn = @(~, ~) inputemu('key_normal', '2\ENTER');
+            tObj.TimerFcn = @(~, ~) inputemu('key_normal', '3\ENTER');
             
         end
         

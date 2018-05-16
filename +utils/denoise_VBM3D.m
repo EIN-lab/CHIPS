@@ -33,7 +33,7 @@ function [chSeq_dn] = denoise_VBM3D(chSeq, paramsIn)
     end
 
     % Apply forward Variance Stabilizing Transformation
-    SD = std(chSeq(:));
+    SD = utils.nansuite.nanstd(chSeq(:));
     try
         chSeq_dn = GenAnscombe_forward(chSeq, SD);
     catch ME

@@ -94,17 +94,17 @@ classdef CalcDiameterFWHM < CalcDiameterLong
         % -------------------------------------------------------------- %
         
         function [self, pixelWidth] = calc_diameter(self, diamProfile, ...
-                lineRate, t0)
+                lineRate, t0, doInvert)
             
             [self, pixelWidth] = self.calc_diameter_fwhm(diamProfile, ...
-                lineRate, t0);
+                lineRate, t0, doInvert);
             
         end
         
         % -------------------------------------------------------------- %
         
         [self, pixelWidth] = calc_diameter_fwhm(self, diamProfile, ...
-            lineRate, t0);
+            lineRate, t0, doInvert);
         
         % -------------------------------------------------------------- %
         

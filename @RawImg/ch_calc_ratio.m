@@ -44,7 +44,8 @@ narginchk(2, 3);
 [chName] = utils.parse_opt_args({''}, varargin);
 
 % Check that we have exactly 2 channels
-utils.checks.equal(numel(chNums), 2, 'number of supplied channel numbers')
+utils.checks.equal(numel(chNums), 2, ...
+    'number of supplied channel numbers', '2')
 
 % Specify the function for the ratio, and the new class as double to ensure
 % we don't lose any precision

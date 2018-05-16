@@ -181,6 +181,11 @@ function [imgSeq, barLabel] = scaleBar(imgSeq, pixelSize, varargin)
         
         case 'rgb'
             
+            % Apply the colour to all channels, if necessary
+            if isscalar(params.color)
+                params.color = repmat(params.color, 1, 3);
+            end
+            
             for iCol = 1:3
                 imgSeq(barHeight, barLength, iCol, :) = params.color(iCol);
             end
@@ -201,4 +206,4 @@ function [imgSeq, barLabel] = scaleBar(imgSeq, pixelSize, varargin)
     % Create a label for the scale bar
     barLabel = sprintf('%d µm', actLengthUnits);
 
-    end
+end

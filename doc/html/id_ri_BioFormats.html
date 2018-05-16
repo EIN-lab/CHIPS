@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>BioFormats</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-06-23"><meta name="DC.source" content="id_ri_BioFormats.m"><style type="text/css">
+      --><title>BioFormats</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-09-20"><meta name="DC.source" content="id_ri_BioFormats.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,8 +66,8 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>BioFormats</h1><!--introduction--><p>Store raw data from BioFormats images</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Arguments</a></li><li><a href="#3">Details</a></li><li><a href="#4">See Also</a></li><li><a href="#5">Examples</a></li></ul></div><h2>Usage<a name="1"></a></h2><pre class="language-matlab">OBJ = BioFormats(FILENAME, CHS, CAL)
-</pre><h2>Arguments<a name="2"></a></h2><div><ul><li><tt>FILENAME</tt> is the original filename (including the path) of this <tt>BioFormats</tt> object.</li><li><tt>CHS</tt> is a scalar structure that contains information about the meaning of the image channels.</li><li><tt>CAL</tt> is a scalar <tt>CalibrationPixelSize</tt> object.</li></ul></div><h2>Details<a name="3"></a></h2><p><tt>BioFormats</tt> objects are used to contain all raw image data and metadata from Bio-Formats Tif images.   This class relies on existing code from the Bio-Formats library.  For more information, please visit <a href="http://www.openmicroscopy.org/site/products/bio-formats">http://www.openmicroscopy.org/site/products/bio-formats</a>.</p><h2>See Also<a name="4"></a></h2><div><ul><li><a href="matlab:doc('RawImg')"><tt>RawImg</tt> class documentation</a></li><li><a href="matlab:doc('Metadata')"><tt>Metadata</tt> class documentation</a></li><li><a href="id_md_Metadata.html"><tt>Metadata</tt> quick start guide</a></li><li><a href="matlab:doc('CalibrationPixelSize')"><tt>CalibrationPixelSize</tt> class documentation</a></li><li><a href="id_md_Calibration.html"><tt>CalibrationPixelSize</tt> quick start guide</a></li></ul></div><h2>Examples<a name="5"></a></h2><p>The following examples require the sample images and other files, which can be downloaded manually, from the University of Zurich website (<a href="http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html">http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html</a>), or automatically, by running the function <tt>utils.download_example_imgs()</tt>.</p><p>In addition, loading Bio-Formats images requires prior installation of the Bio-Formats Java library, which can be downloaded manually from the Open Microscopy Environment website (<a href="'http://www.openmicroscopy.org/site/products/bio-formats">'http://www.openmicroscopy.org/site/products/bio-formats</a>), or automatically by running the function <tt>utils.install_bfmatlab()</tt>.</p><p><h3>Create a <tt>BioFormats</tt> object interactively</h3></p><p>The following example will illustrate the process of creating a <tt>BioFormats</tt> object interactively.  It is possible to do so by using the <tt>from_files()</tt> method, rather than the constructor (as is demonstrated in this section).</p><pre class="language-matlab"><span class="comment">% Call the BioFormats constructor</span>
+  </style></head><body><div class="content"><h1>BioFormats</h1><!--introduction--><p>Store raw data from BioFormats images</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Arguments</a></li><li><a href="#3">Details</a></li><li><a href="#4">See Also</a></li><li><a href="#5">Examples</a></li></ul></div><h2 id="1">Usage</h2><pre class="language-matlab">OBJ = BioFormats(FILENAME, CHS, CAL)
+</pre><h2 id="2">Arguments</h2><div><ul><li><tt>FILENAME</tt> is the original filename (including the path) of this <tt>BioFormats</tt> object.</li><li><tt>CHS</tt> is a scalar structure that contains information about the meaning of the image channels.</li><li><tt>CAL</tt> is a scalar <tt>CalibrationPixelSize</tt> object.</li></ul></div><h2 id="3">Details</h2><p><tt>BioFormats</tt> objects are used to contain all raw image data and metadata from Bio-Formats Tif images.   This class relies on existing code from the Bio-Formats library.  For more information, please visit <a href="http://www.openmicroscopy.org/site/products/bio-formats">http://www.openmicroscopy.org/site/products/bio-formats</a>.</p><h2 id="4">See Also</h2><div><ul><li><a href="matlab:doc('RawImg')"><tt>RawImg</tt> class documentation</a></li><li><a href="matlab:doc('Metadata')"><tt>Metadata</tt> class documentation</a></li><li><a href="./id_md_Metadata.html"><tt>Metadata</tt> quick start guide</a></li><li><a href="matlab:doc('CalibrationPixelSize')"><tt>CalibrationPixelSize</tt> class documentation</a></li><li><a href="./id_md_Calibration.html"><tt>CalibrationPixelSize</tt> quick start guide</a></li></ul></div><h2 id="5">Examples</h2><p>The following examples require the sample images and other files, which can be downloaded manually, from the University of Zurich website (<a href="http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html">http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html</a>), or automatically, by running the function <tt>utils.download_example_imgs()</tt>.</p><p>In addition, loading Bio-Formats images requires prior installation of the Bio-Formats Java library, which can be downloaded manually from the Open Microscopy Environment website (<a href="'http://www.openmicroscopy.org/site/products/bio-formats">'http://www.openmicroscopy.org/site/products/bio-formats</a>), or automatically by running the function <tt>utils.install_bfmatlab()</tt>.</p><p><h3>Create a <tt>BioFormats</tt> object interactively</h3></p><p>The following example will illustrate the process of creating a <tt>BioFormats</tt> object interactively.  It is possible to do so by using the <tt>from_files()</tt> method, rather than the constructor (as is demonstrated in this section).</p><pre class="language-matlab"><span class="comment">% Call the BioFormats constructor</span>
 bf001 = BioFormats()
 </pre><p>Use the interactive dialogue box to select the raw image file <tt>cellscan_ome_tiff.ome.tif</tt>.</p><p><img vspace="5" hspace="5" src="bf_sel_rawimg.png" alt=""> </p><p>The next stage is to define the 'meaning' of the image channels.  The first channel represents a cytosolic calcium sensor expressed in astrocytes.  Press three and then enter to complete the selection.</p><pre>----- What is shown on channel 1? -----</pre><pre>  &gt;&gt; 0) &lt;blank&gt;
      1) blood_plasma
@@ -98,7 +98,7 @@ bf002 = BioFormats(fnST002, channels);
 bf002.plot()
 </pre><pre class="codeoutput">Reading series #1
     ....................
-</pre><img vspace="5" hspace="5" src="id_ri_BioFormats_01.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+</pre><img vspace="5" hspace="5" src="id_ri_BioFormats_01.png" alt=""> <p><a href="./index.html">Home</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% BioFormats
 % Store raw data from BioFormats images
@@ -122,9 +122,9 @@ bf002.plot()
 %% See Also
 % * <matlab:doc('RawImg') |RawImg| class documentation>
 % * <matlab:doc('Metadata') |Metadata| class documentation>
-% * <id_md_Metadata.html |Metadata| quick start guide>
+% * <./id_md_Metadata.html |Metadata| quick start guide>
 % * <matlab:doc('CalibrationPixelSize') |CalibrationPixelSize| class documentation>
-% * <id_md_Calibration.html |CalibrationPixelSize| quick start guide>
+% * <./id_md_Calibration.html |CalibrationPixelSize| quick start guide>
 
 %% Examples
 % The following examples require the sample images and other files, which
@@ -207,5 +207,8 @@ bf002 = BioFormats(fnST002, channels);
 % View the SCIM_Tif object 
 bf002.plot()
 
+%%
+%
+% <./index.html Home>
 ##### SOURCE END #####
 --></body></html>

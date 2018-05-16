@@ -2,7 +2,6 @@ classdef Test_XSectScan < matlab.unittest.TestCase
     %TEST_XSECTSCAN Summary of this class goes here
     %   Detailed explanation goes here
 
-
     % ================================================================== %
     
     methods (Test)
@@ -59,28 +58,24 @@ classdef Test_XSectScan < matlab.unittest.TestCase
         function testProcess(self)
             
             % Test that there are no errors 
-            XSectScanObj3 = copy(Test_XSectScan.XSectScanObj);
-            XSectScanObj3.process()
+            XSectScanObj3a = copy(Test_XSectScan.XSectScanObj);
+            Test_XSectScan.processing_tests(self, XSectScanObj3a)
             
-            % Test that the states are correcty assigned
-            self.verifyEqual(XSectScanObj3.state, 'processed')
-            self.verifyEqual(XSectScanObj3.calcDiameter.data.state, ...
-                'processed')
+        end
+        
+        % -------------------------------------------------------------- %
+        
+        function testProcessDP(self)
             
-            % Test the plotting
-            hFig = XSectScanObj3.plot();
-            self.verifyTrue(ishghandle(hFig), ['plot does not ' ...
-                'produce a valid graphics object handle.'])
-            close(hFig)
+            % Setup for testing the isDarkPlasma flag
+            XSectScanObj3b = copy(Test_XSectScan.XSectScanObj);
+            XSectScanObj3b.rawImg.rawdata = ...
+                max(XSectScanObj3b.rawImg.rawdata(:)) - ...
+                    XSectScanObj3b.rawImg.rawdata;
+            XSectScanObj3b.isDarkPlasma = true;
             
-            % Run the tests for plotList
-            Test_ProcessedImg.test_plotList(self, XSectScanObj3);
-            
-            % Test the output
-            fnOutput = 'XSectScan.csv';
-            dirCheck = 'XSectScan';
-            Test_ProcessedImg.check_output_data(self, XSectScanObj3, ...
-                fnOutput, dirCheck);
+            % Run the tests
+            Test_XSectScan.processing_tests(self, XSectScanObj3b)
             
         end
         
@@ -174,6 +169,36 @@ classdef Test_XSectScan < matlab.unittest.TestCase
     % ================================================================== %
     
     methods (Static)
+        
+        function processing_tests(vrfy, objXSS)
+            
+            % Test that there are no errors 
+            objXSS = copy(Test_XSectScan.XSectScanObj);
+            objXSS.process()
+            
+            % Test that the states are correcty assigned
+            vrfy.verifyEqual(objXSS.state, 'processed')
+            vrfy.verifyEqual(objXSS.calcDiameter.data.state, ...
+                'processed')
+            
+            % Test the plotting
+            hFig = objXSS.plot();
+            vrfy.verifyTrue(ishghandle(hFig), ['plot does not ' ...
+                'produce a valid graphics object handle.'])
+            close(hFig)
+            
+            % Run the tests for plotList
+            Test_ProcessedImg.test_plotList(vrfy, objXSS);
+            
+            % Test the output
+            fnOutput = 'XSectScan.csv';
+            dirCheck = 'XSectScan';
+            Test_ProcessedImg.check_output_data(vrfy, objXSS, ...
+                fnOutput, dirCheck);
+            
+        end
+        
+        % -------------------------------------------------------------- %
         
         function tArray = select_xsectscan(varargin)
             

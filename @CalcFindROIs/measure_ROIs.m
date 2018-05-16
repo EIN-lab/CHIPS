@@ -30,14 +30,18 @@ narginchk(2, 2);
 % Check the ProcessedImg
 self.check_objPI(objPI);
 
-% Pull out any properties that we'll need
-imgSeq = squeeze(objPI.rawImg.rawdata(:,:,objPI.channelToUse,:));
-propagateNaNs = objPI.calcMeasureROIs.config.propagateNaNs;
-
 % Get necessary data from calcFindROIs
 is3D = self.is3D;
 roiMask = self.data.roiMask;
 
+% Pull out any properties that we'll need and reshape data if necessary
+propagateNaNs = objPI.calcMeasureROIs.config.propagateNaNs;
+[isLS] = self.get_LS(objPI);
+if isLS
+    [~, imgSeq] = self.get_LS(objPI, 'mode', 'full');
+else
+    imgSeq = squeeze(objPI.rawImg.rawdata(:,:,objPI.channelToUse,:));
+end
 %%
 
 % Check for the image processing toolbox

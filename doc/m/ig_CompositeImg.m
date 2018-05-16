@@ -23,9 +23,9 @@
 %% See Also
 % * <matlab:doc('CompositeImg') |CompositeImg| class documentation>
 % * <matlab:doc('ImgGroup') |ImgGroup| class documentation>
-% * <ig_ImgGroup.html |ImgGroup| quick start guide>
+% * <./ig_ImgGroup.html |ImgGroup| quick start guide>
 % * <matlab:doc('ProcessedImg') |ProcessedImg| class documentation>
-% * <pi_.html |ProcessedImg| quick start guide>
+% * <./pi_.html |ProcessedImg| quick start guide>
 % * <matlab:doc('Config') |Config| class documentation>
 % * <matlab:doc('RawImgComposite') |RawImgComposite| class documentation>
 
@@ -46,14 +46,15 @@
 %   ci01 = CompositeImg.from_files()
 %
 % In order to load a raw image file, we must first select the type of
-% |RawImg| to create.  Press 2 and then enter to select the SCIM_Tif.
+% |RawImg| to create.  Press three and then enter to select the SCIM_Tif.  
 %
 %  ----- What type of RawImg would you like to load? -----
 %  
 %    >> 1) BioFormats
-%       2) SCIM_Tif
+%       2) RawImgDummy
+%       3) SCIM_Tif
 %  
-%  Select a format: 2
+%  Select a format: 3
 %
 % Then, use the interactive dialogue box to select the raw image file
 % |xsectscan_scim.tif|, which should be located in the subfolder
@@ -343,3 +344,7 @@ fID02 = fopen(fnCSV02{end}{1}, 'r');
 fileContents02 = textscan(fID02, '%s');
 fileContents02{1}{1:5}
 fclose(fID02);
+
+%%
+%
+% <./index.html Home>

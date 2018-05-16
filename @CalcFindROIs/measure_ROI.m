@@ -22,8 +22,8 @@ for jPixel = 1:nPixels
     traceArray(jPixel, :) = imgSeq(yIdx(jPixel), xIdx(jPixel), :);
 end
 
-% Remove the infs and NaNs from the array
-if propagateNaNs
+% Remove the Infs and NaNs from the array
+if ~propagateNaNs
     traceInf = ~isfinite(traceArray);
     traceArray(traceInf) = 0;
 end

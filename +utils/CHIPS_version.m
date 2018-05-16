@@ -28,9 +28,9 @@ function varargout = CHIPS_version()
 narginchk(0, 0);
 
 verMajor = 1; %MAJOR_VER
-verMinor = 0; %MINOR_VER
-verBug = 4; %BUG_VER
-verBuild = 43; %BUILD_VER
+verMinor = 1; %MINOR_VER
+verBug = 0; %BUG_VER
+verBuild = 64; %BUILD_VER
 
 verStr = sprintf('%d.%d.%d.%d', verMajor, verMinor, verBug, verBuild);
 

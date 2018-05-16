@@ -23,6 +23,7 @@ classdef FrameScan < StreakScan & ICalcDiameterLong
 %   calcVelocity    - A scalar CalcVelocityStreaks object
 %   colsToUseDiam   - The columns from the raw image to use for diameter
 %   colsToUseVel    - The columns from the raw image to use for velocity
+%   isDarkPlasma    - Flag for whether the plasma is dark or bright
 %   isDarkStreaks   - Flag for whether the streaks are dark or bright
 %   name            - The object name
 %   plotList        - The list of plot options for each Calc
@@ -112,15 +113,6 @@ classdef FrameScan < StreakScan & ICalcDiameterLong
     
     properties (Dependent, Access = protected)
         lineRate
-    end
-    
-    % ------------------------------------------------------------------ %
-    
-    properties (Transient, Access = protected)
-        
-        %lhCalcDiameter - A listener handle for lhCalcDiameter ProcessNow
-        lhCalcDiameter
-        
     end
     
     % ================================================================== %
@@ -275,6 +267,11 @@ classdef FrameScan < StreakScan & ICalcDiameterLong
             diamProfile = permute(sum(...
                 self.rawImg.rawdata(:, colsToUse, channelToUse, ...
                 :),2), [4 1 2 3]);
+            % Invert the image sequence if necessary
+            if self.isDarkPlasma
+                diamProfile = utils.nansuite.nanmax(diamProfile(:)) - ...
+                    diamProfile;
+            end
             lineRate = self.lineRate;
             
         end
@@ -339,17 +336,6 @@ classdef FrameScan < StreakScan & ICalcDiameterLong
             
             % Set the property
             self.calcDiameter = calcDiameter;
-            
-            % Attach a listener to process the object when the user
-            % requests this (via the Config.opt_config GUI.  Make sure we
-            % delete any old listeners, because otherwise the callback
-            % might get executed many times.
-            if ~isempty(self.lhCalcDiameter) %#ok<MCSUP>
-                delete(self.lhCalcDiameter) %#ok<MCSUP>
-            end
-            self.lhCalcDiameter = addlistener(...
-                self.calcDiameter.config, 'ProcessNow', ...
-                @ProcessedImg.process_now); %#ok<MCSUP>
             
         end
         

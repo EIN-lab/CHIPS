@@ -20,9 +20,9 @@
 %% See Also
 % * <matlab:doc('Metadata') |Metadata| class documentation>
 % * <matlab:doc('CalibrationPixelSize') |CalibrationPixelSize| class documentation>
-% * <id_md_Calibration.html |CalibrationPixelSize| quick start guide>
+% * <./id_md_Calibration.html |CalibrationPixelSize| quick start guide>
 % * <matlab:doc('RawImg') |RawImg| class documentation>
-% * <id_ri.html |RawImg| quick start guide>
+% * <./id_ri.html |RawImg| quick start guide>
 
 %% Examples
 % The following examples require the sample images and other files, which
@@ -115,3 +115,7 @@ calibration = CalibrationPixelSize.load(fnCalibration);
 
 % Create the Metadata object without any interaction
 md002 = Metadata(imgSize, acq, channels, calibration)
+
+%%
+%
+% <./index.html Home>

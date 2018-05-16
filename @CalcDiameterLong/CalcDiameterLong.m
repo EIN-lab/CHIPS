@@ -92,16 +92,19 @@ classdef (Abstract) CalcDiameterLong < CalcDiameter
         
             % Pull out some properties
             pixelSize = objPI.rawImg.metadata.pixelSize;
-            [diamProfile, lineRate] = objPI.get_diamProfile();
             t0 = objPI.rawImg.t0;
+            doInvert = objPI.isDarkPlasma;
+            
+            % Extract diameter profile
+            [diamProfile, lineRate] = objPI.get_diamProfile();
             
             % Adjust diamProfile as necessary
             [diamProfile, lineRate] = self.adjust_diamProfile(...
                 diamProfile, lineRate);
             
-            % Do the calculation            
+            % Do the calculation
             [self, pixelWidth] = self.calc_diameter(diamProfile, ...
-                lineRate, t0);
+                lineRate, t0, doInvert);
             
             % Do the post-processing
             self = self.post_process_diameter(pixelWidth, pixelSize);

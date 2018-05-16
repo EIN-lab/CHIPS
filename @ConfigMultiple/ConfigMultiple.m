@@ -115,7 +115,7 @@ classdef (Abstract) ConfigMultiple < ConfigHelper & dynamicprops
             
             % Pre-allocate logical arrays to assist with matching arguments
             isMatch = repmat({false([1, nConfigs])}, [1, nConfigs]);
-            
+                        
             % Loop through all the configs dealt with by this class
             for iConfig = 1:nConfigs
                 

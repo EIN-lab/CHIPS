@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>Motion Correction</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-06-23"><meta name="DC.source" content="id_pp_motion_corr.m"><style type="text/css">
+      --><title>Motion Correction</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-09-20"><meta name="DC.source" content="id_pp_motion_corr.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>Motion Correction</h1><!--introduction--><p>Motion correction is designed to correct for motion artefacts in the raw images that often result from movement of the sample.  This may occur through microscope drift or movement of the sample (e.g. animal) itself.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">See Also</a></li><li><a href="#2">Examples</a></li></ul></div><h2>See Also<a name="1"></a></h2><div><ul><li><a href="matlab:doc('utils.motion_correct')">Motion correction utility function documentation</a></li><li><a href="id_ri.html"><tt>RawImg</tt> quick start guide</a></li></ul></div><h2>Examples<a name="2"></a></h2><p>The following examples require the sample images and other files, which can be downloaded manually, from the University of Zurich website (<a href="http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html">http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html</a>), or automatically, by running the function <tt>utils.download_example_imgs()</tt>.</p><p><h3>Prepare a <tt>RawImg</tt> for use in these examples</h3></p><pre class="codeinput"><span class="comment">% Prepare a rawImg for use in these examples</span>
+  </style></head><body><div class="content"><h1>Motion Correction</h1><!--introduction--><p>Motion correction is designed to correct for motion artefacts in the raw images that often result from movement of the sample.  This may occur through microscope drift or movement of the sample (e.g. animal) itself.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">See Also</a></li><li><a href="#2">Examples</a></li></ul></div><h2 id="1">See Also</h2><div><ul><li><a href="matlab:doc('utils.motion_correct')">Motion correction utility function documentation</a></li><li><a href="./id_ri.html"><tt>RawImg</tt> quick start guide</a></li></ul></div><h2 id="2">Examples</h2><p>The following examples require the sample images and other files, which can be downloaded manually, from the University of Zurich website (<a href="http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html">http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html</a>), or automatically, by running the function <tt>utils.download_example_imgs()</tt>.</p><p><h3>Prepare a <tt>RawImg</tt> for use in these examples</h3></p><pre class="codeinput"><span class="comment">% Prepare a rawImg for use in these examples</span>
 fnRawImg = fullfile(utils.CHIPS_rootdir, <span class="string">'tests'</span>, <span class="string">'res'</span>, <span class="keyword">...</span>
     <span class="string">'cellscan_scim.tif'</span>);
 channels = struct(<span class="string">'Ca_Cyto_Astro'</span>, 1);
@@ -90,13 +90,13 @@ Warning: Correlation is 0.843 and lower than the specified minimal correlation 0
   In utils.convnfft.calcShifts&gt;pattern_matching (line 115)
   In parallel_function&gt;make_general_channel/channel_general (line 914)
   In remoteParallelFunction (line 38)
-Correcting motion:  39% [================&gt;                         ]
+Correcting motion:  51% [=====================&gt;                    ]
 Warning: Correlation is 0.843 and lower than the specified minimal correlation 0.843.
 &gt; In utils.convnfft.calcShifts&gt;pmatch (line 159)
   In utils.convnfft.calcShifts&gt;pattern_matching (line 115)
   In parallel_function&gt;make_general_channel/channel_general (line 914)
   In remoteParallelFunction (line 38)
-Correcting motion:  81% [=================================&gt;        ]
+Correcting motion:  80% [=================================&gt;        ]
 Warning: Correlation is 0.843 and lower than the specified minimal correlation 0.843.
 &gt; In utils.convnfft.calcShifts&gt;pmatch (line 159)
   In utils.convnfft.calcShifts&gt;pattern_matching (line 115)
@@ -111,13 +111,11 @@ riArray = copy(riArray);
 <span class="comment">% This code requires the Parallel Computing Toolbox to run in parallel</span>
 riArray = riArray.motion_correct(<span class="string">'useParallel'</span>, true);
 isMC_array = [riArray(:).isMotionCorrected]
-</pre><pre class="codeoutput">Motion correcting array: 100% [====================================]
-
+</pre><pre class="codeoutput">Motion correcting array:  67% [=======================&gt;            ]
 isMC_array =
-
-     1     1     1
-
-</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+  1&times;3 logical array
+   1   1   1
+</pre><p><a href="./index.html">Home</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% Motion Correction
 % Motion correction is designed to correct for motion artefacts in the raw
@@ -126,7 +124,7 @@ isMC_array =
 
 %% See Also
 % * <matlab:doc('utils.motion_correct') Motion correction utility function documentation>
-% * <id_ri.html |RawImg| quick start guide>
+% * <./id_ri.html |RawImg| quick start guide>
 
 %% Examples
 % The following examples require the sample images and other files, which
@@ -180,5 +178,8 @@ riArray = copy(riArray);
 riArray = riArray.motion_correct('useParallel', true);
 isMC_array = [riArray(:).isMotionCorrected]
 
+%%
+%
+% <./index.html Home>
 ##### SOURCE END #####
 --></body></html>

@@ -5,7 +5,7 @@
 
 %% See Also
 % * <matlab:doc('utils.motion_correct') Motion correction utility function documentation>
-% * <id_ri.html |RawImg| quick start guide>
+% * <./id_ri.html |RawImg| quick start guide>
 
 %% Examples
 % The following examples require the sample images and other files, which
@@ -58,3 +58,7 @@ riArray = copy(riArray);
 % This code requires the Parallel Computing Toolbox to run in parallel
 riArray = riArray.motion_correct('useParallel', true);
 isMC_array = [riArray(:).isMotionCorrected]
+
+%%
+%
+% <./index.html Home>

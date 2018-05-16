@@ -53,6 +53,9 @@ classdef (Abstract) CalcFindROIs < Calc & IMeasureROIs
     properties (Abstract, Access = protected)
         %is3D - Whether or not the ROI mask is 3D
         is3D
+        
+        %isLS - Whether or not the RawImg is a linescan
+        isLS
     end
     
     % ------------------------------------------------------------------ %
@@ -88,6 +91,16 @@ classdef (Abstract) CalcFindROIs < Calc & IMeasureROIs
             % Call Calc (i.e. parent class) constructor
             CalcFindROIsObj = CalcFindROIsObj@Calc(configIn, dataIn);
             
+        end
+        
+        % -------------------------------------------------------------- %
+        
+        function [isLS, varargout] = get_LS(self, ~, varargin)
+        %get_LS - Get the linescan
+        
+            isLS = self.isLS;
+            varargout(:) = {[]};
+
         end
         
         % -------------------------------------------------------------- %
@@ -140,6 +153,10 @@ classdef (Abstract) CalcFindROIs < Calc & IMeasureROIs
     
     methods (Access = protected)
         
+        varargout = get_diamProfile(self, objPI, varargin)
+                       
+        % -------------------------------------------------------------- %
+        
         varargout = plot_imgs(self, objPI, hAxes, varargin)
                        
         % -------------------------------------------------------------- %
@@ -148,8 +165,8 @@ classdef (Abstract) CalcFindROIs < Calc & IMeasureROIs
         
         % -------------------------------------------------------------- %
         
-        function varargout = plot_ICAsigs(~, ~, ~)
-            warning('CalcFindROIs:PlotICASigs:NoICAs', ...
+        function varargout = plot_ICAtraces(~, ~, ~)
+            warning('CalcFindROIs:PlotICATraces:NoICAs', ...
                 'This plot does not produce any output for this class')
             if nargout > 0
                 varargout{1} = [];

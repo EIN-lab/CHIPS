@@ -87,6 +87,7 @@ classdef Test_CalcDetectSigs_params < matlab.unittest.TestCase
             wngState = warning('off', 'CalcFindROIs:MeasureROIs:NoROIs');
             warning('off', 'CalcMeasureROIs:PlotTraces:NoROIsFound')
             warning('off', 'CalcDetectSigsClsfy:DetectSigs:NoROIs');
+            warning('off', 'CalcDetectSigsCellSort:DetectSigs:NoROIs');
             warning('off', 'CalcDetectSigsClsfy:DetectSigs:EmptyROI')
             warning('off','CalcDetectSigs:PlotSignals:NoROIsFound')
             

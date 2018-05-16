@@ -33,8 +33,9 @@ function varargout = plot(self, varargin)
 %
 %       'signals' ->    A series of figures showing detail on the signals 
 %                       detection and classification process. One figure is
-%                       produced for every ROI. These figures are only
-%                       relevant when using CalcDetectSigsClsfy.
+%                       produced for every ROI for CalcDetectSigsClsfy
+%                       class. For CalcDetectSigsCellSort single plot is
+%                       produced.
 %
 %       'rois' ->       A figure showing the image ROIs.
 %
@@ -51,12 +52,24 @@ function varargout = plot(self, varargin)
 %                       transparent the ROI overlays should appear.  
 %                       [default = 0.6]
 %
-%       'doWholeFrame' -> Logical scalar indicating whether to display the
-%                       whole frame trace(s). [default = true]
+%       'annotateSigs'  -> A boolean flag indiciating whether to add
+%                       annotations to plots of individual ROI's responses.
+%                       Applicable for plot type 'signals' only. 
+%                       [default = true]
+%
+%       'CAxis' ->      An empty, scalar, or length two numeric vector
+%                       corresponding to the desired image colour/intensity
+%                       axis limits. If empty, the image minimum and
+%                       maximum will be used.  If scalar, [0, CAxis] will
+%                       be used.  If length two, CAxis should correspond to
+%                       [CMin, CMax]. [default = []]
 %
 %       'doHeatmap' ->  Logical scalar indicating whether to display the
 %                       traces as a heatmap or regular 2d lines. 
 %                       [default = true if > 15 ROIs, otherwise false]
+%
+%       'doWholeFrame' -> Logical scalar indicating whether to display the
+%                       whole frame trace(s). [default = true]
 %
 %       'FilledROIs' ->	Logical scalar indicating whether the ROIs should
 %                       be displayed filled or only as an outline. 
@@ -148,11 +161,7 @@ function varargout = plot(self, varargin)
             
         case {'video'}
             
-            tempRawData = self.rawImg.rawdata(:,:,self.channelToUse,:);
-            CAxis = [min(tempRawData(:)) max(tempRawData(:))];
-            clear tempRawData
-            self.calcFindROIs.plot(self, 'video', 'CAxis', CAxis, ...
-                varargin{idxStart:end});
+            self.calcFindROIs.plot(self, 'video', varargin{idxStart:end});
             
         case {'pc_filters'}
             

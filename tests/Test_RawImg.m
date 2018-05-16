@@ -126,7 +126,38 @@ classdef Test_RawImg < matlab.unittest.TestCase
                 [nFramesUse, nFrames - nFramesUse]);
             riObj = riObj.downsample(4);
             szPre = size(riObj.rawdata);
+            % ----------------------------------------------------------- %
+            % Run Denoising on Nan corrupted Object
+            riObjNan = copy(riObj);
             
+            % Nans can be defined only in double type
+            riObjNan.rawdata = double(riObjNan.rawdata);
+            
+            % Read out data shape
+            imShape = size(riObjNan.rawdata);
+            
+            % Create a random mask
+            nanM = randi([0 1], imShape(1), imShape(2));
+            
+            % Create random integer to select frame number
+            ind = randi([1 imShape(4)]);
+            
+            % Create matrix that will be corrupted with nans
+            testM = riObjNan.rawdata(:, :, 1,  ind);
+            % goodM = testM; % Save the matrix for later use
+            
+            % Corrupt matrix with randomly distributed nans
+            testM(nanM == 1) = nan;
+            
+            % Put the frames to the initial object 
+            riObjNan.rawdata(:, :, 1, ind) = testM;
+            
+            % Verify that denoising works even with Nans
+            self.verifyWarningFree(@() riObjNan.denoise());
+            
+            % Clear Nan object
+            clear riObjNan
+            % ----------------------------------------------------------- %
             % Test that there are no errors/warnings
             self.verifyWarningFree(@() riObj.denoise());
             dataOut = riObj.rawdata;

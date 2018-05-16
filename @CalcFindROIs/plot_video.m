@@ -15,6 +15,12 @@ function plot_video(self, objPI, varargin)
 %   You should have received a copy of the GNU General Public License 
 %   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+% Setup the default axis scaling
+tempRawData = objPI.rawImg.rawdata(:,:,objPI.channelToUse,:);
+CAxis = [utils.nansuite.nanmin(tempRawData(:)), ...
+    utils.nansuite.nanmax(tempRawData(:))];
+clear tempRawData
+
 % Initialise a progress bar
 isParallel = utils.is_parallel();
 isWorker = utils.is_on_worker();
@@ -38,7 +44,7 @@ parfor iFrame = 1:nFrames
 
     % Prepare the image of the current frame
     imgFrame = self.plot_ROI_img(objPI, 'FilledROIs', false, ...
-        varargin{:}, 'FrameNum', iFrame); %#ok<PFBNS>
+        'CAxis', CAxis, varargin{:}, 'FrameNum', iFrame); %#ok<PFBNS>
 
     % Add the current frame to the image stack
     imgStack(:,:,:,iFrame) = imgFrame;

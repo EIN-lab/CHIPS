@@ -42,16 +42,32 @@ dflts = cell2struct(pValues, pNames);
 params = utils.parse_params(dflts, varargin{:});
 
 % Extract the parameters from the ProcessedImg object
-refImg = objPI.get_refImg(varargin{:});
+[refImg, isLS] = objPI.get_refImg(varargin{:});
 pixelSize = objPI.rawImg.metadata.pixelSize;
 [params.plotROIs, params.nROIs] = objPI.calcMeasureROIs.get_plotROIs(...
     params.plotROIs);
+
+% Check the CAxis
+params.CAxis = utils.checks.check_cAxis(params.CAxis, refImg);
 
 % Select if we plot individual segments or groups
 if ~params.Group
     roiMask = self.data.roiMask;
 else
     roiMask = self.data.roiGroup;
+end
+
+% Special reshaping to plot linescan masks
+wngState = warning();
+if isLS
+    roiMask = squeeze(roiMask);
+    if self.is3D
+        roiMask = roiMask';
+    end
+    
+    % Suppress warnings due to linescan ROI
+    warning('off', 'ResizeImg:Resizing');
+    warning('off', 'ResizeImg:NonUniform');
 end
 
 % Check that scale of mask and data is the same
@@ -62,6 +78,9 @@ if ~isSameSize
     [yDimOrig, xDimOrig] = size(refImg(:,:,1));
     roiMask = utils.resize_img(roiMask, [yDimOrig, xDimOrig]);
 end
+
+%Re-enable warnings
+warning(wngState);
 
 % Call a sub function to magically prepare the ROIs, either everything or
 % only those ROIs that feature in the relevant frame
@@ -80,20 +99,19 @@ end
 % Prepare the reference image
 hasCAxisLim = ~isempty(params.CAxis);
 extraArgs = {};
-cLims = [min(refImg(:)), max(refImg(:))];
 if hasCAxisLim
-    extraArgs = [extraArgs, 'color', params.CAxis(end)];
-    cLims = [0 params.CAxis];
+    extraArgs = ['color', params.CAxis(end), extraArgs];
 end
 [refImgSc, barLabel] = utils.scaleBar(refImg, pixelSize, extraArgs{:});
 
 % Combine the reference image and ROI overlay
 if ~isempty(roiImg)
-    combinedImg = roiImg + utils.sc_pkg.sc(refImgSc, 'gray', cLims);
+    combinedImg = roiImg + utils.sc_pkg.sc(refImgSc, 'gray', params.CAxis);
 else
-    combinedImg = utils.sc_pkg.sc(refImgSc, 'gray', cLims);
+    combinedImg = utils.sc_pkg.sc(refImgSc, 'gray', params.CAxis);
 end
 
+% Set any saturated values to 1
 maskTooBig = combinedImg(:) > 1;
 combinedImg(maskTooBig) = 1;
 

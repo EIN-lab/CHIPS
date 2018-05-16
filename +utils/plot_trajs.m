@@ -23,7 +23,7 @@ function varargout = plot_trajs(varargin)
 % Check the first argument to see if it's an axes
 idxOffset = 0;
 % hasAxes = nargin > 2 && ishghandle(varargin{1}) && ...
-%     isgraphics(varargin{1}, 'axes');
+%     all(strcmp(get(varargin{1}, 'type'), 'axes'));
 % if hasAxes
 %     hAxes = varargin{1};
 %     idxOffset = 1;

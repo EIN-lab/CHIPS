@@ -99,15 +99,6 @@ classdef (Abstract) StreakScan < ProcessedImg & ICalcVelocityStreaks
         
     end
     
-    % ------------------------------------------------------------------ %
-    
-    properties (Transient, Access = protected)
-        
-        %lhCalcVelocity - A listener handle for calcVelocity ProcessNow
-        lhCalcVelocity
-        
-    end
-    
     % ================================================================== %
     
     methods
@@ -265,17 +256,6 @@ classdef (Abstract) StreakScan < ProcessedImg & ICalcVelocityStreaks
             
             % Set the property
             self.calcVelocity = calcVelocity;
-            
-            % Attach a listener to process the object when the user
-            % requests this (via the Config.opt_config GUI.  Make sure we
-            % delete any old listeners, because otherwise the callback
-            % might get executed many times.
-            if ~isempty(self.lhCalcVelocity) %#ok<MCSUP>
-                delete(self.lhCalcVelocity) %#ok<MCSUP>
-            end
-            self.lhCalcVelocity = addlistener(...
-                self.calcVelocity.config, 'ProcessNow', ...
-                @ProcessedImg.process_now); %#ok<MCSUP>
             
         end
         

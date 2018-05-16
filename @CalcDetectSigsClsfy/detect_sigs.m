@@ -1,4 +1,4 @@
-function self = detect_sigs(self, tracesNorm, frameRate, roiNames)
+function self = detect_sigs(self, objPI, tracesNorm, frameRate, roiNames)
 %detect_sigs - Detect the signals
 
 %   Copyright (C) 2017  Matthew J.P. Barrett, Kim David Ferrari et al.
@@ -30,7 +30,7 @@ end
 if nROIs < 1
     warning('CalcDetectSigsClsfy:DetectSigs:NoROIs', ['No signals ' ...
         'could be detected, because no ROIs were identified.'])
-    dummyData = repmat({{[]}}, [1, 11]);
+    dummyData = repmat({{[]}}, [1, 12]);
     self.data = self.data.add_processed_data(dummyData{:});
     return
 end

@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>LineScanVel</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-06-23"><meta name="DC.source" content="pi_LineScanVel.m"><style type="text/css">
+      --><title>LineScanVel</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-09-20"><meta name="DC.source" content="pi_LineScanVel.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,11 +66,12 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>LineScanVel</h1><!--introduction--><p>Analyse line scan images of vessel velocities</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Arguments</a></li><li><a href="#3">Details</a></li><li><a href="#4">See Also</a></li><li><a href="#5">Examples</a></li></ul></div><h2>Usage<a name="1"></a></h2><pre class="language-matlab">OBJ = LineScanVel(NAME, RAWIMG, CONFIG, ISDS, COLS)
-</pre><h2>Arguments<a name="2"></a></h2><div><ul><li><tt>NAME</tt> is the name for this <tt>LineScanVel</tt> object.</li><li><tt>RAWIMG</tt> is the <tt>RawImg</tt> object that will be used to create the <tt>LineScanVel</tt> object.</li><li><tt>CONFIG</tt> contains the configuration parameters needed for the <tt>calcVelocity</tt> object.</li><li><tt>ISDS</tt> specifies whether the streaks to analyse are dark (i.e. negatively labelled) or bright (i.e. positively labelled).</li><li><tt>COLS</tt> specifies the left and right columns that will form the edges of the <tt>RawImg</tt> data to use in the calculation.</li></ul></div><h2>Details<a name="3"></a></h2><p><tt>LineScanVel</tt> objects are used to analyse the velocity from line scan images acquired by scanning along to the vessel axis.  Typically, the blood plasma will be labelled by a fluorescent marker, like a dextran conjugated fluorophore (e.g. FITC, as in the figure below), but the method also works with labelled red blood cells (RBCs).</p><p><img vspace="5" hspace="5" src="lsv_example_rawImg.png" alt=""> </p><h2>See Also<a name="4"></a></h2><div><ul><li><a href="matlab:doc('LineScanVel')"><tt>LineScanVel</tt> class documentation</a></li><li><a href="matlab:doc('ConfigVelocityRadon')"><tt>ConfigVelocityRadon</tt> class documentation</a></li><li><a href="matlab:doc('ConfigVelocityLSPIV')"><tt>ConfigVelocityLSPIV</tt> class documentation</a></li><li><a href="matlab:doc('CalcVelocityRadon')"><tt>CalcVelocityRadon</tt> class documentation</a></li><li><a href="matlab:doc('CalcVelocityLSPIV')"><tt>CalcVelocityLSPIV</tt> class documentation</a></li><li><a href="matlab:doc('ImgGroup')"><tt>ImgGroup</tt> class documentation</a></li><li><a href="ig_ImgGroup.html"><tt>ImgGroup</tt> quick start guide</a></li></ul></div><h2>Examples<a name="5"></a></h2><p>The following examples require the sample images and other files, which can be downloaded manually, from the University of Zurich website (<a href="http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html">http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html</a>), or automatically, by running the function <tt>utils.download_example_imgs()</tt>.</p><p><h3>Create a <tt>LineScanVel</tt> object interactively</h3></p><p>The following example will illustrate the process of creating a <tt>LineScanVel</tt> object interactively, starting with calling the constructor.</p><pre class="language-matlab"><span class="comment">% Call the LineScanVel constructor</span>
+  </style></head><body><div class="content"><h1>LineScanVel</h1><!--introduction--><p>Analyse line scan images of vessel velocities</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Arguments</a></li><li><a href="#3">Details</a></li><li><a href="#4">See Also</a></li><li><a href="#5">Examples</a></li></ul></div><h2 id="1">Usage</h2><pre class="language-matlab">OBJ = LineScanVel(NAME, RAWIMG, CONFIG, ISDS, COLS)
+</pre><h2 id="2">Arguments</h2><div><ul><li><tt>NAME</tt> is the name for this <tt>LineScanVel</tt> object.</li><li><tt>RAWIMG</tt> is the <tt>RawImg</tt> object that will be used to create the <tt>LineScanVel</tt> object.</li><li><tt>CONFIG</tt> contains the configuration parameters needed for the <tt>calcVelocity</tt> object.</li><li><tt>ISDS</tt> specifies whether the streaks to analyse are dark (i.e. negatively labelled) or bright (i.e. positively labelled).</li><li><tt>COLS</tt> specifies the left and right columns that will form the edges of the <tt>RawImg</tt> data to use in the calculation.</li></ul></div><h2 id="3">Details</h2><p><tt>LineScanVel</tt> objects are used to analyse the velocity from line scan images acquired by scanning along to the vessel axis.  Typically, the blood plasma will be labelled by a fluorescent marker, like a dextran conjugated fluorophore (e.g. FITC, as in the figure below), but the method also works with labelled red blood cells (RBCs).</p><p><img vspace="5" hspace="5" src="lsv_example_rawImg.png" alt=""> </p><h2 id="4">See Also</h2><div><ul><li><a href="matlab:doc('LineScanVel')"><tt>LineScanVel</tt> class documentation</a></li><li><a href="matlab:doc('ConfigVelocityRadon')"><tt>ConfigVelocityRadon</tt> class documentation</a></li><li><a href="matlab:doc('ConfigVelocityLSPIV')"><tt>ConfigVelocityLSPIV</tt> class documentation</a></li><li><a href="matlab:doc('CalcVelocityRadon')"><tt>CalcVelocityRadon</tt> class documentation</a></li><li><a href="matlab:doc('CalcVelocityLSPIV')"><tt>CalcVelocityLSPIV</tt> class documentation</a></li><li><a href="matlab:doc('ImgGroup')"><tt>ImgGroup</tt> class documentation</a></li><li><a href="./ig_ImgGroup.html"><tt>ImgGroup</tt> quick start guide</a></li></ul></div><h2 id="5">Examples</h2><p>The following examples require the sample images and other files, which can be downloaded manually, from the University of Zurich website (<a href="http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html">http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html</a>), or automatically, by running the function <tt>utils.download_example_imgs()</tt>.</p><p><h3>Create a <tt>LineScanVel</tt> object interactively</h3></p><p>The following example will illustrate the process of creating a <tt>LineScanVel</tt> object interactively, starting with calling the constructor.</p><pre class="language-matlab"><span class="comment">% Call the LineScanVel constructor</span>
 lsv01 = LineScanVel()
-</pre><p>Since no RawImg has been specified, the first stage is to select the type of RawImg to create.  Press 2 and then enter to select the SCIM_Tif.</p><pre>----- What type of RawImg would you like to load? -----</pre><pre>  &gt;&gt; 1) BioFormats
-     2) SCIM_Tif</pre><pre>Select a format: 2</pre><p>Then, use the interactive dialogue box to select the raw image file <tt>linescanvel_scim.tif</tt>, which should be located in the subfolder tests&gt;res, within the CHIPS root directory.</p><p><img vspace="5" hspace="5" src="lsv_sel_rawImg.png" alt=""> </p><p>A warning may appear about the pixel aspect ratio, but this is not relevant for <tt>LineScanVel</tt> images.</p><p>Use the interactive dialogue box to select the dummy calibration (<tt>calibration_dummy.mat</tt>):</p><p><img vspace="5" hspace="5" src="sel_cal.png" alt=""> </p><p>The next stage is to define the 'meaning' of the image channels.  The first channel represents the blood plasma.  Press one and then enter to complete the selection.</p><pre>----- What is shown on channel 1? -----</pre><pre>  &gt;&gt; 0) &lt;blank&gt;
+</pre><p>Since no RawImg has been specified, the first stage is to select the type of RawImg to create.  Press three and then enter to select the SCIM_Tif.</p><pre>----- What type of RawImg would you like to load? -----</pre><pre>  &gt;&gt; 1) BioFormats
+     2) RawImgDummy
+     3) SCIM_Tif</pre><pre>Select a format: 3</pre><p>Then, use the interactive dialogue box to select the raw image file <tt>linescanvel_scim.tif</tt>, which should be located in the subfolder tests&gt;res, within the CHIPS root directory.</p><p><img vspace="5" hspace="5" src="lsv_sel_rawImg.png" alt=""> </p><p>A warning may appear about the pixel aspect ratio, but this is not relevant for <tt>LineScanVel</tt> images.</p><p>Use the interactive dialogue box to select the dummy calibration (<tt>calibration_dummy.mat</tt>):</p><p><img vspace="5" hspace="5" src="sel_cal.png" alt=""> </p><p>The next stage is to define the 'meaning' of the image channels.  The first channel represents the blood plasma.  Press one and then enter to complete the selection.</p><pre>----- What is shown on channel 1? -----</pre><pre>  &gt;&gt; 0) &lt;blank&gt;
      1) blood_plasma
      2) blood_rbcs</pre><pre>Answer: 1</pre><p>The next stage is to specify which velocity calculation algorithm should be used. In this case we will choose the Radon transform method.  Press two and then enter to complete the selection</p><pre>----- What type of velocity calculation would you like to use? -----</pre><pre>  &gt;&gt; 1) CalcVelocityLSPIV
      2) CalcVelocityRadon</pre><pre>Select a format: 2</pre><p>The final stage is to select the left and right limits of the image to use for velocity calculations.  This can be useful to exclude the edges where there can be artefacts associated with the scan mirrors changing speed and/or direction.</p><p><img vspace="5" hspace="5" src="lsv_sel_edges.png" alt=""> </p><p>We have now created a <tt>LineScanVel</tt> object interactively.</p><pre>lsv01 =</pre><pre>  LineScanVel with properties:</pre><pre>        plotList: [1x1 struct]
@@ -95,26 +96,21 @@ isDarkStreaks = [];
 colsToUse = [17 112];
 lsv02 = LineScanVel(nameLSV02, rawImg, configRadon, <span class="keyword">...</span>
     isDarkStreaks, colsToUse)
-</pre><pre class="codeoutput">
-lsv02 = 
-
+</pre><pre class="codeoutput">lsv02 = 
   LineScanVel with properties:
 
-         plotList: [1x1 struct]
-     calcVelocity: [1x1 CalcVelocityRadon]
+         plotList: [1&times;1 struct]
+     calcVelocity: [1&times;1 CalcVelocityRadon]
      colsToUseVel: [17 112]
     isDarkStreaks: 1
             state: 'unprocessed'
              name: 'test LSV 02'
-           rawImg: [1x1 SCIM_Tif]
-
+           rawImg: [1&times;1 SCIM_Tif]
 </pre><p><h3>Create a <tt>LineScanVel</tt> object array</h3></p><pre class="codeinput"><span class="comment">% Create the RawImg array first</span>
 rawImgArray(1:3) = copy(rawImg);
 rawImgArray = copy(rawImgArray)
-</pre><pre class="codeoutput">
-rawImgArray = 
-
-  1x3 SCIM_Tif array with properties:
+</pre><pre class="codeoutput">rawImgArray = 
+  1&times;3 SCIM_Tif array with properties:
 
     filename
     isDenoised
@@ -128,10 +124,8 @@ rawImgArray =
 </pre><pre class="codeinput"><span class="comment">% Then create a LineScanVel object array</span>
 lsvArray = LineScanVel(<span class="string">'test LSV Array'</span>, rawImgArray, configRadon, <span class="keyword">...</span>
     isDarkStreaks, colsToUse)
-</pre><pre class="codeoutput">
-lsvArray = 
-
-  1x3 LineScanVel array with properties:
+</pre><pre class="codeoutput">lsvArray = 
+  1&times;3 LineScanVel array with properties:
 
     plotList
     calcVelocity
@@ -147,9 +141,7 @@ configLSPIV = ConfigVelocityLSPIV(<span class="string">'shiftAmt'</span>, 8, <sp
 lsv03 = LineScanVel(<span class="string">'test LSV 03'</span>, rawImg, configLSPIV, <span class="keyword">...</span>
     isDarkStreaks, colsToUse);
 confVel = lsv03.calcVelocity.config
-</pre><pre class="codeoutput">
-confVel = 
-
+</pre><pre class="codeoutput">confVel = 
   ConfigVelocityLSPIV with properties:
 
       windowTime: 100
@@ -159,7 +151,6 @@ confVel =
        pointsSNR: 12
     thresholdSNR: 1.5000
     thresholdSTD: 3
-
 </pre><p><h3>Process a scalar <tt>LineScanVel</tt> object</h3></p><pre class="codeinput"><span class="comment">% Process a scalar LineScanVel object</span>
 lsv03 = lsv03.process();
 </pre><pre class="codeoutput">Calculating velocity: 100% [=======================================]
@@ -169,11 +160,9 @@ useParallel = true;
 lsvArray = lsvArray.process(useParallel);
 lsvArray_state = {lsvArray.state}
 </pre><pre class="codeoutput">Processing array: 100% [===========================================]
-
-lsvArray_state = 
-
+lsvArray_state =
+  1&times;3 cell array
     'processed'    'processed'    'processed'
-
 </pre><p><h3>Plot a figure showing the output</h3></p><pre class="codeinput"><span class="comment">% Plot a figure showing the output</span>
 hFig03 = lsv03.plot();
 set(hFig03, <span class="string">'Position'</span>, [50, 50, 600, 700])
@@ -185,32 +174,17 @@ fID03 = fopen(fnCSV03{1}, <span class="string">'r'</span>);
 fileContents03 = textscan(fID03, <span class="string">'%s'</span>);
 fileContents03{1}{1:5}
 fclose(fID03);
-</pre><pre class="codeoutput">
+</pre><pre class="codeoutput">ans =
+    'time,velocity,yPosition,pixelShift,estSNR,maskSNR,maskSTD,mask'
 ans =
-
-time,velocity,yPosition,pixelShift,estSNR,maskSNR,maskSTD,mask
-
-
+    '0.050,4.441,NaN,22.739,2.713,FALSE,FALSE,FALSE'
 ans =
-
-0.050,4.441,NaN,22.739,2.713,FALSE,FALSE,FALSE
-
-
+    '0.075,4.352,NaN,22.285,2.884,FALSE,FALSE,FALSE'
 ans =
-
-0.075,4.352,NaN,22.285,2.884,FALSE,FALSE,FALSE
-
-
+    '0.100,4.760,NaN,24.371,2.490,FALSE,FALSE,FALSE'
 ans =
-
-0.100,4.760,NaN,24.371,2.490,FALSE,FALSE,FALSE
-
-
-ans =
-
-0.125,5.267,NaN,26.966,2.406,FALSE,FALSE,FALSE
-
-</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+    '0.125,5.267,NaN,26.966,2.406,FALSE,FALSE,FALSE'
+</pre><p><a href="./index.html">Home</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% LineScanVel
 % Analyse line scan images of vessel velocities
@@ -245,7 +219,7 @@ ans =
 % * <matlab:doc('CalcVelocityRadon') |CalcVelocityRadon| class documentation>
 % * <matlab:doc('CalcVelocityLSPIV') |CalcVelocityLSPIV| class documentation>
 % * <matlab:doc('ImgGroup') |ImgGroup| class documentation>
-% * <ig_ImgGroup.html |ImgGroup| quick start guide>
+% * <./ig_ImgGroup.html |ImgGroup| quick start guide>
 
 %% Examples
 % The following examples require the sample images and other files, which
@@ -263,14 +237,15 @@ ans =
 %   lsv01 = LineScanVel()
 %
 % Since no RawImg has been specified, the first stage is to select the type
-% of RawImg to create.  Press 2 and then enter to select the SCIM_Tif.  
+% of RawImg to create.  Press three and then enter to select the SCIM_Tif.  
 %
 %  REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- What type of RawImg would you like to load? REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
 %  
 %    >> 1) BioFormats
-%       2) SCIM_Tif
+%       2) RawImgDummy
+%       3) SCIM_Tif
 %  
-%  Select a format: 2
+%  Select a format: 3
 %
 % Then, use the interactive dialogue box to select the raw image file
 % |linescanvel_scim.tif|, which should be located in the subfolder
@@ -436,5 +411,8 @@ fileContents03 = textscan(fID03, '%s');
 fileContents03{1}{1:5}
 fclose(fID03);
 
+%%
+%
+% <./index.html Home>
 ##### SOURCE END #####
 --></body></html>

@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>ImgGroup</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-06-23"><meta name="DC.source" content="ig_ImgGroup.m"><style type="text/css">
+      --><title>ImgGroup</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-09-20"><meta name="DC.source" content="ig_ImgGroup.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,9 +66,9 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>ImgGroup</h1><!--introduction--><p>Contain and analyse groups of processable objects</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Arguments</a></li><li><a href="#3">Details</a></li><li><a href="#4">See Also</a></li><li><a href="#5">Examples</a></li></ul></div><h2>Usage<a name="1"></a></h2><pre>OBJ = ImgGroup(RAWIMG, CONFIG, PROCTYPE)
+  </style></head><body><div class="content"><h1>ImgGroup</h1><!--introduction--><p>Contain and analyse groups of processable objects</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Arguments</a></li><li><a href="#3">Details</a></li><li><a href="#4">See Also</a></li><li><a href="#5">Examples</a></li></ul></div><h2 id="1">Usage</h2><pre>OBJ = ImgGroup(RAWIMG, CONFIG, PROCTYPE)
 OBJ = ImgGroup(..., PROCOBJ1, PROCOBJ2, ...)
-OBJ = ImgGroup(NAME, ...)</pre><h2>Arguments<a name="2"></a></h2><div><ul><li><tt>RAWIMG</tt> is the <tt>RawImg</tt> object array that will be used to create the <tt>ProcessedImg</tt> child objects in the <tt>ImgGroup</tt> object.</li><li><tt>CONFIG</tt> is the <tt>Config</tt> object that will be used to create the <tt>ProcessedImg</tt> child objects in the <tt>ImgGroup</tt> object.</li><li><tt>PROCTYPE</tt> is the type of <tt>ProcessedImg</tt> child objects that will be created in the <tt>ImgGroup</tt> object.</li><li><tt>PROCOBJ1</tt>, <tt>PROCOBJ2</tt>, ... are additional <tt>ProcessedImg</tt> objects that will be added to the <tt>ImgGroup</tt> object children.</li><li><tt>NAME</tt> is the name for this <tt>ImgGroup</tt> object.</li></ul></div><h2>Details<a name="3"></a></h2><p><tt>ImgGroup</tt> objects are used to contain and analyse groups of processable objects.  This can be <tt>ProcessedImg</tt> objects like <tt>LineScanVel</tt> or <tt>CellScan</tt> objects, as well as nested <tt>ImgGroup</tt> objects.</p><h2>See Also<a name="4"></a></h2><div><ul><li><a href="matlab:doc('ImgGroup')"><tt>ImgGroup</tt> class documentation</a></li><li><a href="matlab:doc('ProcessedImg')"><tt>ProcessedImg</tt> class documentation</a></li><li><a href="pi_.html"><tt>ProcessedImg</tt> quick start guide</a></li><li><a href="matlab:doc('Config')"><tt>Config</tt> class documentation</a></li></ul></div><h2>Examples<a name="5"></a></h2><p>The following examples require the sample images and other files, which can be downloaded manually, from the University of Zurich website (<a href="http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html">http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html</a>), or automatically, by running the function <tt>utils.download_example_imgs()</tt>.</p><p><h3>Create an <tt>ImgGroup</tt> object interactively from one or more files</h3></p><p>The following example will illustrate the process of creating a <tt>ImgGroup</tt> object interactively.  Although it is possible to do so by using the constructor method followed by the <tt>add()</tt> method, it can be easier to use the static method <tt>from_files</tt>, as illustrated below.</p><pre class="language-matlab"><span class="comment">% Construct an ImgGroup using the static method from_files</span>
+OBJ = ImgGroup(NAME, ...)</pre><h2 id="2">Arguments</h2><div><ul><li><tt>RAWIMG</tt> is the <tt>RawImg</tt> object array that will be used to create the <tt>ProcessedImg</tt> child objects in the <tt>ImgGroup</tt> object.</li><li><tt>CONFIG</tt> is the <tt>Config</tt> object that will be used to create the <tt>ProcessedImg</tt> child objects in the <tt>ImgGroup</tt> object.</li><li><tt>PROCTYPE</tt> is the type of <tt>ProcessedImg</tt> child objects that will be created in the <tt>ImgGroup</tt> object.</li><li><tt>PROCOBJ1</tt>, <tt>PROCOBJ2</tt>, ... are additional <tt>ProcessedImg</tt> objects that will be added to the <tt>ImgGroup</tt> object children.</li><li><tt>NAME</tt> is the name for this <tt>ImgGroup</tt> object.</li></ul></div><h2 id="3">Details</h2><p><tt>ImgGroup</tt> objects are used to contain and analyse groups of processable objects.  This can be <tt>ProcessedImg</tt> objects like <tt>LineScanVel</tt> or <tt>CellScan</tt> objects, as well as nested <tt>ImgGroup</tt> objects.</p><h2 id="4">See Also</h2><div><ul><li><a href="matlab:doc('ImgGroup')"><tt>ImgGroup</tt> class documentation</a></li><li><a href="matlab:doc('ProcessedImg')"><tt>ProcessedImg</tt> class documentation</a></li><li><a href="./pi_.html"><tt>ProcessedImg</tt> quick start guide</a></li><li><a href="matlab:doc('Config')"><tt>Config</tt> class documentation</a></li></ul></div><h2 id="5">Examples</h2><p>The following examples require the sample images and other files, which can be downloaded manually, from the University of Zurich website (<a href="http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html">http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html</a>), or automatically, by running the function <tt>utils.download_example_imgs()</tt>.</p><p><h3>Create an <tt>ImgGroup</tt> object interactively from one or more files</h3></p><p>The following example will illustrate the process of creating a <tt>ImgGroup</tt> object interactively.  Although it is possible to do so by using the constructor method followed by the <tt>add()</tt> method, it can be easier to use the static method <tt>from_files</tt>, as illustrated below.</p><pre class="language-matlab"><span class="comment">% Construct an ImgGroup using the static method from_files</span>
 ig01 = ImgGroup.from_files()
 </pre><p>Since no type of <tt>ProcessedImg</tt> has been specified, the first stage is to specify the type of <tt>ProcessedImg</tt> to create.  Press seven followed by enter to choose a <tt>LineScanVel</tt> in this case.</p><pre>----- What type of ProcessableImage would you like to create? -----</pre><pre>  &gt;&gt; 1) ArbLineScan
      2) CellScan
@@ -78,8 +78,9 @@ ig01 = ImgGroup.from_files()
      6) LineScanDiam
      7) LineScanVel
      8) MultiChImg
-     9) XSectScan</pre><pre>Select a class: 7</pre><p>Since we are going to choose <tt>RawImg</tt> files, we must also select the type of <tt>RawImg</tt> to create.  Press two and then enter to select the SCIM_Tif.</p><pre>----- What type of RawImg would you like to load? -----</pre><pre>  &gt;&gt; 1) BioFormats
-     2) SCIM_Tif</pre><pre>Select a format: 2</pre><p>Then, use the interactive dialogue box to select the raw image files <tt>framescan_scim.tif</tt> and <tt>linescanvel_scim.tif</tt> (press shift or control/command to select multiple images), which should be located in the subfolder tests&gt;res, within the CHIPS root directory. Although these two images are not really the same type, they will illustrate how to create an <tt>ImgGroup</tt> object.</p><p><img vspace="5" hspace="5" src="ig_sel_rawImgs.png" alt=""> </p><p>Use the interactive dialogue box to select the dummy calibration (<tt>calibration_dummy.mat</tt>):</p><p><img vspace="5" hspace="5" src="sel_cal.png" alt=""> </p><p>The next stage is to define the 'meaning' of the image channels.  For this example we will specify the first channel as blood plasma.  Press one and enter to complete the selection.</p><pre>----- What is shown on channel 1? -----</pre><pre>  &gt;&gt; 0) &lt;blank&gt;
+     9) XSectScan</pre><pre>Select a class: 7</pre><p>Since we are going to choose <tt>RawImg</tt> files, we must also select the type of <tt>RawImg</tt> to create.  Press three and then enter to select the SCIM_Tif.</p><pre>----- What type of RawImg would you like to load? -----</pre><pre>  &gt;&gt; 1) BioFormats
+     2) RawImgDummy
+     3) SCIM_Tif</pre><pre>Select a format: 3</pre><p>Then, use the interactive dialogue box to select the raw image files <tt>framescan_scim.tif</tt> and <tt>linescanvel_scim.tif</tt> (press shift or control/command to select multiple images), which should be located in the subfolder tests&gt;res, within the CHIPS root directory. Although these two images are not really the same type, they will illustrate how to create an <tt>ImgGroup</tt> object.</p><p><img vspace="5" hspace="5" src="ig_sel_rawImgs.png" alt=""> </p><p>Use the interactive dialogue box to select the dummy calibration (<tt>calibration_dummy.mat</tt>):</p><p><img vspace="5" hspace="5" src="sel_cal.png" alt=""> </p><p>The next stage is to define the 'meaning' of the image channels.  For this example we will specify the first channel as blood plasma.  Press one and enter to complete the selection.</p><pre>----- What is shown on channel 1? -----</pre><pre>  &gt;&gt; 0) &lt;blank&gt;
      1) blood_plasma
      2) blood_rbcs
      3) Ca_Cyto_Astro
@@ -101,10 +102,8 @@ calibration = CalibrationPixelSize.load(fnCalibration);
 rawImgArray(1:2) = SCIM_Tif(fnRawImgArray, channelsArray, calibration);
 rawImgArray = copy(rawImgArray)
 </pre><pre class="codeoutput">Opening linescanvel_scim.tif: 100% [===============================]
-
 rawImgArray = 
-
-  1x2 SCIM_Tif array with properties:
+  1&times;2 SCIM_Tif array with properties:
 
     filename
     isDenoised
@@ -122,10 +121,8 @@ isDarkStreaks = [];
 colsToUse = [15 90];
 lsvArray = LineScanVel(nameLSV, rawImgArray, configRadon, <span class="keyword">...</span>
     isDarkStreaks, colsToUse)
-</pre><pre class="codeoutput">
-lsvArray = 
-
-  1x2 LineScanVel array with properties:
+</pre><pre class="codeoutput">lsvArray = 
+  1&times;2 LineScanVel array with properties:
 
     plotList
     calcVelocity
@@ -138,16 +135,13 @@ lsvArray =
 </pre><p><h3>Create an <tt>ImgGroup</tt> object without any interaction</h3></p><pre class="codeinput"><span class="comment">% Create an ImgGroup object from ProcessedImg objects without any interaction</span>
 nameIG02 = <span class="string">'test IG 02'</span>;
 ig02 = ImgGroup(nameIG02, lsvArray)
-</pre><pre class="codeoutput">
-ig02 = 
-
+</pre><pre class="codeoutput">ig02 = 
   ImgGroup with properties:
 
-     children: {[1x2 LineScanVel]}
+     children: {[1&times;2 LineScanVel]}
     nChildren: 1
         state: 'unprocessed'
          name: 'test IG 02'
-
 </pre><p><h3>Add <tt>RawImg</tt> objects to an existing <tt>ImgGroup</tt> object with a custom config</h3></p><pre class="codeinput"><span class="comment">% Prepare an extra RawImg for use in this example</span>
 fnRawImgXSect = fullfile(utils.CHIPS_rootdir, <span class="string">'tests'</span>, <span class="string">'res'</span>, <span class="keyword">...</span>
     <span class="string">'xsectscan_scim.tif'</span>);
@@ -161,31 +155,25 @@ configTiRS = ConfigDiameterTiRS(<span class="string">'thresholdFWHM'</span>, 0.3
 ig02.add(rawImgXSect, configTiRS, procImgType);
 ig02
 </pre><pre class="codeoutput">Opening xsectscan_scim.tif: 100% [=================================]
-
 ig02 = 
-
   ImgGroup with properties:
 
-     children: {[1x2 LineScanVel]  [1x1 XSectScan]}
+     children: {[1&times;2 LineScanVel]  [1&times;1 XSectScan]}
     nChildren: 2
         state: 'unprocessed'
          name: 'test IG 02'
-
 </pre><p><h3>Process an <tt>ImgGroup</tt> object (in parallel)</h3></p><pre class="codeinput"><span class="comment">% Process an ImgGroup object (in parallel).</span>
 <span class="comment">% This code requires the Parallel Computing Toolbox to run in parallel</span>
 useParallel = true;
 ig02 = ig02.process(useParallel)
 </pre><pre class="codeoutput">Processing children: 100% [========================================]
-
 ig02 = 
-
   ImgGroup with properties:
 
-     children: {[1x2 LineScanVel]  [1x1 XSectScan]}
+     children: {[1&times;2 LineScanVel]  [1&times;1 XSectScan]}
     nChildren: 2
         state: 'processed'
          name: 'test IG 02'
-
 </pre><p><h3>Plot a figure showing the output from all children</h3></p><pre class="codeinput"><span class="comment">% Plot a figure showing the output from all children.</span>
 <span class="comment">% Note: the figures are deliberately displayed smaller here</span>
 hFig = ig02.plot();
@@ -196,32 +184,17 @@ fID02 = fopen(fnCSV02{end}{1}, <span class="string">'r'</span>);
 fileContents02 = textscan(fID02, <span class="string">'%s'</span>);
 fileContents02{1}{1:5}
 fclose(fID02);
-</pre><pre class="codeoutput">
+</pre><pre class="codeoutput">ans =
+    'time,diameter,areaPixels,maskSTD,mask'
 ans =
-
-time,diameter,areaPixels,maskSTD,mask
-
-
+    '0.06966,123.58714,2999,FALSE,FALSE'
 ans =
-
-0.06966,123.58714,2999,FALSE,FALSE
-
-
+    '0.20898,124.89888,3063,FALSE,FALSE'
 ans =
-
-0.20898,124.89888,3063,FALSE,FALSE
-
-
+    '0.34830,123.64894,3002,FALSE,FALSE'
 ans =
-
-0.34830,123.64894,3002,FALSE,FALSE
-
-
-ans =
-
-0.48762,122.57335,2950,FALSE,FALSE
-
-</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+    '0.48762,122.57335,2950,FALSE,FALSE'
+</pre><p><a href="./index.html">Home</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% ImgGroup
 % Contain and analyse groups of processable objects
@@ -250,7 +223,7 @@ ans =
 %% See Also
 % * <matlab:doc('ImgGroup') |ImgGroup| class documentation>
 % * <matlab:doc('ProcessedImg') |ProcessedImg| class documentation>
-% * <pi_.html |ProcessedImg| quick start guide>
+% * <./pi_.html |ProcessedImg| quick start guide>
 % * <matlab:doc('Config') |Config| class documentation>
 
 %% Examples
@@ -288,14 +261,15 @@ ans =
 %  Select a class: 7
 %
 % Since we are going to choose |RawImg| files, we must also select the type
-% of |RawImg| to create.  Press two and then enter to select the SCIM_Tif.  
+% of |RawImg| to create.  Press three and then enter to select the SCIM_Tif.  
 %
 %  REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- What type of RawImg would you like to load? REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
 %  
 %    >> 1) BioFormats
-%       2) SCIM_Tif
+%       2) RawImgDummy
+%       3) SCIM_Tif
 %  
-%  Select a format: 2
+%  Select a format: 3
 %
 % Then, use the interactive dialogue box to select the raw image files
 % |framescan_scim.tif| and |linescanvel_scim.tif| (press shift or
@@ -447,5 +421,8 @@ fileContents02 = textscan(fID02, '%s');
 fileContents02{1}{1:5}
 fclose(fID02);
 
+%%
+%
+% <./index.html Home>
 ##### SOURCE END #####
 --></body></html>

@@ -128,19 +128,6 @@ classdef CellScan < ProcessedImg
         
     end
     
-    % ------------------------------------------------------------------ %
-    
-    properties (Transient, Access = protected)
-        
-        %lhCalcFindROIs - A listener handle for lhCalcFindROIs ProcessNow
-        lhCalcFindROIs
-        %lhCalcMeasureROIs - A listener handle for lhCalcMeasureROIs ProcessNow
-        lhCalcMeasureROIs
-        %lhCalcDetectSigs - A listener handle for lhCalcDetectSigs ProcessNow
-        lhCalcDetectSigs
-        
-    end
-    
     % ================================================================== %
     
     methods
@@ -215,7 +202,7 @@ classdef CellScan < ProcessedImg
                     error('CellScan:NonScalarConfig', ...
                         'The config must be a scalar.')
                 end
-
+                                    
                 configFindIn = configCSIn.configFindROIs;
                 configMeasureIn = configCSIn.configMeasureROIs;
                 configDetectIn = configCSIn.configDetectSigs;
@@ -303,8 +290,23 @@ classdef CellScan < ProcessedImg
         
         % -------------------------------------------------------------- %
         
-        function refImg = get_refImg(self, varargin)
+        function [refImg, varargout] = get_refImg(self, varargin)
         %get_refImg - Return a reference image of the field of view
+        %
+        %   REF_IMG = get_refImg(OBJ) produces a reference image for the
+        %   CellScan object OBJ.  At this time get_refImg is only valid for
+        %   scalar CellScan objects.
+        %
+        %   REF_IMG = get_refImg(..., 'attribute', value, ...) uses the
+        %   specified attribute/value pairs.  Valid attributes (case
+        %   insensitive) are:
+        %
+        %       'FrameNum' ->   The (scalar, integer) frame number of the
+        %                       raw image to display as a reference image.
+        %                       If empty, the average of all frames is
+        %                       used. [default = []]
+        %
+        %   See also CellScan.plot
         
             % Setup the default parameter names and values
             pNames = {
@@ -316,23 +318,33 @@ classdef CellScan < ProcessedImg
             dflts = cell2struct(pValues, pNames);
             params = utils.parse_params(dflts, varargin{:});
             
-            % Produce a reference image to use in the plots
-            if isempty(params.FrameNum)
-                refImg = utils.nansuite.nanmean(...
-                    self.rawImg.rawdata(:,:,self.channelToUse, :), 4);
-            else
-                
-                % Check the frame number
-                utils.checks.prfsi(params.FrameNum)
-                nFrames = self.rawImg.metadata.nFrames;
-                allowEq = true;
-                utils.checks.less_than(params.FrameNum, nFrames, ...
-                    allowEq, 'frameNum')
+            % Check it's a scalar object
+            utils.checks.scalar(self, 'CellScan object')
             
-                % Produce the reference image
-                refImg = self.rawImg.rawdata(:,:,...
-                    self.channelToUse, params.FrameNum);
+            % Produce a reference image to use in the plots
+            [isLS, refImg] = self.calcFindROIs.get_LS(self);
+            if isLS
+                refImg = squeeze(refImg)';
+            else
+                if isempty(params.FrameNum)
+                    refImg = utils.nansuite.nanmean(...
+                        self.rawImg.rawdata(:,:,self.channelToUse, :), 4);
+                else
+                    
+                    % Check the frame number
+                    utils.checks.prfsi(params.FrameNum)
+                    nFrames = self.rawImg.metadata.nFrames;
+                    allowEq = true;
+                    utils.checks.less_than(params.FrameNum, nFrames, ...
+                        allowEq, 'frameNum')
+                    
+                    % Produce the reference image
+                    refImg = self.rawImg.rawdata(:,:,...
+                        self.channelToUse, params.FrameNum);
+                end
             end
+            
+            varargout{1} = isLS;
             
         end
         
@@ -355,17 +367,6 @@ classdef CellScan < ProcessedImg
             % Set the property
             self.calcDetectSigs = calcDetectSigs;
             
-            % Attach a listener to process the object when the user
-            % requests this (via the Config.opt_config GUI.  Make sure we
-            % delete any old listeners, because otherwise the callback
-            % might get executed many times.
-            if ~isempty(self.lhCalcDetectSigs) %#ok<MCSUP>
-                delete(self.lhCalcDetectSigs) %#ok<MCSUP>
-            end
-            self.lhCalcDetectSigs = addlistener(... 
-                self.calcDetectSigs.config, 'ProcessNow', ...
-                @ProcessedImg.process_now); %#ok<MCSUP>
-            
         end
         
         % -------------------------------------------------------------- %
@@ -379,20 +380,9 @@ classdef CellScan < ProcessedImg
             
             % Check calcROIs is scalar
             utils.checks.scalar(calcFindROIs, varName);
-            
+                        
             % Set the property
             self.calcFindROIs = calcFindROIs;
-            
-            % Attach a listener to process the object when the user
-            % requests this (via the Config.opt_config GUI.  Make sure we
-            % delete any old listeners, because otherwise the callback
-            % might get executed many times.
-            if ~isempty(self.lhCalcFindROIs) %#ok<MCSUP>
-                delete(self.lhCalcFindROIs) %#ok<MCSUP>
-            end
-            self.lhCalcFindROIs = addlistener(...
-                self.calcFindROIs.config, 'ProcessNow', ...
-                @ProcessedImg.process_now); %#ok<MCSUP>
             
         end
         
@@ -410,17 +400,6 @@ classdef CellScan < ProcessedImg
             
             % Set the property
             self.calcMeasureROIs = calcMeasureROIs;
-            
-            % Attach a listener to process the object when the user
-            % requests this (via the Config.opt_config GUI.  Make sure we
-            % delete any old listeners, because otherwise the callback
-            % might get executed many times.
-            if ~isempty(self.lhCalcMeasureROIs) %#ok<MCSUP>
-                delete(self.lhCalcMeasureROIs) %#ok<MCSUP>
-            end
-            self.lhCalcMeasureROIs = addlistener(...
-                self.calcMeasureROIs.config, 'ProcessNow', ...
-                @ProcessedImg.process_now); %#ok<MCSUP>
             
         end
         
@@ -721,6 +700,7 @@ classdef CellScan < ProcessedImg
             listMethods = {...
                 'no signal detection', ...
                 'detect + classify signals', ...
+                'CellSort specific detection'
                 };
             
             % Choose method to find ROIs
@@ -741,6 +721,10 @@ classdef CellScan < ProcessedImg
                 case 2
                     
                     configIn = ConfigDetectSigsClsfy();
+                
+                case 3
+                    
+                    configIn = ConfigDetectSigsCellSort();
                     
                 otherwise
                     

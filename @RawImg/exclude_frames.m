@@ -65,7 +65,7 @@ if ~isscalar(self)
 
     % Process each of the objects
     for iObj = 1:lnObj
-        self(iObj).exclude_frames(paramsIn);
+        self(iObj).exclude_frames(badFrames, paramsIn);
     end
 
     return

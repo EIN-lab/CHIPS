@@ -52,7 +52,10 @@ classdef CalcFindROIsFLIKA_3D < CalcFindROIsFLIKA
     
     properties (Access = protected)
         %is3D - Whether or not the ROI mask is 3D
-        is3D = true;        
+        is3D = true;
+        
+        %isLS - Whether or not the RawImg is a linescan
+        isLS = false;        
     end
     
     % ------------------------------------------------------------------ %
@@ -65,8 +68,8 @@ classdef CalcFindROIsFLIKA_3D < CalcFindROIsFLIKA
         %   the associated Config class
         validConfig = {'ConfigFindROIsFLIKA_3D'};
         
-        %validConfig - Constant, protected property containing the name of
-        %   the associated Config class
+        %validData - Constant, protected property containing the name of
+        %   the associated Data class
         validData = {'DataFindROIsFLIKA_3D'};
         
     end

@@ -362,7 +362,7 @@ classdef (Abstract) ProcessedImg < Processable & IRawImg
     
     % ================================================================== %
     
-    methods (Static, Access = protected)
+    methods (Static, Hidden)
         
         function process_now(~, eventData)
         %process_now - Static method to process Calc objects as requested

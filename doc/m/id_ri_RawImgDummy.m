@@ -30,9 +30,9 @@
 %% See Also
 % * <matlab:doc('RawImg') |RawImg| class documentation>
 % * <matlab:doc('Metadata') |Metadata| class documentation>
-% * <id_md_Metadata.html |Metadata| quick start guide>
+% * <./id_md_Metadata.html |Metadata| quick start guide>
 % * <matlab:doc('CalibrationPixelSize') |CalibrationPixelSize| class documentation>
-% * <id_md_Calibration.html |CalibrationPixelSize| quick start guide>
+% * <./id_md_Calibration.html |CalibrationPixelSize| quick start guide>
 %
 
 %% Examples
@@ -160,3 +160,7 @@ rid003 = RawImgDummy(fnRID003, channels003, calibration, acq003);
 
 % View the RawImgDummy object
 rid003.plot()
+
+%%
+%
+% <./index.html Home>

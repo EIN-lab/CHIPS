@@ -39,7 +39,7 @@
 % * <matlab:doc('CalcDetectSigsDummy') |CalcDetectSigsDummy| class documentation>
 % * <matlab:doc('CalcDetectSigsClsfy') |CalcDetectSigsClsfy| class documentation>
 % * <matlab:doc('ImgGroup') |ImgGroup| class documentation>
-% * <ig_ImgGroup.html |ImgGroup| quick start guide>
+% * <./ig_ImgGroup.html |ImgGroup| quick start guide>
 
 %% Examples
 % The following examples require the sample images and other files, which
@@ -57,14 +57,15 @@
 %   cs01 = CellScan()
 %
 % Since no RawImg has been specified, the first stage is to select the type
-% of RawImg to create.  Press 2 and then enter to select the SCIM_Tif.  
+% of RawImg to create.  Press three and then enter to select the SCIM_Tif.  
 %
 %  ----- What type of RawImg would you like to load? -----
 %  
 %    >> 1) BioFormats
-%       2) SCIM_Tif
+%       2) RawImgDummy
+%       3) SCIM_Tif
 %  
-%  Select a format: 2
+%  Select a format: 3
 %
 % Then, use the interactive dialogue box to select the raw image file
 % |cellscan_scim.tif|, which should be located in the subfolder
@@ -276,3 +277,7 @@ fID03_detect = fopen(fnCS03{3}, 'r');
 fileContents03d = textscan(fID03_detect, '%s');
 fileContents03d{1}{1:5}
 fclose(fID03_detect);
+
+%%
+%
+% <./index.html Home>

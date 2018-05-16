@@ -38,7 +38,7 @@
 % * <matlab:doc('CalcVelocityLSPIV') |CalcVelocityLSPIV| class documentation>
 % * <matlab:doc('CalcDiameterFWHM') |CalcDiameterFWHM| class documentation>
 % * <matlab:doc('ImgGroup') |ImgGroup| class documentation>
-% * <ig_ImgGroup.html |ImgGroup| quick start guide>
+% * <./ig_ImgGroup.html |ImgGroup| quick start guide>
 
 %% Examples
 % The following examples require the sample images and other files, which
@@ -55,14 +55,15 @@
 %   fs01 = FrameScan()
 %
 % Since no RawImg has been specified, the first stage is to select the type
-% of RawImg to create.  Press 2 and then enter to select the SCIM_Tif.  
+% of RawImg to create.  Press three and then enter to select the SCIM_Tif.  
 %
 %  ----- What type of RawImg would you like to load? -----
 %  
 %    >> 1) BioFormats
-%       2) SCIM_Tif
+%       2) RawImgDummy
+%       3) SCIM_Tif
 %  
-%  Select a format: 2
+%  Select a format: 3
 %
 % A warning may appear about the pixel aspect ratio, but this is not
 % relevant for |FrameScan| images.
@@ -134,6 +135,7 @@
 %             state: 'unprocessed'
 %              name: 'framescan_scim'
 %            rawImg: [1x1 SCIM_Tif]
+%      isDarkPlasma: 0
 %
 % The process is almost exactly the same to create an array of |FrameScan|
 % objects; when the software prompts you to select one or more raw images,
@@ -253,3 +255,7 @@ fID03_velocity = fopen(fnCSV03{2}, 'r');
 fileContents03v = textscan(fID03_velocity, '%s');
 fileContents03v{1}{1:5}
 fclose(fID03_velocity);
+
+%%
+%
+% <./index.html Home>

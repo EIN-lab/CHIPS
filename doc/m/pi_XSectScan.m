@@ -2,7 +2,7 @@
 % Analyse cross section images of vessel diameters
 
 %% Usage
-%   OBJ = XSectScan(NAME, RAWIMG, CONFIG, ISDP)
+%   OBJ = XSectScan(NAME, RAWIMG, CONFIG, CH, ISDP)
 
 %% Arguments
 % * |NAME| is the name for this |LineScanVel| object.
@@ -10,6 +10,7 @@
 % |LineScanVel| object.
 % * |CONFIG| contains the configuration parameters needed for the
 % |calcDiameter| object.
+% * |CH| specifies the channel to be used for calculating the diameter.
 % * |ISDP| specifies whether the vessel lumen to analyse is bright (i.e.
 % positively labelled) or dark (i.e. negatively labelled).
         
@@ -27,7 +28,7 @@
 % * <matlab:doc('ConfigDiameterTiRS') |ConfigDiameterTiRS| class documentation>
 % * <matlab:doc('CalcDiameterTiRS') |CalcDiameterTiRS| class documentation>
 % * <matlab:doc('ImgGroup') |ImgGroup| class documentation>
-% * <ig_ImgGroup.html |ImgGroup| quick start guide>
+% * <./ig_ImgGroup.html |ImgGroup| quick start guide>
 
 %% Examples
 % The following examples require the sample images and other files, which
@@ -44,14 +45,15 @@
 %   xss01 = XSectScan()
 %
 % Since no RawImg has been specified, the first stage is to select the type
-% of RawImg to create.  Press 2 and then enter to select the SCIM_Tif.  
+% of RawImg to create.  Press three and then enter to select the SCIM_Tif.  
 %
 %  ----- What type of RawImg would you like to load? -----
 %  
 %    >> 1) BioFormats
-%       2) SCIM_Tif
+%       2) RawImgDummy
+%       3) SCIM_Tif
 %  
-%  Select a format: 2
+%  Select a format: 3
 %
 % Then, use the interactive dialogue box to select the raw image file
 % |xsectscan_scim.tif|, which should be located in the subfolder
@@ -198,3 +200,7 @@ fID03 = fopen(fnCSV03{1}, 'r');
 fileContents03 = textscan(fID03, '%s');
 fileContents03{1}{1:5}
 fclose(fID03);
+
+%%
+%
+% <./index.html Home>

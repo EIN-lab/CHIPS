@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>Metadata</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-06-23"><meta name="DC.source" content="id_md_Metadata.m"><style type="text/css">
+      --><title>Metadata</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-09-20"><meta name="DC.source" content="id_md_Metadata.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,8 +66,8 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>Metadata</h1><!--introduction--><p>Store image metadata</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Arguments</a></li><li><a href="#3">Details</a></li><li><a href="#4">See Also</a></li><li><a href="#5">Examples</a></li></ul></div><h2>Usage<a name="1"></a></h2><pre class="language-matlab">OBJ = Metadata(IMGSIZE, ACQ, CHS, CAL)
-</pre><h2>Arguments<a name="2"></a></h2><div><ul><li><tt>IMGSIZE</tt> is a vector of the dimensions of the raw image data.</li><li><tt>ACQ</tt> is a scalar structure containing information about the image acquisition (e.g. line time, zoom factor etc).</li><li><tt>CHS</tt> is a scalar structure that contains information about the meaning of the image channels.</li><li><tt>CAL</tt> is a scalar <tt>CalibrationPixelSize</tt> object.</li></ul></div><h2>Details<a name="3"></a></h2><p><tt>Metadata</tt> objects are used to contain all the extra information (i.e. metadata) about a given raw image.  It also implements a number of related helper/convenience functions.</p><h2>See Also<a name="4"></a></h2><div><ul><li><a href="matlab:doc('Metadata')"><tt>Metadata</tt> class documentation</a></li><li><a href="matlab:doc('CalibrationPixelSize')"><tt>CalibrationPixelSize</tt> class documentation</a></li><li><a href="id_md_Calibration.html"><tt>CalibrationPixelSize</tt> quick start guide</a></li><li><a href="matlab:doc('RawImg')"><tt>RawImg</tt> class documentation</a></li><li><a href="id_ri.html"><tt>RawImg</tt> quick start guide</a></li></ul></div><h2>Examples<a name="5"></a></h2><p>The following examples require the sample images and other files, which can be downloaded manually, from the University of Zurich website (<a href="http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html">http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html</a>), or automatically, by running the function <tt>utils.download_example_imgs()</tt>.</p><p><h3>Create a <tt>Metadata</tt> object interactively</h3></p><p>The following example will illustrate the process of creating a <tt>Metadata</tt> object interactively.  Normally this process is done automatically when creating a <tt>RawImg</tt> object, but in certain circumstances it is useful to do it manually.</p><pre class="language-matlab"><span class="comment">% Call the Metadata constructor</span>
+  </style></head><body><div class="content"><h1>Metadata</h1><!--introduction--><p>Store image metadata</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Arguments</a></li><li><a href="#3">Details</a></li><li><a href="#4">See Also</a></li><li><a href="#5">Examples</a></li></ul></div><h2 id="1">Usage</h2><pre class="language-matlab">OBJ = Metadata(IMGSIZE, ACQ, CHS, CAL)
+</pre><h2 id="2">Arguments</h2><div><ul><li><tt>IMGSIZE</tt> is a vector of the dimensions of the raw image data.</li><li><tt>ACQ</tt> is a scalar structure containing information about the image acquisition (e.g. line time, zoom factor etc).</li><li><tt>CHS</tt> is a scalar structure that contains information about the meaning of the image channels.</li><li><tt>CAL</tt> is a scalar <tt>CalibrationPixelSize</tt> object.</li></ul></div><h2 id="3">Details</h2><p><tt>Metadata</tt> objects are used to contain all the extra information (i.e. metadata) about a given raw image.  It also implements a number of related helper/convenience functions.</p><h2 id="4">See Also</h2><div><ul><li><a href="matlab:doc('Metadata')"><tt>Metadata</tt> class documentation</a></li><li><a href="matlab:doc('CalibrationPixelSize')"><tt>CalibrationPixelSize</tt> class documentation</a></li><li><a href="./id_md_Calibration.html"><tt>CalibrationPixelSize</tt> quick start guide</a></li><li><a href="matlab:doc('RawImg')"><tt>RawImg</tt> class documentation</a></li><li><a href="./id_ri.html"><tt>RawImg</tt> quick start guide</a></li></ul></div><h2 id="5">Examples</h2><p>The following examples require the sample images and other files, which can be downloaded manually, from the University of Zurich website (<a href="http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html">http://www.pharma.uzh.ch/en/research/functionalimaging/CHIPS.html</a>), or automatically, by running the function <tt>utils.download_example_imgs()</tt>.</p><p><h3>Create a <tt>Metadata</tt> object interactively</h3></p><p>The following example will illustrate the process of creating a <tt>Metadata</tt> object interactively.  Normally this process is done automatically when creating a <tt>RawImg</tt> object, but in certain circumstances it is useful to do it manually.</p><pre class="language-matlab"><span class="comment">% Call the Metadata constructor</span>
 md001 = Metadata()
 </pre><p>Answer some questions about the image acquisition.  For example, specify that the image was not bidirectional, that the line time was 2ms, and that the zoom factor was 4.</p><pre>  Please enter a value for if the image is bidirectional [1/0]: 0
   Please enter a value for the line time [ms]: 2
@@ -118,13 +118,11 @@ calibration = CalibrationPixelSize.load(fnCalibration);
 
 <span class="comment">% Create the Metadata object without any interaction</span>
 md002 = Metadata(imgSize, acq, channels, calibration)
-</pre><pre class="codeoutput">
-md002 = 
-
+</pre><pre class="codeoutput">md002 = 
   Metadata with properties:
 
-           calibration: [1x1 CalibrationPixelSize]
-              channels: [1x1 struct]
+           calibration: [1&times;1 CalibrationPixelSize]
+              channels: [1&times;1 struct]
     discardFlybackLine: []
              frameRate: 3.9063
                 isBiDi: 0
@@ -138,9 +136,8 @@ md002 =
              pixelSize: 2
              pixelTime: []
                   zoom: 4
-         knownChannels: {1x7 cell}
-
-</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+         knownChannels: {1&times;7 cell}
+</pre><p><a href="./index.html">Home</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% Metadata
 % Store image metadata
@@ -164,9 +161,9 @@ md002 =
 %% See Also
 % * <matlab:doc('Metadata') |Metadata| class documentation>
 % * <matlab:doc('CalibrationPixelSize') |CalibrationPixelSize| class documentation>
-% * <id_md_Calibration.html |CalibrationPixelSize| quick start guide>
+% * <./id_md_Calibration.html |CalibrationPixelSize| quick start guide>
 % * <matlab:doc('RawImg') |RawImg| class documentation>
-% * <id_ri.html |RawImg| quick start guide>
+% * <./id_ri.html |RawImg| quick start guide>
 
 %% Examples
 % The following examples require the sample images and other files, which
@@ -260,5 +257,8 @@ calibration = CalibrationPixelSize.load(fnCalibration);
 % Create the Metadata object without any interaction
 md002 = Metadata(imgSize, acq, channels, calibration)
 
+%%
+%
+% <./index.html Home>
 ##### SOURCE END #####
 --></body></html>

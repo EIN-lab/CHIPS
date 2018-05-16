@@ -79,7 +79,7 @@ if flag > 0
 
         otherwise
 
-            error('CalcDiameterTiRS:Plot:UnknownPlot', ...
+            error('CalcVelocityStreaks:Plot:UnknownPlot', ...
                 'Unknown plot type "%s"', plotName)
 
     end

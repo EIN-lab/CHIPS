@@ -73,6 +73,15 @@ function pointsToUse = crop_rows_cols(imgData, varargin)
     % Select the region for the current fluorophore
     hROI = imrect(gca, 'PositionConstraintFcn', fConstrainPos);
     wait(hROI);
+    
+    if isempty(hROI)
+        pointsToUse = [];
+        if ishghandle(hFig)
+            close(hFig)
+        end
+        return
+    end
+    
     pos = hROI.getPosition();
     if ishghandle(hFig)
         close(hFig)

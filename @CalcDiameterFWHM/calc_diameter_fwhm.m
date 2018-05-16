@@ -1,5 +1,5 @@
-function [self, pixelWidth] = calc_diameter_fwhm(self, ...
-    diamProfile, lineRate, t0)
+function [self, pixelWidth] = calc_diameter_fwhm(self, diamProfile, ...
+    lineRate, t0, doInvert)
 
 %   Copyright (C) 2017  Matthew J.P. Barrett, Kim David Ferrari et al.
 %
@@ -59,6 +59,11 @@ if hasNans
         'This may be due to selecting a subset of the image that is ' ...
         'too narrow or because the maxRate is too high.'], ...
         sum(maskNaN), numel(maskNaN))
+end
+
+% Figure out if we need back-inversion and if so, do it
+if doInvert
+    diamProfile = utils.nansuite.nanmax(diamProfile(:)) - diamProfile;
 end
 
 % Add the raw data to the data object

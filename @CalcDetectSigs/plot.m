@@ -21,18 +21,24 @@ function varargout = plot(self, objPI, varargin)
 %
 %       'signals' ->    A series of figures showing detail on the signals 
 %                       detection and classification process. One figure is
-%                       produced for every ROI. These figures are only
-%                       relevant when using CalcDetectSigsClsfy.
+%                       produced for every ROI for CalcDetectSigsClsfy
+%                       class. For CalcDetectSigsCellSort single plot is
+%                       produced.
 %
 %   plot(..., 'attribute', value, ...) uses the specified attribute/value
 %   pairs.  Valid attributes (case insensitive) are:
 %
-%       'doWholeFrame' -> Logical scalar indicating whether to display the
-%                       whole frame trace(s). [default = true]
+%       'annotateSigs'  -> A boolean flag indiciating whether to add
+%                       annotations to plots of individual ROI's responses.
+%                       Applicable for plot type 'signals' only. 
+%                       [default = true]
 %
 %       'doHeatmap' ->  Logical scalar indicating whether to display the
 %                       traces as a heatmap or regular 2d lines. 
 %                       [default = true if > 15 ROIs, otherwise false]
+%
+%       'doWholeFrame' -> Logical scalar indicating whether to display the
+%                       whole frame trace(s). [default = true]
 %
 %       'isDebug' ->    Logical scalar indicating whether to show debugging
 %                       information and/or plots on the figure. 
@@ -92,11 +98,11 @@ if flag > 0
             self.plot_clsfy(hAx, varargin{idxStart:end});
 
         case {'signals'}
-
+            
             hFig = self.plot_signals(objPI, ...
                 varargin{idxStart:end});
             hAx = hFig;
-
+            
         otherwise
 
             error('CalcDetectSigs:Plot:UnknownPlot', ...
