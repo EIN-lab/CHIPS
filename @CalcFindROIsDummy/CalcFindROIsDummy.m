@@ -100,7 +100,10 @@ classdef CalcFindROIsDummy < CalcFindROIs
         %get_LS - Get the linescan
         
             isLS = self.isLS;
-            varargout{:} = {[]};
+            
+            for k = 1:nargout-1
+                varargout{k} = {[]};
+            end
             
             if isLS
                 [imgSeq, lineRate] = self.get_diamProfile(objPI, ...

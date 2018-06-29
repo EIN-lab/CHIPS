@@ -99,8 +99,11 @@ classdef (Abstract) CalcFindROIs < Calc & IMeasureROIs
         %get_LS - Get the linescan
         
             isLS = self.isLS;
-            varargout(:) = {[]};
-
+        
+            for k = 1:nargout-1
+                varargout{k} = {[]};
+            end
+        
         end
         
         % -------------------------------------------------------------- %
