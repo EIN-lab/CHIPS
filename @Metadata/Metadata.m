@@ -526,7 +526,7 @@ classdef Metadata
                 isKnown = ismember(iName, self.knownChannels);
                 
                 if ~isKnown
-                    error('Metadata:SetChannels:UnknownChannel', ...
+                    warning('Metadata:SetChannels:UnknownChannel', ...
                         '"%s" is not a recognised channel name', iName)
                 end
 
