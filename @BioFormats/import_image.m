@@ -27,6 +27,11 @@ if isempty(self.filename)
     return
 end
 
+% Check if the user specified channels
+if ~isempty(channels)
+    forceUserChannels = true;
+end
+
 % Get the full file path. Required for some of the Java classes
 [path, ~, ~] = fileparts(self.filename);
 if isempty(path)
@@ -157,7 +162,7 @@ if ~hasCalibIn
             @CalibrationPixelSize.funRawDummy);
     end
 
-    if hasChannels
+    if hasChannels && ~forceUserChannels
         channels = channelsOME;
     end
 
