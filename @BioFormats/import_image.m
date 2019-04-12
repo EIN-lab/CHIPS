@@ -28,6 +28,7 @@ if isempty(self.filename)
 end
 
 % Check if the user specified channels
+forceUserChannels = false;
 if ~isempty(channels)
     forceUserChannels = true;
 end
