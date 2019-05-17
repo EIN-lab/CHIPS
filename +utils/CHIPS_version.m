@@ -29,8 +29,8 @@ narginchk(0, 0);
 
 verMajor = 1; %MAJOR_VER
 verMinor = 1; %MINOR_VER
-verBug = 2; %BUG_VER
-verBuild = 66; %BUILD_VER
+verBug = 3; %BUG_VER
+verBuild = 67; %BUILD_VER
 
 verStr = sprintf('%d.%d.%d.%d', verMajor, verMinor, verBug, verBuild);
 
