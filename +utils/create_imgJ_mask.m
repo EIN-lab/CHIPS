@@ -17,7 +17,7 @@ function [ROImask, nameList] = create_imgJ_mask(varargin)
 %   SCALE must be a positive real finite scalar specifying the scale factor
 %   between the image that the ROIs were defined using, and the desired 
 %   mask size. For example, if the ROIs were drawn on a 512 x 512 pixel 
-%   image, the mask should be 256 x 256, the scale factor is 2.
+%   image, the mask should be 256 x 256, the scale factor is 0.5.
 %
 %   [ROI_MASK, ROI_NAMES] = create_imgJ_mask(...) also returns the ROI
 %   names that were defined in ImageJ.
@@ -113,10 +113,7 @@ utils.checks.prfs(scaleFactor, 'scaleFactor')
 
 %% Main part of the function
 
-% Calculate ImageJ mask size
-x_pix = round(x_pix*scaleFactor);
-y_pix = round(y_pix*scaleFactor);
-
+% Read ImageJ ROIs using utility function
 ROIs = utils.ReadImageJROI(ROIZip);
 
 % Convert ROIs to a cell array if it's a structure.  This happens when
@@ -125,9 +122,8 @@ if ~iscell(ROIs)
     ROIs = {ROIs};
 end
 
-nROIs = numel(ROIs);
-
 % Create mask from ROIs
+nROIs = numel(ROIs);
 doCheck = true;
 ROImask = zeros(y_pix, x_pix, nROIs);
 nameList = cell(nROIs, 1);
@@ -195,18 +191,9 @@ for iROI = 1:nROIs
     
 end
 
-% % Get ROI names in right order
-% drawnROIs = bwconncomp(ROImask);
-% 
-% for kk = 1:drawnROIs.NumObjects
-%     indices = drawnROIs.PixelIdxList{kk};
-%     for iROI = 1:numel(ROIpix);
-%         if mean(ROIpix{iROI}(indices) > .5)
-%             nameList{kk} = ROIs{iROI}.strName;
-%         end
-%     end
-% end
-% 
-% nameList = nameList';
-
+% Resize the ROI mask, if necesary
+if scaleFactor ~= 1
+    ROImask = imresize(ROImask, scaleFactor);
+end
+    
 end

@@ -10,12 +10,12 @@ function cfrdObj = from_ImageJ(varargin)
 %   OBJ = from_ImageJ(FILENAME) uses the supplied FILENAME to
 %   create a ConfigFindROIsDummy object.
 %
-%   OBJ = from_ImageJ(FILENAME, XPIX, YPIX, SCALEFACTOR) specifies
-%   the number of x and y pixels in the image that the mask will be
-%   applied to and a scale factor for cases where ROIs were
-%   selected on images with a different resolution.  E.g., if you
-%   drew the mask on a 512*512 pixel image, but are analysing a
-%   256x256 pixel image, the scale factor is 2.
+%   OBJ = from_ImageJ(FILENAME, XPIX, YPIX, SCALEFACTOR) specifies the
+%   number of x and y pixels in the image that the mask was drawn on and a
+%   scale factor for cases where ROIs were selected on images with a
+%   different resolution.  E.g., if you drew the mask on a 512*512 pixel
+%   image, but are analysing a 256x256 pixel image, the scale factor is
+%   0.5.
 %
 %   See also utils.create_ImgJ_mask, utils.ReadImageJROI
 
