@@ -171,7 +171,12 @@ for iOutput = 1:nOutput
     if ~iscell(dataTemp)
         dataTemp = num2cell(dataTemp);
     end
-    dataMat = [dataMat, dataTemp]; %#ok<AGROW>
+    try
+        dataMat = [dataMat, dataTemp]; %#ok<AGROW>
+    catch ME
+        warning('Data:OutputData:DataIncomplete', ['The Data object ', ...
+            'is incomplete.']);
+    end
 end
 
 % Check if any cell contains non-numeric data
