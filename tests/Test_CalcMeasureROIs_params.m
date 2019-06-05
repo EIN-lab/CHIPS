@@ -86,6 +86,29 @@ classdef Test_CalcMeasureROIs_params < matlab.unittest.TestCase
                 objCMR, objCFR, isMC);
             warning(wngState)
             
+            % Run data output test
+            outPath = fullfile(utils.CHIPS_rootdir, 'tests', ...
+                'output', 'dump');
+            wngState = warning('off', 'Data:OutputData:NoOutput');            
+            fnOut = self.verifyWarning(@() objCMR.data.output_data(outPath, ...
+                'overwrite', 1), ...
+                'Data:OutputData:DataIncomplete');
+            warning(wngState);
+            
+            % Return if there's no output
+            if isempty(fnOut)
+                return
+            end
+                        
+            % Delete files
+            wngState = warning('off', 'MATLAB:DELETE:FileNotFound');
+            if iscell(fnOut)
+                delete(fnOut{:});
+            else
+                delete(fnOut);
+            end
+            warning(wngState)        
+            
         end
         
         % -------------------------------------------------------------- %
