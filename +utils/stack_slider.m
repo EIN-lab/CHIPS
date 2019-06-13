@@ -107,6 +107,9 @@ params = utils.parsepropval(dflts, varargin{idxStart+1:end});
 
 % Check input is numeric or logical
 utils.checks.object_class(imgSeq, {'numeric', 'logical'}, 'image sequence')
+if islogical(imgSeq)
+    params.CAxis = [0,1];
+end
 
 % Check input is a stack of the appropriate dimensions
 if params.force4D
