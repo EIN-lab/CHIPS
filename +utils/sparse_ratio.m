@@ -42,7 +42,7 @@ c1_bgIdx = c1 < c1_thresh;
 c2_bgIdx = c2 < c2_thresh;
 
 % Combine indices from both channels
-bgIdx = c1_bgIdx & c2_bgIdx;
+bgIdx = c1_bgIdx | c2_bgIdx;
 
 % Calculate ratio
 newCh = c1./c2;
