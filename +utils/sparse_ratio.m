@@ -38,8 +38,8 @@ utils.checks.prfsi(thresh, 'thresh');
 c1_thresh = prctile(c1(:), thresh);
 c2_thresh = prctile(c2(:), thresh);
 
-c1_bgIdx = c1 < c1_thresh;
-c2_bgIdx = c2 < c2_thresh;
+c1_bgIdx = c1 <= c1_thresh;
+c2_bgIdx = c2 <= c2_thresh;
 
 % Combine indices from both channels
 bgIdx = c1_bgIdx | c2_bgIdx;
