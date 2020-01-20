@@ -35,7 +35,7 @@ switch lower(fillBadData)
                 '"%s" to fill bad data is not recognised.  Using "nan" ' ...
                 'instead.'], fillBadData)
         fillBadData = 'nan';
-        imgSeq = utils.convnfft.applyShift(imgSeq, sx, sy, fillBadData);
+        imgSeq = utils.convnfft.applyShifts(imgSeq, sx, sy, fillBadData);
         return 
             
 end
