@@ -127,7 +127,7 @@ function ridObj = downsample(self, dsamp, varargin)
         
         % Compute metadata after downsampling
         spaceFactor = (size(rawdataDS, 1) * size(rawdataDS, 2)) / ...
-            (self.metadata.nLinesPerFrame * self.metadata.nLinesPerFrame);
+            (self.metadata.nLinesPerFrame * self.metadata.nPixelsPerLine);
         timeFactor = size(rawdataDS, 4) / self.metadata.nFrames;
         
         % By binning pixels, we spend more time on each

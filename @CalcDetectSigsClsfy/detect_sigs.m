@@ -68,9 +68,25 @@ for iROI = 1:nROIs
         roiName = roiNames(iROI);
     end
     
+    % Retrieve trace
+    signalTrace = tracesNorm(:, iROI);
+    
+    % Check if the PI provides time information for ROIs
+    hasTime = ~isempty(objPI.calcMeasureROIs.data.tracesExist);
+    if hasTime
+        % Limit signal detection to ROI time, so we do not count peaks
+        % multiple times in case of overlapping ROIs
+        currTime = objPI.calcMeasureROIs.data.tracesExist(:, iROI);
+        before = find(currTime, 1, 'first');
+        after = find(currTime, 1, 'last');
+        
+        patchBefore = repmat(signalTrace(before), [1, before-1]);
+        patchAfter = repmat(signalTrace(after), [1, length(currTime)-after]);
+        signalTrace = [patchBefore'; signalTrace(currTime); patchAfter'];
+    end
+    
     % Make sure that the ROI contains actual data (and not just NaNs from
     % motion correction)
-    signalTrace = tracesNorm(:, iROI);
     hasNaN = any(~isfinite(signalTrace));
     
     if hasNaN && self.config.excludeNaNs 
