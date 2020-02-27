@@ -72,7 +72,7 @@ for iROI = 1:nROIs
     signalTrace = tracesNorm(:, iROI);
     
     % Check if the PI provides time information for ROIs
-    hasTime = ~isempty(objPI.calcMeasureROIs.data.tracesExist);
+    hasTime = ~isscalar(objPI.calcMeasureROIs.data.tracesExist);
     if hasTime
         % Limit signal detection to ROI time, so we do not count peaks
         % multiple times in case of overlapping ROIs
