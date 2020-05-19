@@ -48,7 +48,13 @@ peakData.peakTime = idx*frameTime;
 peakData.peakStart = idxStart*frameTime;
 peakData.peakStartHalf = idxStartHalf*frameTime;
 peakData.peakEndHalf = idxEndHalf*frameTime;
-peakData.halfWidth = (idxEndHalf - idxStartHalf)*frameTime;
+
+if isfinite(width)
+    peakData.halfWidth = width;
+else
+    peakData.halfWidth = (idxEndHalf - idxStartHalf)*frameTime;
+end
+
 peakData.fullWidth = (idxEnd - idxStart)*frameTime;
     
 end

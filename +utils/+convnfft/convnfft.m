@@ -51,6 +51,7 @@ function A = convnfft(A, B, shape, dims, options)
 %       02-Sep-2009: GPU/JACKET option
 %       04-Sep-2009: options structure
 %       16-Sep-2009: inplace product
+%       18-Dec-2019: version control for inplace product
 %
 %  Some modifications by Matthew J.P. Barrett, Kim David Ferrari et al.
 
@@ -165,8 +166,12 @@ if GPU
     A = A.*B;
     clear B
 else
-    % inplace product to save 1/3 of the memory
-    utils.convnfft.inplaceprod(A,B);
+    % inplace product to save 1/3 of the memory (depends on matlab version)
+    if ~verLessThan('MATLAB','9.4')
+        utils.convnfft.inplaceprod2018(A,B);
+    else
+        utils.convnfft.inplaceprod(A,B);
+    end
 end
 
 % Back to the non-Fourier space

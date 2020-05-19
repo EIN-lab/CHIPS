@@ -38,18 +38,28 @@ function ch_calc_ratio(self, chNums, varargin)
 %   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 % Check the number of input arguments
-narginchk(2, 3);
+narginchk(2, 5);
 
 % Parse optional arguments
-[chName] = utils.parse_opt_args({''}, varargin);
+[chName, doSparse, pctVal] = utils.parse_opt_args({'', 0, 30}, varargin);
 
 % Check that we have exactly 2 channels
 utils.checks.equal(numel(chNums), 2, ...
     'number of supplied channel numbers', '2')
 
+% Check that doSparse is convertible to logical
+utils.checks.logical_able(doSparse, 'doSparse');
+
+% Check that thresh is a positive, real, finite, scalar integer
+utils.checks.prfsi(pctVal, 'pctVal');
+
 % Specify the function for the ratio, and the new class as double to ensure
 % we don't lose any precision
-ff = @(c1, c2) c1./c2;
+if doSparse
+    ff = @(c1, c2) utils.sparse_ratio(c1, c2, pctVal);
+else
+    ff = @(c1, c2) c1./c2;
+end
 newClass = 'double';
 
 % Call the general channel calculator to do the work

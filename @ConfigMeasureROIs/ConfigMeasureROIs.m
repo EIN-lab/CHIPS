@@ -113,7 +113,9 @@ classdef (Abstract) ConfigMeasureROIs < Config
             
             % Check that the value is a positive, real, finite, scalar
             % integer
-            utils.checks.prfs(val, 'backgroundLevel')
+            utils.checks.greater_than(val, 0, true, 'backgroundLevel')
+            utils.checks.finite(val, 'backgroundLevel')
+            utils.checks.scalar(val, 'backgroundLevel')
             
             % Assign value
             self.backgroundLevel = val;
