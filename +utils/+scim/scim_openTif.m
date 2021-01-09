@@ -160,31 +160,14 @@ end
 warning('off','MATLAB:tifflib:TIFFReadDirectory:libraryWarning');
 hTif = Tiff(fileName);
 
-headerString  = hTif.getTag('ImageDescription');
-
-numImages = 1;
-while ~hTif.lastDirectory()
-    numImages = numImages + 1;
-    hTif.nextDirectory();
-end
-hTif.setDirectory(1);
-
-if strncmp('state',headerString,5) 
-    fileVersion = 3;
-    header = parseHeader(headerString);
-else
-    fileVersion = 4;
-    header = most.util.assignments2StructOrObj(headerString);            
+try
+    hTif.getTag('Software');  % SI5 specific, will error out if run on a 
+                              % wrong TIF version
+    [header, hdr] = extractSi5Header(hTif);
+catch
+    [header, hdr] = extractSi34Header(hTif);
 end
 
-%Extracts header info required by scim_openTif()
-hdr = extractHeaderData(header,fileVersion);
-
-%Extract frame tag info, if available (SI4 only)
-frameTagStr = 'Frame Tag';
-if strncmpi(headerString,frameTagStr,length(frameTagStr))
-    header.frameTags = extractFrameTags(hTif,numImages);    
-end
 
 %VI120910A: Detect/handle header-only operation (don't read data)
 if nargout <=1 && ~forceOutput 
@@ -210,9 +193,9 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if numFrames > 1
-    numFrames = floor(numImages/numChans);
+    numFrames = floor(header.numImages/numChans);
 elseif numSlices > 1
-    numSlices = floor(numImages/numChans);
+    numSlices = floor(header.numImages/numChans);
 end
 
 if ~numFrames || ~numSlices
@@ -566,9 +549,9 @@ if any(ismember({'write' 'writeavi' 'writemip' 'writempeg'},flags))
         case 'image'
             ext = '.tif';
             if forceFlat                
-                imwrite(resizeImage(Aout),determineOutFileName('selection',ext),'Description',headerString);
+                imwrite(resizeImage(Aout),determineOutFileName('selection',ext),'Description',header.headerString);
             elseif forceRGB
-                imwrite(resizeImage(Aout),determineOutFileName(['rgb' channelReductionStr],ext),'Description',headerString);
+                imwrite(resizeImage(Aout),determineOutFileName(['rgb' channelReductionStr],ext),'Description',header.headerString);
             else
                 for i=1:length(selChans)
                     outFileName = determineOutFileName(['chan' num2str(selChans(i)) imageReductionStr],ext);
@@ -580,14 +563,14 @@ if any(ismember({'write' 'writeavi' 'writemip' 'writempeg'},flags))
                     if strcmpi(proceed,'Yes')
                         streaming =  exist('scim_tifStream','file'); %Use faster file-writing, if available
                         if streaming
-                            tifStream = scim_tifStream(outFileName, size(Aout,2), size(Aout,1), headerString);
+                            tifStream = scim_tifStream(outFileName, size(Aout,2), size(Aout,1), header.headerString);
                             for j=1:numSelections
                                 appendFrame(tifStream,resizeImage(extractChannelData(Aout, selChans(i), j)));
                             end
                             close(tifStream);
                         else                                                                         
                             for j=1:numSelections
-                                imwrite(resizeImage(extractChannelData(Aout, selChans(i),j)), outFileName,'Description',headerString,'WriteMode','append','Compression','none'); %Compression doesn't appear to work with multi-frame TIFF
+                                imwrite(resizeImage(extractChannelData(Aout, selChans(i),j)), outFileName,'Description',header.headerString,'WriteMode','append','Compression','none'); %Compression doesn't appear to work with multi-frame TIFF
                             end
                         end
                     else
@@ -599,7 +582,7 @@ if any(ismember({'write' 'writeavi' 'writemip' 'writempeg'},flags))
         case 'mip'
             ext = '.tif';
             if forceRGB
-                imwrite(resizeImage(makeMIP(Aout)),determineOutFileName(['mip_rgb' dataReductionStr] ,ext),'Description',headerString);
+                imwrite(resizeImage(makeMIP(Aout)),determineOutFileName(['mip_rgb' dataReductionStr] ,ext),'Description',header.headerString);
             else
                 
                 if ~isWorker
@@ -610,7 +593,7 @@ if any(ismember({'write' 'writeavi' 'writemip' 'writempeg'},flags))
                 try
                     for i=1:length(selChans)
                         
-                        imwrite(resizeImage(makeMIP(extractChannelData(Aout, selChans(i)))), determineOutFileName(['chan' num2str(selChans(i)) '_mip' imageReductionStr],ext),'Description',headerString,'Compression','none'); %could probably use compression here safely
+                        imwrite(resizeImage(makeMIP(extractChannelData(Aout, selChans(i)))), determineOutFileName(['chan' num2str(selChans(i)) '_mip' imageReductionStr],ext),'Description',header.headerString,'Compression','none'); %could probably use compression here safely
                         
                         % Update the progress bar
                         if ~isWorker
@@ -1079,4 +1062,84 @@ end
         end
     end
 
+
+    function [header, hdr] = extractSi34Header(hTif)
+        %Extracts metadata from ScanImage TIF files of versions 3 and 4
+        
+        headerString  = hTif.getTag('ImageDescription');
+
+        numImages = 1;
+        while ~hTif.lastDirectory()
+            numImages = numImages + 1;
+            hTif.nextDirectory();
+        end
+        hTif.setDirectory(1);
+
+        if strncmp('state',headerString,5) 
+            fileVersion = 3;
+            header = parseHeader(headerString, 'state.'); 
+        else
+            fileVersion = 4;
+            header = most.util.assignments2StructOrObj(headerString);            
+        end
+
+        %Extracts header info required by scim_openTif()
+        hdr = extractHeaderData(header,fileVersion);
+
+        %Extract frame tag info, if available (SI4 only)
+        frameTagStr = 'Frame Tag';
+        if strncmpi(headerString,frameTagStr,length(frameTagStr))
+            header.frameTags = extractFrameTags(hTif,numImages);    
+        end
+        
+        % Specific variables that are needed outside of this scope
+        header.headerString = headerString;
+        header.numImages = numImages;
+    end
+
+    function [header, hdr] = extractSi5Header(hTif)
+        %Extracts metadata from ScanImage TIFFs of version 5
+        headerString = hTif.getTag('Software');
+        all_headers = most.util.assignments2StructOrObj(headerString);
+        header = generateHeaderSi5(all_headers);
+        header.headerString = headerString;
+        hdr = generateHdrSi5(all_headers);
+    end
+
+    function header = generateHeaderSi5(all_headers)
+        %Creates a header object containing cherry-picked information
+        %from the larger header object
+        header.numImages = all_headers.hStackManager.framesPerSlice;
+        header.software = struct(...
+           'version', all_headers.VERSION_MAJOR, ...
+           'minorRev', all_headers.VERSION_MINOR ...
+        );
+        header.acq = all_headers.hScan2D;
+        header.acq.msPerLine = all_headers.hRoiManager.linePeriod * 1000;
+        header.acq.pixelTime = all_headers.hScan2D.scanPixelTimeMean;
+        header.acq.zoomFactor = all_headers.hRoiManager.scanZoomFactor;
+        header.acq.bidirectionalScan = all_headers.hScan2D.bidirectional;
+        header.acq.slowDimDiscardFlybackLine = all_headers.hBeams.flybackBlanking;
+        header.acq.slowDimFlybackFinalLine = false;
+        header.acq.linesPerFrame = all_headers.hRoiManager.linesPerFrame;
+        header.acq.pixelsPerLine = all_headers.hRoiManager.pixelsPerLine;
+        
+        header.init = struct(...
+           'scanOffsetAngleX', all_headers.hRoiManager.scanAngleShiftFast, ...
+           'scanOffsetAngleY', all_headers.hRoiManager.scanAngleShiftSlow, ...
+           'eom', all_headers.hBeams ...
+        );
+        header.cycle = all_headers.hCycleManager;
+        header.motor = all_headers.hMotors;
+    end
+ 
+    function hdr = generateHdrSi5(all_headers)
+        %Creates the SI5 hdr object
+        hdr.savedChans = all_headers.hChannels.channelSave;
+        hdr.numPixels = all_headers.hRoiManager.linesPerFrame;
+        hdr.numLines = all_headers.hRoiManager.pixelsPerLine;
+        hdr.numSlices = all_headers.hStackManager.actualNumSlices;
+        hdr.numFrames = all_headers.hStackManager.framesPerSlice;
+        hdr.acqLUT = all_headers.hChannels.channelLUT;
+    end
 end
