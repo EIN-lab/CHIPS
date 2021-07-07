@@ -162,3 +162,5 @@ $RECYCLE.BIN/
 *.vpp*~*
 *.vux
 *.vbak*
+.tif
+*.tif

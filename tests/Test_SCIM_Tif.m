@@ -9,6 +9,7 @@ classdef Test_SCIM_Tif < matlab.unittest.TestCase
         fnSCIMXSectScan = 'xsectscan_scim.tif';
         fnSCIMCellScan = 'cellscan_scim.tif';
         fnSCIMFRET = 'xsectscan_scim.tif';
+        fnSCIMV5 = 'ScanImageBigTIFFv57.tif';
         skipImport = true;
     end
     
