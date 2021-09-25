@@ -168,7 +168,9 @@ if GPU
 else
     % inplace product to save 1/3 of the memory (depends on matlab version)
     if ~verLessThan('MATLAB','9.4')
-        utils.convnfft.inplaceprod2018(A,B);
+        % utils.convnfft.inplaceprod2018(A,B);
+    	A = A.*B;
+    	clear B
     else
         utils.convnfft.inplaceprod(A,B);
     end
