@@ -44,7 +44,13 @@ if strcmpi(hgType, 'figure')
         error('CheckPlotArgs:NonScalarHFig', ...
             'The figure handle must be scalar')
     end
-    figure(hHG)
+
+    % Only display figure, if it hasn't been set invisible before
+    isDefaultInvisible = strcmpi(get(groot,'defaultFigureVisible'),'off');
+    isFigureInvisible = strcmpi(hHG.Visible, 'off');
+    if ~isDefaultInvisible && ~isFigureInvisible
+        figure(hHG);
+    end    
 end
 
 % Work out the plotName
