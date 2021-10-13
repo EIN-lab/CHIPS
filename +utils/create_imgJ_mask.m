@@ -153,7 +153,7 @@ for iROI = 1:nROIs
              % ImageJ indexing describes pixel borders, so we have to add 1         
              ROImask_2d(coords(1):coords(3), coords(2):coords(4)) = 1;
              
-        case {'polygon', 'freehand'}
+        case {'polygon', 'freehand', 'traced'}
             
             if doCheck
                 % Check for the image processing toolbox
